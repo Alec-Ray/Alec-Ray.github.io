@@ -160,11 +160,11 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-ugui之ui组件image图片"
+            <article id="post-冒泡排序bubble-sort"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-11-25 14:02:17" datetime="2017-11-25T06:02:17.000Z"  itemprop="datePublished">2017-11-25</time>
+        <time class="post-time" title="2017-11-17 22:48:30" datetime="2017-11-17T14:48:30.000Z"  itemprop="datePublished">2017-11-17</time>
 
         
 
@@ -176,7 +176,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6image%E5%9B%BE%E7%89%87/">UGUI之UI组件Image图片</a>
+      <a class="post-title-link" href="/2017/11/17/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8Fbubble-sort/">冒泡排序(Bubble Sort)</a>
     </h3>
   
 
@@ -186,20 +186,18 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        一.Image 组件
-使用方式有两种：1.显示纯粹的颜色；2.指定图片源，用于显示图片。 注意事项：导入Unity 内的图片资源，如果是用于UI 显示的，需要手动将这些图片的类型修改为“Sprite(2D and UI)”。  
-二.组件面板核心属性
-Source Image：设置用于显示的图片。 Color：设置用于显示的颜色。 两个“数据源”可以分开使用，也可以同时使用，如果同时时候，颜...
+        1.将整个数组a分为有序的部分和无序的两个部分。前者在右，后者在左边。 2.开始，整个数组都是无序的。有序的部分没有元素。 3.每次要使得无序部分最大的元素移动到有序部分第一个元素的左边。移动的方法是：依次比较相邻的两个元素，如果前面的比后面的大，就交换他们的位置。这样，大的元素就像水里气泡一样不断往上浮。移动结束有序部分增加了一个元素。 4.直到无序的部分没有元素
+void BubbleS...
     
 
-        <a href="/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6image%E5%9B%BE%E7%89%87/" class="post-more waves-effect waves-button">
+        <a href="/2017/11/17/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8Fbubble-sort/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-UGUI/" rel="tag">Unity_UGUI</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数据结构与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95/" rel="tag">数据结构算法</a></li></ul>
 
     </div>
     
@@ -208,11 +206,11 @@ Source Image：设置用于显示的图片。 Color：设置用于显示的颜�
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-ugui之ui组件text文本"
+            <article id="post-插入排序insertion-sort"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-11-25 03:18:53" datetime="2017-11-24T19:18:53.000Z"  itemprop="datePublished">2017-11-25</time>
+        <time class="post-time" title="2017-11-17 22:45:57" datetime="2017-11-17T14:45:57.000Z"  itemprop="datePublished">2017-11-17</time>
 
         
 
@@ -224,7 +222,7 @@ Source Image：设置用于显示的图片。 Color：设置用于显示的颜�
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/">UGUI之UI组件Text文本</a>
+      <a class="post-title-link" href="/2017/11/17/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8Finsertion-sort/">插入排序(Insertion Sort)</a>
     </h3>
   
 
@@ -234,20 +232,18 @@ Source Image：设置用于显示的图片。 Color：设置用于显示的颜�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        UGUI虽然不是太难的东西，但是知识点还是很多的。目前UGUI学的不精，因此有系统的完整学习一遍是很有必要的，我会尽量把笔记做详细，方便以后回顾。  
-一.Canvas 形态
-当我们鼠标选中Canvas 游戏物体后，在Scene 面板会显示一个白色边框，虽然四个角都有“调节点”，但是这个的范围是不可以手动调节的，如下图所示，Rect Transform不可以调节： [
-           ...
+        1.将整个数组a分为有序的部分和无序的两个部分。前者在左边，后者在右边。 2.开始有序的部分只有a[0]，其余都属于无序的部分 3.每次取出无序部分的第一个（最左边）元素，把它加入到有序部分。假设插入到合适位置p, 则原p位置及其后面的有序部分元素，都向右移动一个位子。有序的部分即增加了一个元素。 4.直到无序的部分没有元素
+void InsertionSort(int a[], int s...
     
 
-        <a href="/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/" class="post-more waves-effect waves-button">
+        <a href="/2017/11/17/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8Finsertion-sort/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-UGUI/" rel="tag">Unity_UGUI</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数据结构与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95/" rel="tag">数据结构算法</a></li></ul>
 
     </div>
     
@@ -256,11 +252,11 @@ Source Image：设置用于显示的图片。 Color：设置用于显示的颜�
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-617-merge-two-binary-trees"
+            <article id="post-选择排序selection-sort"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-11-24 11:40:12" datetime="2017-11-24T03:40:12.000Z"  itemprop="datePublished">2017-11-24</time>
+        <time class="post-time" title="2017-11-17 22:42:28" datetime="2017-11-17T14:42:28.000Z"  itemprop="datePublished">2017-11-17</time>
 
         
 
@@ -272,7 +268,7 @@ Source Image：设置用于显示的图片。 Color：设置用于显示的颜�
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/24/617-merge-two-binary-trees/">617. Merge Two Binary Trees</a>
+      <a class="post-title-link" href="/2017/11/17/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8Fselection-sort/">选择排序(Selection Sort)</a>
     </h3>
   
 
@@ -282,17 +278,18 @@ Source Image：设置用于显示的图片。 Color：设置用于显示的颜�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not. You need to merge them into a new binary tr...
+        如果有N个元素需要排序，那么首先从N个元素中找到最小的那个(称为第0小的)放在第0个位子上(和原来的第0个位子上的元素交换位置)，然后再从剩下的N-1个元素中找到最小的放在第1个位子上，然后再从剩下的N-2个元素中找到最小的放在第2个位子上……直到所有的元素都就位。
+void SelectionSort(int a[], int size){    for (int i = 0; i &lt...
     
 
-        <a href="/2017/11/24/617-merge-two-binary-trees/" class="post-more waves-effect waves-button">
+        <a href="/2017/11/17/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8Fselection-sort/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数据结构与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95/" rel="tag">数据结构算法</a></li></ul>
 
     </div>
     
@@ -301,11 +298,11 @@ Source Image：设置用于显示的图片。 Color：设置用于显示的颜�
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-ulua服务器端基础与bug解决"
+            <article id="post-函数指针和qsort库函数"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-11-23 20:54:54" datetime="2017-11-23T12:54:54.000Z"  itemprop="datePublished">2017-11-23</time>
+        <time class="post-time" title="2017-11-16 21:09:11" datetime="2017-11-16T13:09:11.000Z"  itemprop="datePublished">2017-11-16</time>
 
         
 
@@ -317,7 +314,7 @@ Source Image：设置用于显示的图片。 Color：设置用于显示的颜�
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/23/ulua%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B8%8Ebug%E8%A7%A3%E5%86%B3/">ULua服务器端基础与bug解决</a>
+      <a class="post-title-link" href="/2017/11/16/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8Cqsort%E5%BA%93%E5%87%BD%E6%95%B0/">函数指针和qsort库函数</a>
     </h3>
   
 
@@ -327,251 +324,10 @@ Source Image：设置用于显示的图片。 Color：设置用于显示的颜�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        一.ULua服务器端简介
-  SimpleFramework 项目的根文件夹下有一个叫做Server 的文件夹,它是一个独立的VS 项目工程，可以 直接使用VS 打开该项目。[
-                
-                    
-                    
-                
-                这个项目就是ULua
-     ...
+        函数指针定义： 函数指针是指向函数的指针变量。 因此“函数指针”本身首先应是指针变量，只不过该指针变量指向函数。这正如用指针变量可指向整型变量、字符型、数组一样，这里是指向函数。如前所述，C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数，就如同用指针变量可引用其他类型变量一样，在这些概念上是大体一致的。函数指针有两个...
     
 
-        <a href="/2017/11/23/ulua%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B8%8Ebug%E8%A7%A3%E5%86%B3/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Unity_Lua热更新</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-ulua配置appconst和打包assetbundle"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-22 21:43:04" datetime="2017-11-22T13:43:04.000Z"  itemprop="datePublished">2017-11-22</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/22/ulua%E9%85%8D%E7%BD%AEappconst%E5%92%8C%E6%89%93%E5%8C%85assetbundle/">ULua配置AppConst和打包AssetBundle</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        一.框架配置文件
-1.AppConst 文件 在SimpleFramework 这个框架项目中，有一个配置文件AppConst.cs， 该文件所在位置是：Scripts/ConstDefine/AppConst.cs。 在这个文件中配置了很多项目开发过程中，需要使用到的“公共常量信息”。 简单分析： 字段用“const”关键字修饰，方法用“static”关键字修饰，该脚本内所有的字段，方法，...
-    
-
-        <a href="/2017/11/22/ulua%E9%85%8D%E7%BD%AEappconst%E5%92%8C%E6%89%93%E5%8C%85assetbundle/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Unity_Lua热更新</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-ulua框架之c与lua交互"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-22 15:48:31" datetime="2017-11-22T07:48:31.000Z"  itemprop="datePublished">2017-11-22</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/22/ulua%E6%A1%86%E6%9E%B6%E4%B9%8Bc%E4%B8%8Elua%E4%BA%A4%E4%BA%92/">ULua框架之C#与Lua交互</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        一.uLua 文件夹结构
-  ①Core：uLua 核心； ②Docs：uLua 文档，其实就是LuaInterface 的PDF 使用文档； ③Editor：uLua 编辑器扩展； [备注：项目内所有的Editor 文件夹都是编辑器扩展文件夹，并不局限于根目录] ④Examples：uLua 自带演示案例； ⑤Source：cstolua 核心目录 [
-                
- ...
-    
-
-        <a href="/2017/11/22/ulua%E6%A1%86%E6%9E%B6%E4%B9%8Bc%E4%B8%8Elua%E4%BA%A4%E4%BA%92/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Unity_Lua热更新</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-728-self-dividing-numbers"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-21 11:38:50" datetime="2017-11-21T03:38:50.000Z"  itemprop="datePublished">2017-11-21</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/21/728-self-dividing-numbers/">728. Self Dividing Numbers</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        A self-dividing number is a number that is divisible by every digit it contains. For example, 128 is a self-dividing number because 128 % 1 == 0, 128 % 2 == 0, and 128 % 8 == 0. Also, a self-dividi...
-    
-
-        <a href="/2017/11/21/728-self-dividing-numbers/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-1023-组个最小数-20"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-20 18:27:22" datetime="2017-11-20T10:27:22.000Z"  itemprop="datePublished">2017-11-20</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/20/1023-%E7%BB%84%E4%B8%AA%E6%9C%80%E5%B0%8F%E6%95%B0-20/">1023. 组个最小数 (20)</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        给定数字0-9各若干个。你可以以任意顺序排列这些数字，但必须全部使用。目标是使得最后得到的数尽可能小（注意0不能做首位）。例如：给定两个0，两个1，三个5，一个8，我们得到的最小的数就是10015558。 现给定数字，请编写程序输出能够组成的最小的数。 输入格式： 每个输入包含1个测试用例。每个测试用例在一行中给出10个非负整数，顺序表示我们拥有数字0、数字1、……数字9的个数。整数间用一个...
-    
-
-        <a href="/2017/11/20/1023-%E7%BB%84%E4%B8%AA%E6%9C%80%E5%B0%8F%E6%95%B0-20/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PAT%E4%B9%99%E7%BA%A7/" rel="tag">PAT乙级</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-stl二分查找算法"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-19 16:33:11" datetime="2017-11-19T08:33:11.000Z"  itemprop="datePublished">2017-11-19</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/19/stl%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/">STL二分查找算法</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        用binary_search进行二分查找
-用法一：在从小到大排好序的基本类型数组上进行二分查找
-binary_search(数组名+n1，数组名+n2,值);
-n1和n2都是int类型的表达式，可以包含变量
-如果n1=0,则 + n1可以不写
-查找区间为下标范围为[n1,n2)的元素，下标为n2的元素不在查找区间内 在该区间内查找”等于”值”的元素，返回值为true(找到）或false(没找...
-    
-
-        <a href="/2017/11/19/stl%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/" class="post-more waves-effect waves-button">
+        <a href="/2017/11/16/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8Cqsort%E5%BA%93%E5%87%BD%E6%95%B0/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
@@ -587,11 +343,11 @@ n1和n2都是int类型的表达式，可以包含变量
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-stl排序算法sort"
+            <article id="post-内存操作库函数memset和memcpy"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-11-18 22:17:51" datetime="2017-11-18T14:17:51.000Z"  itemprop="datePublished">2017-11-18</time>
+        <time class="post-time" title="2017-11-16 20:51:49" datetime="2017-11-16T12:51:49.000Z"  itemprop="datePublished">2017-11-16</time>
 
         
 
@@ -603,7 +359,7 @@ n1和n2都是int类型的表达式，可以包含变量
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/">STL排序算法Sort</a>
+      <a class="post-title-link" href="/2017/11/16/%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C%E5%BA%93%E5%87%BD%E6%95%B0memset%E5%92%8Cmemcpy/">内存操作库函数memset和memcpy</a>
     </h3>
   
 
@@ -613,12 +369,264 @@ n1和n2都是int类型的表达式，可以包含变量
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        用sort进行排序
-要使用STL其中的算法，需要#include  sort(数组名+n1，数组名+n2） n1和n2都是int类型的表达式，可以包含变量 如果n1=0,则 + n1可以不写 将数组中下标范围为[n1,n2)的元素从小到大排序，下标为n2的元素不在排序区间内 用法一：对基本类型的数组从小到大排序
-int a[] = {15,4,3,9,7,2,6};sort(a,a+7); ...
+        内存操作库函数memset
+头文件cstring中声明: void * memset(void * dest,int ch,int n); 将从dest开始的n个字节，都设置成ch。返回值是dest。ch只有最低的字节起作用   将szName的前10个字符，都设置成’a’：
+char szName[200] = “”;memset( szName,’a’,10);cout &lt;&lt;...
     
 
-        <a href="/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/" class="post-more waves-effect waves-button">
+        <a href="/2017/11/16/%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C%E5%BA%93%E5%87%BD%E6%95%B0memset%E5%92%8Cmemcpy/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-矩阵相乘"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-15 23:31:43" datetime="2017-11-15T15:31:43.000Z"  itemprop="datePublished">2017-11-15</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/15/%E7%9F%A9%E9%98%B5%E7%9B%B8%E4%B9%98/">矩阵相乘</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        编程求两个矩阵相乘的结果。输入第一行是整数m,n， 表示第一个矩阵是m行n列的。接下来时一个m×n的矩阵。 再下一行的输入是整数p,q，表示下一个矩阵是p行q列（n=p） 再接下来就是一个p行q列的矩阵。 要求输出两个矩阵相乘的结果矩阵(1 &lt; m,n,p,q &lt;= 8)。 [
+                
+                    
+             ...
+    
+
+        <a href="/2017/11/15/%E7%9F%A9%E9%98%B5%E7%9B%B8%E4%B9%98/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数据结构与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95/" rel="tag">数据结构算法</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-如何有一个好的生活习惯"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-10 16:21:02" datetime="2017-11-10T08:21:02.000Z"  itemprop="datePublished">2017-11-10</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/10/%E5%A6%82%E4%BD%95%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E7%94%9F%E6%B4%BB%E4%B9%A0%E6%83%AF/">如何有一个好的生活习惯</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        现在是下午四点
+我突然意识到今天还没吃饭
+中午有点小事情没顾得上吃
+然后就一直在实验室
+如果不是刚才肚子告诉我
+我可能还不知道
+早上基本从来不吃
+因为起不来
+我理想中的生活习惯是
+晚上11点准时睡
+早上七点20准时起
+一日三餐要吃好吃饱
+每周去打两三次篮球、
+最好每天晚上能跑跑步
+看上去很简单的几条
+如果不是真的热爱
+自制真的很难
+我决定一点点做到上面这几条
+突然看到桌子上这货盯着我
+不知道...
+    
+
+        <a href="/2017/11/10/%E5%A6%82%E4%BD%95%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E7%94%9F%E6%B4%BB%E4%B9%A0%E6%83%AF/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%88%91%E7%9A%84%E7%94%9F%E6%B4%BB/" rel="tag">我的生活</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-筛选法求n以内素数"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-07 21:54:23" datetime="2017-11-07T13:54:23.000Z"  itemprop="datePublished">2017-11-07</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/07/%E7%AD%9B%E9%80%89%E6%B3%95%E6%B1%82n%E4%BB%A5%E5%86%85%E7%B4%A0%E6%95%B0/">筛选法求n以内素数</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        判断一个数n是不是素数，可以用2到 根号n之间的所有整数去除n，看能否整除。如果都不能整除，那么n是素数(慢）。 筛选法求素数：把2到n中所有的数都列出来，然后从2开始，先划掉n内所有2的倍数，然后每次从下一个剩下的数(必然是素数)开始，划掉其n内的所有倍数。最后剩下的数，就都是素数。 空间换时间，加快了计算速度。   代码如下：
+#include     //筛法求素数#include u...
+    
+
+        <a href="/2017/11/07/%E7%AD%9B%E9%80%89%E6%B3%95%E6%B1%82n%E4%BB%A5%E5%86%85%E7%B4%A0%E6%95%B0/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数据结构与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95/" rel="tag">数据结构算法</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-用freopen重新定向输入"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-07 21:26:06" datetime="2017-11-07T13:26:06.000Z"  itemprop="datePublished">2017-11-07</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/07/%E7%94%A8freopen%E9%87%8D%E6%96%B0%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5/">用freopen重新定向输入</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        调试程序时，每次运行程序都要输入测试数据，太麻烦。 可以将测试数据存入文件，然后用freopen将输入由键盘 重定向为文件，则运行程序时不再需要输入数据了。   声明：FILE *freopen( const char *path, const char *mode, FILE *stream ); 参数说明： path: 文件名，用于存储输入输出的自定义文件名。 mode: 文件打开的模式...
+    
+
+        <a href="/2017/11/07/%E7%94%A8freopen%E9%87%8D%E6%96%B0%E5%AE%9A%E5%90%91%E8%BE%93%E5%85%A5/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-oj输入数据的处理"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-07 20:48:33" datetime="2017-11-07T12:48:33.000Z"  itemprop="datePublished">2017-11-07</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/07/oj%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%84%E7%90%86/">OJ输入数据的处理</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+         scanf表达式的值
+  scanf(…)表达式的值为int，表示成功读入的变量个数
+int n,m;printf(“%d”,scanf(“%d%d”,&amp;n,&amp;m));
+输入：34 56 输出：2 输入：34 a 输出：1 输入：a 56 输出：0 scanf(…) 值为EOF(即-1)则说明输入数据已经结束
+int n,m;while(scanf(“%d%d”,&amp;...
+    
+
+        <a href="/2017/11/07/oj%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%84%E7%90%86/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
@@ -638,7 +646,7 @@ int a[] = {15,4,3,9,7,2,6};sort(a,a+7); ...
     
 <nav id="page-nav">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/12/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/14/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/12/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/14/">下一页</a>
     </div>
 </nav>
 
