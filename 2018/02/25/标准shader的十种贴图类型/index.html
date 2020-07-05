@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>标准Shader的十种贴图类型 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Unity_PBR/GI渲染">
+    <meta name="description" content="一. 标准Shader 诞生 1.标准Shader背景 &lt;1&gt;Unity4.x 阶段，Unity 老被拿来和UrealEngine（虚幻）进行对比，得到的结论就是Unity 是“渣画质”，Ureal 是“高大上”。但是相对而言Unity易于学习，开发速度快，跨平台多，就业岗位多，却也是Ureal 比不了的。 &lt;2&gt;Unity4.x 阶段的画面渲染使用的是AutoDesk 的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="标准Shader的十种贴图类型">
+<meta property="og:url" content="http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一. 标准Shader 诞生 1.标准Shader背景 &lt;1&gt;Unity4.x 阶段，Unity 老被拿来和UrealEngine（虚幻）进行对比，得到的结论就是Unity 是“渣画质”，Ureal 是“高大上”。但是相对而言Unity易于学习，开发速度快，跨平台多，就业岗位多，却也是Ureal 比不了的。 &lt;2&gt;Unity4.x 阶段的画面渲染使用的是AutoDesk 的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/02/18022504.jpg">
+<meta property="article:published_time" content="2018-02-25T08:48:25.000Z">
+<meta property="article:modified_time" content="2020-07-05T11:22:19.613Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="Unity_PBR&#x2F;GI渲染">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/02/18022504.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">标准Shader的十种贴图类型</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">标准Shader的十种贴图类型</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-25T08:48:25.000Z" itemprop="datePublished" class="page-time">
+  2018-02-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-标准shader的十种贴图类型"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">标准Shader的十种贴图类型</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-25 16:48:25" datetime="2018-02-25T08:48:25.000Z"  itemprop="datePublished">2018-02-25</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>一. 标准Shader 诞生</strong></p>
+<p>1.标准Shader背景 &lt;1&gt;Unity4.x 阶段，Unity 老被拿来和UrealEngine（虚幻）进行对比，得到的结论就是Unity 是“渣画质”，Ureal 是“高大上”。但是相对而言Unity易于学习，开发速度快，跨平台多，就业岗位多，却也是Ureal 比不了的。 &lt;2&gt;Unity4.x 阶段的画面渲染使用的是AutoDesk 的Beast 技术；Unity5.x阶段彻底放弃了Beast 技术，改为使用和UrealEngine 一样的一款第三方渲染引擎Enlighten 来进行画面渲染。 &lt;3&gt;Unity 为了配合这个新的渲染引擎，推出了“标准Shader”。 &lt;4&gt;理论上，我们可以使用Unity5 制作出和UrealEngine 差不多的画面效果。 2.标准Shader 的优点 使用一个Shader 完成大部分场景模型的渲染；无论是人物角色，金属，塑料，皮革，布料，玻璃，建筑……都可以使用一个标准Shader 来完成渲染。 3.标准Shader 贴图 标准Shader 使用的是PBR 渲染，基于现实物理效果的渲染表现形式。 一个模型能不能使用标准Shader 来进行渲染，是在做这个模型的贴图的时候决定的。有没有按照PBR 贴图的制作规范和模式来制作，决定了该模型是否可以使用标准Shader 渲染。 4.两种标准Shader Unity5.x 中的标准Shader 有两个： Standard：标准着色器 Standard（Specular setup）：标准着色器（镜面） Standard（Specular setup）比Standard多了一种贴图。  </p>
+<p><strong>二. 十大贴图</strong></p>
+<p><strong>1.Albedo 贴图**</strong> Albedo：反照率[贴图]；用于体现模型的纹理，颜色。 反照率贴图本身是一张颜色与纹理的贴图。 该选项有贴图属性，也有颜色属性。 <strong>两个属性可以单独使用，也可以组合使用；</strong> <strong>当颜色属性为纯白色时，则不影响贴图的效果；</strong> <strong>当颜色属性为其他颜色时，则叠加贴图效果</strong>。 <strong>2.Metallic 贴图**</strong> 金属度[贴图]；用于体现模型的金属高光反射； 金属度贴图本身是一张灰白图，越白的地方，金属度越强烈，越黑的地方金属度越低。 Smoothness：平滑度 <strong>介于0 和1 之间的一个值，越小，平滑度越低，越大，平滑度越高。</strong> <strong>3.Normal Map 贴图**</strong> Normal Map：法线贴图；用于增加模型的细节； <strong>法线贴图本身是一张蓝色的凹凸图。</strong> <strong>4.Occlusion 贴图</strong> Occlusion：AO 贴图； AO 贴图本身是一张灰白图。 主要用于改善阴影，给场景(模型)更多的深度，有助于更好的表现模型的细节。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/02/18022504.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022501-300x234.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022501.jpg) **5.Specular** Specular：镜面[贴图]，类似于“Metallic 金属度”贴图。 **PBR 贴图的制作方式不同，最终关于“金属部分”的表现，出现了两种类型的贴图，Metallic 和Specular。** **6.Detail Albedo x2** Detail Albedo x2：细节反照率[贴图]； 作用是**对主Albedo 贴图的一个细节深入表现；** **7.Normal Map x2** Normal Map x2：细节法线[贴图]； 作用是**对主Normal Map 贴图的一个细节深入表现；** **8.Detail Mask** Detail Mask：细节遮罩[贴图]； 这个贴图是配合“次贴图区域”中的**Detail Albedo，Normal Map 两张贴图配合使用的**，次贴图区域中的这两张很多是平铺的贴图，效果会作用于模型的全部，我们使用Detail Mask 将一些不需要被“次贴图”影响的部分独立出来。 [![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022502-300x227.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022502.jpg) **9.Emission 贴图** Emission：自发光[贴图]，让模型自发光； Unity 里面能作为光源存在的除了灯光组件和天空盒，标准Shader 里面的Emission 贴图也是可以作为一种光源的。 [![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022503-300x221.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022503.jpg) **10.Height Map 贴图** Height Map：视差[贴图]，比Normal Map 更有立体感的一种贴图方式； 主要用于地面，建筑等效果的体现。 [![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022504-300x226.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022501-300x234.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022501.jpg) **5.Specular** Specular：镜面[贴图]，类似于“Metallic 金属度”贴图。 **PBR 贴图的制作方式不同，最终关于“金属部分”的表现，出现了两种类型的贴图，Metallic 和Specular。** **6.Detail Albedo x2** Detail Albedo x2：细节反照率[贴图]； 作用是**对主Albedo 贴图的一个细节深入表现；** **7.Normal Map x2** Normal Map x2：细节法线[贴图]； 作用是**对主Normal Map 贴图的一个细节深入表现；** **8.Detail Mask** Detail Mask：细节遮罩[贴图]； 这个贴图是配合“次贴图区域”中的**Detail Albedo，Normal Map 两张贴图配合使用的**，次贴图区域中的这两张很多是平铺的贴图，效果会作用于模型的全部，我们使用Detail Mask 将一些不需要被“次贴图”影响的部分独立出来。 [![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022502-300x227.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022502.jpg) **9.Emission 贴图** Emission：自发光[贴图]，让模型自发光； Unity 里面能作为光源存在的除了灯光组件和天空盒，标准Shader 里面的Emission 贴图也是可以作为一种光源的。 [![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022503-300x221.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022503.jpg) **10.Height Map 贴图** Height Map：视差[贴图]，比Normal Map 更有立体感的一种贴图方式； 主要用于地面，建筑等效果的体现。 [![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022504-300x226.jpg)</div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T11:22:19.613Z" itemprop="dateUpdated">2020-07-05 19:22:19</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/" target="_blank" rel="external">http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-PBR-GI%E6%B8%B2%E6%9F%93/" rel="tag">Unity_PBR/GI渲染</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/&title=《标准Shader的十种贴图类型》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/&title=《标准Shader的十种贴图类型》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《标准Shader的十种贴图类型》 — Hexo&url=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Unity模块性能优化笔记一</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">OpenGL笔记七：旋转变换</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/&title=《标准Shader的十种贴图类型》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/&title=《标准Shader的十种贴图类型》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《标准Shader的十种贴图类型》 — Hexo&url=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>HoIoLens开发笔记二：实现全息应用 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="AR-VR-MR">
+    <meta name="description" content="在第一篇文章，我写了如何配置环境。 那么这一篇是实战，我们将创建一个属于自己的全息影像应用，看完这篇文章，你就可以说你给微软开发过App了……   开发环境：Unity5.6 , VS2015 Update3  , HoIoLens emulator 1.打开Unity，新建一个场景名叫myFirstHoIoLensApp，点击创建 2.首先打开File下的Build Setting，安装Wind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HoIoLens开发笔记二：实现全息应用">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在第一篇文章，我写了如何配置环境。 那么这一篇是实战，我们将创建一个属于自己的全息影像应用，看完这篇文章，你就可以说你给微软开发过App了……   开发环境：Unity5.6 , VS2015 Update3  , HoIoLens emulator 1.打开Unity，新建一个场景名叫myFirstHoIoLensApp，点击创建 2.首先打开File下的Build Setting，安装Wind">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080601-300x152.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080602-300x288.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080603-300x196.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080604-300x207.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080609-213x300.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080605-300x192.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080606-300x212.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080607-300x168.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080608-300x257.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080610-300x139.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080615.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080619.gif">
+<meta property="article:published_time" content="2017-08-06T07:25:27.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:50.897Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="AR-VR-MR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080601-300x152.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HoIoLens开发笔记二：实现全息应用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HoIoLens开发笔记二：实现全息应用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-06T07:25:27.000Z" itemprop="datePublished" class="page-time">
+  2017-08-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-hoiolens开发笔记二：实现全息应用"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HoIoLens开发笔记二：实现全息应用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-06 15:25:27" datetime="2017-08-06T07:25:27.000Z"  itemprop="datePublished">2017-08-06</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在第一篇文章，我写了如何配置环境。 那么这一篇是实战，我们将创建一个属于自己的全息影像应用，看完这篇文章，你就可以说你给微软开发过App了……   开发环境：Unity5.6 , VS2015 Update3  , HoIoLens emulator 1.打开Unity，新建一个场景名叫myFirstHoIoLensApp，点击创建<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080601.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080601-300x152.png" alt=""></a> 2.首先打开File下的Build Setting，安装Windows Store<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080602.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080602-300x288.png" alt=""></a> 3.保存场景，命名为firstScene 将Main Camera的Position设置为(0,0,0),也就是起始点的意思。因为这个摄像机在我们的HoIoLens 中，就相当于我们眼睛位置，我们眼睛看到的东西其实就是他看到的东西。 修改Main Camera下的几个属性，我在图上标注出来了，我决定在后面不再介绍这些基础的属性了，没必要写。 之所以把背景变成黑色是因为电脑在渲染的时候无法渲染黑色，所以黑色的区域在实际项目中就会是透明的样式。<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080603.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080603-300x196.jpg" alt=""></a>   4.点击第二张图中的Player Setting，点击windows store<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080604.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080604-300x207.png" alt=""></a> 找到Other setting，勾选图中的按钮<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080609.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080609-213x300.png" alt=""></a> 点击Publishing Setting<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080605.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080605-300x192.png" alt=""></a> 在下面找到这个属性面板：<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080606.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080606-300x212.png" alt=""></a>勾选几个我们常用的功能，后面写其他文章时也会用到，剩下的功能可以花点时间再去研究： SpatialPerception:空间锚以及SurfaceObserver Microphone：听写识别，键盘识别等 InterentClient：小娜语音识别   5.因为我们的项目最终要导入到UWP平台，所以设置SDK，Build Type<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080607.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080607-300x168.png" alt=""></a> 因为HoIoLens性能不够强的原因，我们把我们的项目质量调成最低，点击Edit下的Project setting下的Quality，选中Fastest。<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080608.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080608-300x257.png" alt=""></a> 6.在场景中新建一个Cube，设置位置和角度：<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080610.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080610-300x139.jpg" alt=""></a> 挂一个脚本在cube身上，让它绕X轴和Y轴一直旋转：</p>
+<p>using System.Collections;<br>using System.Collections.Generic;<br>using UnityEngine;</p>
+<p>public class cubeRotate : MonoBehaviour {</p>
+<pre><code>// Use this for initialization
+void Start () {
+
+}
+
+// Update is called once per frame
+void Update () {
+    transform.Rotate(new Vector3(1, 1, 0));
+}</code></pre><p>}</p>
+<p>  7.保存场景，打开build setting，设置如下，点击build。[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080615.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080611-300x175.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080611.png) 等build结束，可以看到生成了一个VS 文件，双击用vs2015打开[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080612-300x102.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080612.png) 8.按照我图上的配置来： [![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080613-300x127.jpg)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080613.jpg) 9.运行项目，第一次失败了[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080614-300x134.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080614.png) 查看问题描述，原来是方法过时了[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080615-300x60.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080611-300x175.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080611.png) 等build结束，可以看到生成了一个VS 文件，双击用vs2015打开[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080612-300x102.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080612.png) 8.按照我图上的配置来： [![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080613-300x127.jpg)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080613.jpg) 9.运行项目，第一次失败了[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080614-300x134.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080614.png) 查看问题描述，原来是方法过时了[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080615-300x60.png)</div>
+            </figure> 我又仔细看了看，用新语句替代了过时的函数：</p>
+<p>ApplicationView.GetForCurrentView().TryEnterFullScreenMode();</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080619.gif" alt="](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080616-300x107.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080616.png)好了，再次运行，成功了 注意，如果你的GPU不太好的话，要等几分钟，只要没报错就一定能运行，等着就行。 在这里你可以和小娜对话，因为HoIoLens本质上就是一台win10电脑 [![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080617-300x161.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080617.png)打开我们的应用：[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080618-300x263.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080618.png)动态效果如下（模型好像一开始做大了，不过还行）：[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080619-300x146.gif)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080616-300x107.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080616.png)好了，再次运行，成功了 注意，如果你的GPU不太好的话，要等几分钟，只要没报错就一定能运行，等着就行。 在这里你可以和小娜对话，因为HoIoLens本质上就是一台win10电脑 [![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080617-300x161.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080617.png)打开我们的应用：[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080618-300x263.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080618.png)动态效果如下（模型好像一开始做大了，不过还行）：[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080619-300x146.gif)</div>
+            </figure> 10.模拟器的一些操作： W,A,S,D     模拟移动 上下左右键   跟模拟移动类似 enter  确认键 按住Alt键并且用鼠标右键可以拖动画面 windows键可以在任何场景中调出主面板   用了两个小时，终于写完了…… 希望我写的内容你能明白，后面准备写点语音识别的</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:50.897Z" itemprop="dateUpdated">2020-07-05 16:56:50</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/" target="_blank" rel="external">http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AR-VR-MR/" rel="tag">AR-VR-MR</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/&title=《HoIoLens开发笔记二：实现全息应用》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/&title=《HoIoLens开发笔记二：实现全息应用》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HoIoLens开发笔记二：实现全息应用》 — Hexo&url=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/07/unity%E5%AF%BC%E8%88%AA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9Aoffmeshlink%E6%93%8D%E4%BD%9C%E4%BD%BF%E7%94%A8/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Unity导航系统笔记二：OffMeshLink操作使用</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">HoIoLens开发笔记一：配置环境</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/&title=《HoIoLens开发笔记二：实现全息应用》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/&title=《HoIoLens开发笔记二：实现全息应用》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HoIoLens开发笔记二：实现全息应用》 — Hexo&url=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

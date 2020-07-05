@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Unity标准Shader之四大渲染模式 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Unity_PBR/GI渲染">
+    <meta name="description" content="一.四大渲染模式 1.Opaque（不透明） 作用：用于渲染所有不透明的物体，这类物体在场景中是最多的。60%的使用比例。 演示：渲染一个红色的Cylinder。 创建一个Opaque模式的材质球拖到物体身上，调节Albedo颜色：  2.Cutout（镂空） 作用：用于渲染有镂空的物体，这类物体在场景中并不太多。5%的使用比例。 例如：一块破布上面有几个洞，一张残缺不全的纸。 演示：渲染一个镂空">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity标准Shader之四大渲染模式">
+<meta property="og:url" content="http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一.四大渲染模式 1.Opaque（不透明） 作用：用于渲染所有不透明的物体，这类物体在场景中是最多的。60%的使用比例。 演示：渲染一个红色的Cylinder。 创建一个Opaque模式的材质球拖到物体身上，调节Albedo颜色：  2.Cutout（镂空） 作用：用于渲染有镂空的物体，这类物体在场景中并不太多。5%的使用比例。 例如：一块破布上面有几个洞，一张残缺不全的纸。 演示：渲染一个镂空">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112908-300x230.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112909-300x213.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112910-300x231.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112911-300x197.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112912-300x227.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112913-300x223.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112914-300x225.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112915.png">
+<meta property="article:published_time" content="2017-11-29T07:21:29.000Z">
+<meta property="article:modified_time" content="2020-07-05T11:22:19.610Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="Unity_PBR&#x2F;GI渲染">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112908-300x230.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Unity标准Shader之四大渲染模式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Unity标准Shader之四大渲染模式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-29T07:21:29.000Z" itemprop="datePublished" class="page-time">
+  2017-11-29
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-标准shader之四大渲染模式"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Unity标准Shader之四大渲染模式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-29 15:21:29" datetime="2017-11-29T07:21:29.000Z"  itemprop="datePublished">2017-11-29</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>一.四大渲染模式</p>
+<p><strong>1.Opaque（不透明）</strong> 作用：用于渲染所有不透明的物体，这类物体在场景中是最多的。60%的使用比例。 演示：渲染一个红色的Cylinder。 创建一个Opaque模式的材质球拖到物体身上，调节Albedo颜色： <a href="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112908.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112908-300x230.jpg" alt=""></a> <strong>2.Cutout（镂空）</strong> 作用：用于渲染有镂空的物体，这类物体在场景中并不太多。5%的使用比例。 例如：一块破布上面有几个洞，一张残缺不全的纸。 演示：渲染一个镂空的金属网格。 创建Cutout模式的材质球放到cube身上，并设置贴图：<a href="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112909.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112909-300x213.jpg" alt=""></a> 可以看到图中的cube并不是镂空的，我们需要设置一下贴图的Alpha通道值.将贴图的Input Texture Alpha设置成From Gray Scale，点击Apply，可以看到图片镂空了，部分还消失了。 Input Texture Alpha:从图片的Alpha通道取值，该图片没有Alpha通道，所以不应该用这个属性。 From Gray Scale：从灰度值计算Alpha通道。 <a href="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112910.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112910-300x231.jpg" alt=""></a> 手动调节Cutout材质球的Alpha Cutoff值，最终效果如下： <a href="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112911.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112911-300x197.jpg" alt=""></a>   <strong>3.Fade（隐现）</strong> 作用：用于渲染实现物体的渐隐和渐现。这类物体在场景中也不多。5%的使用比例。 演示：使用Albedo 的颜色值中的Alpha 控制模型隐现。 创建Fade模式的材质球放到cube身上，并设置Alpha值 <a href="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112912.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112912-300x227.jpg" alt=""></a>调小Alpha的值： <a href="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112913.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112913-300x223.jpg" alt=""></a>   <strong>4.Transparent（透明）</strong> 作用：用于渲染有透明效果的物体，这类物体在场景中也比较多。30%的使用比例。 演示：使用Albedo 的颜色值中的Alpha 控制模拟一块玻璃。 创建Transparent模式的材质球放到cube身上，并设置Alpha值，Metallic的值以及Smoothness的值。 <a href="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112914.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112914-300x225.jpg" alt=""></a>  </p>
+<p>二.标准Shader 功能布局</p>
+<p>1.渲染模式区域 当创建完一个材质球，并设置Shader 为标准着色器后，第一步就需要根据这个材质球要渲染的物体的特性（不透明物体，透明物体）设置不同的渲染模式。 2.主贴图区域 用于设置Shader 的主要贴图，使用这个区域的贴图和设置项控制模型最终的渲染效果。80%的模型，我们只需要设置这个位置的贴图就够用了。 3.次贴图区域 用于设置Shader 的次要贴图，用于给模型增加细节。一般不会用到这个位置的设置项。但是一些需要近距离观察的模型，设置完上方的主贴图，再设置下方的次要贴图，能增加模型的精致度。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112915.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112915-174x300.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112915-174x300.png)</div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T11:22:19.610Z" itemprop="dateUpdated">2020-07-05 19:22:19</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/" target="_blank" rel="external">http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-PBR-GI%E6%B8%B2%E6%9F%93/" rel="tag">Unity_PBR/GI渲染</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/&title=《Unity标准Shader之四大渲染模式》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/&title=《Unity标准Shader之四大渲染模式》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Unity标准Shader之四大渲染模式》 — Hexo&url=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/12/13/matlab%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E4%B9%8B%E4%BA%BA%E8%84%B8%E6%8F%90%E5%8F%96/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Matlab彩色图像之人脸提取</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/29/unity%E5%A4%A9%E7%A9%BA%E7%9B%92%E4%B8%8E%E5%86%85%E7%BD%AEshader%E5%9F%BA%E7%A1%80/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Unity天空盒与内置Shader基础</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/&title=《Unity标准Shader之四大渲染模式》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/&title=《Unity标准Shader之四大渲染模式》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Unity标准Shader之四大渲染模式》 — Hexo&url=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

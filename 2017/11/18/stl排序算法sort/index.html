@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>STL排序算法Sort | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C/C++">
+    <meta name="description" content="用sort进行排序 要使用STL其中的算法，需要#include  sort(数组名+n1，数组名+n2） n1和n2都是int类型的表达式，可以包含变量 如果n1&#x3D;0,则 + n1可以不写 将数组中下标范围为[n1,n2)的元素从小到大排序，下标为n2的元素不在排序区间内 用法一：对基本类型的数组从小到大排序 int a[] &#x3D; {15,4,3,9,7,2,6};sort(a,a+7); &#x2F;&#x2F;对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL排序算法Sort">
+<meta property="og:url" content="http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="用sort进行排序 要使用STL其中的算法，需要#include  sort(数组名+n1，数组名+n2） n1和n2都是int类型的表达式，可以包含变量 如果n1&#x3D;0,则 + n1可以不写 将数组中下标范围为[n1,n2)的元素从小到大排序，下标为n2的元素不在排序区间内 用法一：对基本类型的数组从小到大排序 int a[] &#x3D; {15,4,3,9,7,2,6};sort(a,a+7); &#x2F;&#x2F;对">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-11-18T14:17:51.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.037Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">STL排序算法Sort</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">STL排序算法Sort</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-18T14:17:51.000Z" itemprop="datePublished" class="page-time">
+  2017-11-18
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-stl排序算法sort"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">STL排序算法Sort</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-18 22:17:51" datetime="2017-11-18T14:17:51.000Z"  itemprop="datePublished">2017-11-18</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>用sort进行排序</p>
+<p>要使用STL其中的算法，需要#include <algorithm> <strong>sort(数组名+n1，数组名+n2）</strong> n1和n2都是int类型的表达式，可以包含变量 如果n1=0,则 + n1可以不写 将数组中下标范围为[n1,n2)的元素从小到大排序，下标为n2的元素不在排序区间内 用法一：对基本类型的数组从小到大排序</p>
+<p>int a[] = {15,4,3,9,7,2,6};<br>sort(a,a+7); //对整个数组从小到大排序</p>
+<p>int a[] = {15,4,3,9,7,2,6};<br>sort(a,a+3); // 结果：{3,4,15,9,7,2,6}</p>
+<p>int a[] = {15,4,3,9,7,2,6};<br>sort(a+2,a+5); //结果：{15,4,3,7,9,2,6}</p>
+<p>  用法二：对元素类型为T的基本类型数组从大到小排序 <strong>sort(数组名+n1，数组名+n2,greater<T>()）</strong></p>
+<p>int a[] = {15,4,3,9,7,2,6};<br>sort(a+1,a+4,greater<int>());  //结果：{15,9,4,3,7,2,6}</p>
+<p>  用法三：用自定义的排序规则，对任何类型T的数组排序 <strong>sort(数组名+n1，数组名+n2,排序规则结构名())</strong> 排序规则结构的定义方式：</p>
+<p>struct 结构名<br>{<br>    bool operator()( const T &amp; a1,const T &amp; a2)<br>    {<br>        //若a1应该在a2前面，则返回true<br>        //否则返回false。<br>    }<br>};</p>
+<p>#include <iostream><br>#include <cstring><br>#include <algorithm><br>using namespace std;</p>
+<p>struct Rule1 //按从大到小排序<br>{<br>    bool operator()(const int &amp; a1, const int &amp; a2) {<br>        return a1 &gt; a2;<br>    }<br>};<br>struct Rule2 //按个位数从小到大排序<br>{<br>    bool operator()(const int &amp; a1, const int &amp; a2) {<br>        return a1 % 10 &lt; a2 % 10;<br>    }<br>};</p>
+<p>void Print(int a[], int size) {<br>    for (int i = 0; i &lt; size; ++i)<br>        cout &lt;&lt; a[i] &lt;&lt; “,”;<br>    cout &lt;&lt; endl;<br>}</p>
+<p>int main(){<br>    int a[] = { 12,45,3,98,21,7 };<br>    sort(a, a + sizeof(a) / sizeof(int)); //从小到大<br>    cout &lt;&lt; “1) “; Print(a, sizeof(a) / sizeof(int));<br>    sort(a, a + sizeof(a) / sizeof(int), Rule1()); //从大到小<br>    cout &lt;&lt; “2) “; Print(a, sizeof(a) / sizeof(int));<br>    sort(a, a + sizeof(a) / sizeof(int), Rule2()); //按个位数从小到大<br>    cout &lt;&lt; “3) “; Print(a, sizeof(a) / sizeof(int));<br>    return 0;<br>}</p>
+<p>输出结果: 1) 3,7,12,21,45,98, 2) 98,45,21,12,7,3, 3) 21,12,3,45,7,98,</p>
+<p><strong>用sort对结构数组进行排序</strong></p>
+<p>#include <iostream><br>#include <cstring><br>#include <algorithm><br>using namespace std; </p>
+<p>struct Student {<br>    char name[20];<br>    int id;<br>    double gpa;<br>}; </p>
+<p>Student students [] = {<br>    {“Jack”,112,3.4},{“Mary”,102,3.8},<br>    {“Mary”,117,3.9}, {“Ala”,333,3.5},<br>    {“Zero”,101,4.0}<br>};</p>
+<p>struct StudentRule1 { //按姓名从小到大排<br>    bool operator() (const Student &amp; s1,const Student &amp; s2) {<br>        if(_stricmp(s1.name,s2.name) &lt; 0)<br>            return true;<br>    return false;<br>    }<br>};<br>struct StudentRule2 { //按id从小到大排<br>    bool operator() (const Student &amp; s1,const Student &amp; s2) {<br>        return s1.id &lt; s2.id;<br>    }<br>};<br>struct StudentRule3 {//按gpa从高到低排<br>    bool operator() (const Student &amp; s1,const Student &amp; s2) {<br>        return s1.gpa &gt; s2.gpa;<br>    }<br>};</p>
+<p>void PrintStudents(Student s[], int size) {<br>    for (int i = 0; i &lt; size; ++i)<br>        cout &lt;&lt; “(“ &lt;&lt; s[i].name &lt;&lt; “,”<br>            &lt;&lt; s[i].id &lt;&lt; “,” &lt;&lt; s[i].gpa &lt;&lt; “) “;<br>    cout &lt;&lt; endl;<br>}</p>
+<p>int main() {<br>    int n = sizeof(students) / sizeof(Student);<br>    sort(students, students + n, StudentRule1()); //按姓名从小到大排<br>    PrintStudents(students,n);<br>    sort(students,students+n,StudentRule2()); //按id从小到大排<br>    PrintStudents(students,n);<br>    sort(students,students+n,StudentRule3()); //按gpa从高到低排<br>    PrintStudents(students,n);<br>    return 0;<br>}</p>
+<p>输出结果： (Ala,333,3.5) (Jack,112,3.4) (Mary,102,3.8) (Mary,117,3.9) (Zero,101,4) (Zero,101,4) (Mary,102,3.8) (Jack,112,3.4) (Mary,117,3.9) (Ala,333,3.5) (Zero,101,4) (Mary,117,3.9) (Mary,102,3.8) (Ala,333,3.5) (Jack,112,3.4)</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.037Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/" target="_blank" rel="external">http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/&title=《STL排序算法Sort》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/&title=《STL排序算法Sort》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《STL排序算法Sort》 — Hexo&url=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/19/stl%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">STL二分查找算法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/17/%E4%BA%8C%E5%88%86%E6%B3%95%E6%B1%82%E6%96%B9%E7%A8%8B%E7%9A%84%E6%A0%B9/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">二分法求方程的根</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/&title=《STL排序算法Sort》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/&title=《STL排序算法Sort》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《STL排序算法Sort》 — Hexo&url=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2017/11/18/stl%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95sort/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

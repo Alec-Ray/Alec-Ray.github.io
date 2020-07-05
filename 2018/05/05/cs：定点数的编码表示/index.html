@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>CS：定点数的编码表示 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="计算机系统">
+    <meta name="description" content="原码（Sign and Magnitude）表示[                                                                                             ](http:&#x2F;&#x2F;www.wjgbaby.com&#x2F;wp-content&#x2F;uploads&#x2F;2018&#x2F;05&#x2F;18050501-300x204.png)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS：定点数的编码表示">
+<meta property="og:url" content="http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="原码（Sign and Magnitude）表示[                                                                                             ](http:&#x2F;&#x2F;www.wjgbaby.com&#x2F;wp-content&#x2F;uploads&#x2F;2018&#x2F;05&#x2F;18050501-300x204.png)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050501.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050502.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050503.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050504.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050505.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050506.png">
+<meta property="article:published_time" content="2018-05-05T05:17:32.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.278Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="计算机系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050501.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CS：定点数的编码表示</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CS：定点数的编码表示</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-05T05:17:32.000Z" itemprop="datePublished" class="page-time">
+  2018-05-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原码（Sign-and-Magnitude）表示"><span class="post-toc-number">1.</span> <span class="post-toc-text">原码（Sign and Magnitude）表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#补码-模运算（modular运算）"><span class="post-toc-number">2.</span> <span class="post-toc-text">补码- 模运算（modular运算）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#补码（2’s-comlement）的表示"><span class="post-toc-number">3.</span> <span class="post-toc-text">补码（2’s comlement）的表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算机中的运算器是模运算系统："><span class="post-toc-number">4.</span> <span class="post-toc-text">计算机中的运算器是模运算系统：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#求特殊数的补码："><span class="post-toc-number">5.</span> <span class="post-toc-text">求特殊数的补码：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变形补码（4’s-comlement）的表示："><span class="post-toc-number">6.</span> <span class="post-toc-text">变形补码（4’s comlement）的表示：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#求真值的补码"><span class="post-toc-number">7.</span> <span class="post-toc-text">求真值的补码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#求补码的真值："><span class="post-toc-number">8.</span> <span class="post-toc-text">求补码的真值：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#移码表示Excess-biased-notion："><span class="post-toc-number">9.</span> <span class="post-toc-text">移码表示Excess (biased) notion：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-cs：定点数的编码表示"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CS：定点数的编码表示</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-05 13:17:32" datetime="2018-05-05T05:17:32.000Z"  itemprop="datePublished">2018-05-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="原码（Sign-and-Magnitude）表示"><a href="#原码（Sign-and-Magnitude）表示" class="headerlink" title="原码（Sign and Magnitude）表示"></a><strong>原码（Sign and Magnitude）表示</strong></h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050501.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050501-300x204.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050501-300x204.png)</div>
+            </figure>  </p>
+<h3 id="补码-模运算（modular运算）"><a href="#补码-模运算（modular运算）" class="headerlink" title="补码- 模运算（modular运算）"></a><strong>补码- 模运算（modular运算）</strong></h3><p>重要概念：<strong>在一个模运算系统中，一个数与它除以“模”后的余数等价。</strong> 现实世界中的模运算系统，时钟是一种模12系统 假定钟表时针指向10点，要将它拨向6点， 则有两种拨法： ① 倒拨4格：10- 4 = 6 ② 顺拨8格：10+8 = 18 ≡ 6 (mod 12) 模12系统中： 10- 4 ≡ 10+8 (mod 12) - 4 ≡ 8 (mod 12) 则，称8是- 4对模12的补码（即：- 4的模12补码等于8）。 同样有-3 ≡ 9 （mod 12） -5 ≡ 7 （mod 12）等 <strong>结论1： 一个负数的补码等于模减该负数的绝对值。</strong> <strong>结论2： 对于某一确定的模，某数减去小于模的另一数，总可以用该数加上另一数负数的补码来代替。</strong> 补码（modular运算）：+ 和– 的统一  </p>
+<h3 id="补码（2’s-comlement）的表示"><a href="#补码（2’s-comlement）的表示" class="headerlink" title="补码（2’s comlement）的表示"></a><strong>补码（2’s comlement）的表示</strong></h3><p>现实世界的模运算系统举例 <strong>例1：“钟表”模运算系统</strong> 假定时针只能顺拨，从10点倒拨4格后是几点？ 10- 4 = 10+(12- 4) = 10+8 = 6（mod 12） <strong>例2：“4位十进制数” 模运算系统</strong> 假定算盘只有四档，且只能做加法，则在算盘上计算9828-1928等于多少？ 9828-1928=9828+(104-1928) =9828+8072 = 1 7900 =7900（mod 104） <strong>取模即只留余数，高位“1”被丢弃！相当于只有低4位留在算盘上。</strong>  </p>
+<h3 id="计算机中的运算器是模运算系统："><a href="#计算机中的运算器是模运算系统：" class="headerlink" title="计算机中的运算器是模运算系统："></a><strong>计算机中的运算器是模运算系统：</strong></h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050502.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050502-300x123.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050502-300x123.jpg)</div>
+            </figure>  </p>
+<h3 id="求特殊数的补码："><a href="#求特殊数的补码：" class="headerlink" title="求特殊数的补码："></a><strong>求特殊数的补码：</strong></h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050503.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050503-300x143.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050503-300x143.png)</div>
+            </figure>  </p>
+<h3 id="变形补码（4’s-comlement）的表示："><a href="#变形补码（4’s-comlement）的表示：" class="headerlink" title="变形补码（4’s comlement）的表示："></a><strong>变形补码（4’s comlement）的表示：</strong></h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050504.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050504-300x200.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050504-300x200.png)</div>
+            </figure>  </p>
+<h3 id="求真值的补码"><a href="#求真值的补码" class="headerlink" title="求真值的补码"></a><strong>求真值的补码</strong></h3><p>就比如-9 补码是11110111。 9的源码为00001001，如果是负数的话，补码为最高位置1，其余取反也就是11110110， 然后在最低位加1即可即11110111。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050505.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050505-300x181.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050505-300x181.png)</div>
+            </figure>  </p>
+<h3 id="求补码的真值："><a href="#求补码的真值：" class="headerlink" title="求补码的真值："></a><strong>求补码的真值：</strong></h3><p><strong>理论上的求法：</strong> 令：[A]补= an-1an-2…… a1a0 则： A= -an-1.2n-1+an-2 .2n-2+ …… a1 .21+ a0 .20 例如： 补码“11010110”的真值为 -27+26+24+22+2=-128+64+16+4+2=-42 补码“01010110”的真值为 -0.27+26+24+22+2=64+16+4+2=86 <strong>简便求法：</strong> <strong>符号为0，则为正数，数值部分相同</strong> <strong>符号为1，则为负数，数值各位取反，末位加1</strong> <strong>例如：补码“01010110”的真值为+1010110=64+16+4+2=86</strong> <strong>例如：补码“11010110”的真值为-0101010=-(32+8+2)=-42</strong>  </p>
+<h3 id="移码表示Excess-biased-notion："><a href="#移码表示Excess-biased-notion：" class="headerlink" title="移码表示Excess (biased) notion："></a><strong>移码表示Excess (biased) notion：</strong></h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050506.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050506-300x206.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050506-300x206.png)</div>
+            </figure>    </p>
+<p>视频链接：</p>
+<p><a href="https://www.icourse163.org/course/0809NJU008-1001625001" target="_blank" rel="noopener">计算机系统基础(一)：程序的表示，转换与链接</a></p>
+<p><a href="https://www.icourse163.org/course/0809NJU008B-1001964032" target="_blank" rel="noopener">计算机系统基础(二)：程序的执行和存储访问</a></p>
+<p><a href="https://www.icourse163.org/course/0809NJU008C-1002532004" target="_blank" rel="noopener">计算机系统基础(三)：异常、中断和输入/输出</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.278Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/" target="_blank" rel="external">http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/&title=《CS：定点数的编码表示》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/&title=《CS：定点数的编码表示》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CS：定点数的编码表示》 — Hexo&url=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/05/cs%EF%BC%9Ac%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B4%E6%95%B0/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CS：C语言中的整数</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CS：数值和编码</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/&title=《CS：定点数的编码表示》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/&title=《CS：定点数的编码表示》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CS：定点数的编码表示》 — Hexo&url=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

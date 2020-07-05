@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>OpenGL渲染管线 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="OpenGL">
+    <meta name="description" content="在OpenGL中任何事物都在3D空间中，但是屏幕和窗口是一个2D像素阵列，所以OpenGL的大部分工作都是关于如何把3D坐标转变为适应你屏幕的2D像素。3D坐标转为2D坐标的处理过程是由OpenGL的图形渲染管线完成的。图像渲染管线可以被划分为两个主要部分：第一个部分把你的3D坐标转换为2D坐标，第二部分是把2D坐标转变为实际的有颜色的像素。 渲染管线接收一组3D坐标，然后把它们转变为你屏幕上的有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL渲染管线">
+<meta property="og:url" content="http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在OpenGL中任何事物都在3D空间中，但是屏幕和窗口是一个2D像素阵列，所以OpenGL的大部分工作都是关于如何把3D坐标转变为适应你屏幕的2D像素。3D坐标转为2D坐标的处理过程是由OpenGL的图形渲染管线完成的。图像渲染管线可以被划分为两个主要部分：第一个部分把你的3D坐标转换为2D坐标，第二部分是把2D坐标转变为实际的有颜色的像素。 渲染管线接收一组3D坐标，然后把它们转变为你屏幕上的有">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040801.gif">
+<meta property="article:published_time" content="2018-04-07T17:58:37.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.230Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="OpenGL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040801.gif">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">OpenGL渲染管线</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">OpenGL渲染管线</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-07T17:58:37.000Z" itemprop="datePublished" class="page-time">
+  2018-04-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-opengl渲染管线"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">OpenGL渲染管线</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-08 01:58:37" datetime="2018-04-07T17:58:37.000Z"  itemprop="datePublished">2018-04-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在OpenGL中任何事物都在3D空间中，但是屏幕和窗口是一个2D像素阵列，所以OpenGL的大部分工作都是关于如何把3D坐标转变为适应你屏幕的2D像素。3D坐标转为2D坐标的处理过程是由OpenGL的图形渲染管线完成的。图像渲染管线可以被划分为两个主要部分：第一个部分把你的3D坐标转换为2D坐标，第二部分是把2D坐标转变为实际的有颜色的像素。 渲染管线接收一组3D坐标，然后把它们转变为你屏幕上的有色2D像素。渲染管线可以被划分为几个阶段，每个阶段需要把前一阶段的输出作为输入。所有这些阶段都是高度专门化的，它们能简单地并行执行。由于它们的并行执行的特征，当今大多数显卡都有成千上万的小处理核心GPU，在GPU上为每一个阶段运行各自的小程序，从而在图形输送管道中快速处理你的数据。这些小程序叫做着色器。有些着色器允许开发者自己配置，用我们自己写的_着色器_替换默认存在的。这样我们就可以更细致地控制渲染管线的特定部分，因为它们运行在GPU上，所以它们也会节约宝贵的CPU时间。着色器是用_OpenGL着色器语言_（OpenGL Shading Language）_GLSL_写成的。 下图显示了渲染管线中各个阶段主要完成的工作，蓝色部分代表的是我们可以定义自己的着色器。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040801.gif" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040801.gif)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040801.gif)</div>
+            </figure> 在上图中，我们以数组的形式传递3个3D坐标作为渲染管线的输入，用它来表示一个三角形，这个数组叫做顶点数据（Vertex Data）；这里顶点数据是几个顶点的集合。每个顶点是用顶点属性（vertex attributes）表示的，它可以包含任何我们希望用的数据，下面我们来看看渲染管线中各个阶段主要完成的工作： 1.渲染管线的第一个部分是<strong>顶点着色器（vertex shader）</strong>，它把一个单独的顶点作为输入。顶点着色器主要的目的是把3D坐标转为另一种3D坐标（投影坐标），同时顶点着色器允许我们对顶点属性进行一些基本处理。 <strong>2.图元组装（primitive assembly）</strong>阶段把顶点着色器的表示为基本图形的所有顶点作为输入，把所有点组装为特定的基本图形的形状；上图中是一个三角形。 3.图元组装阶段的输出会传递给<strong>几何着色器（geometry shader）</strong>。几何着色器把基本图形形成的一系列顶点的集合作为输入，它可以通过产生新顶点构造出新的（或是其他的）基本图形来生成其他形状。 <strong>4.细分着色器（tessellation shaders）</strong>拥有把给定基本图形细分为更多小基本图形的能力。这样我们就能在物体更接近玩家的时候通过创建更多的三角形的方式创建出更加平滑的视觉效果。 <strong>5.细分着色器</strong>的输出会进入光栅化（rasterization）阶段，这里它会把基本图形映射为屏幕上相应的像素，生成供像素着色器（fragment shader）使用的fragment（OpenGL中的一个fragment是OpenGL渲染一个独立像素所需的所有数据。）。在像素着色器运行之前，会执行裁切（clipping）。裁切会丢弃超出你的视图以外的那些像素，来提升执行效率。 <strong>6.像素着色器</strong>的主要目的是计算一个像素的最终颜色，这也是OpenGL高级效果产生的地方。通常，像素着色器包含用来计算像素最终颜色的3D场景的一些数据（比如光照、阴影、光的颜色等等）。 7.在所有相应颜色值确定以后，最终它会传到另一个阶段，我们叫做<strong>alpha测试和混合（blending）阶段</strong>。这个阶段检测像素的相应的深度（和stencil）值，使用这些来检查这个像素是否在另一个物体的前面或后面，如此做到相应取舍。这个阶段也会查看alpha值（alpha值是一个物体的透明度值）和物体之间的混合（blend）。所以即使在像素着色器中计算出来了一个像素所输出的颜色，最后的像素颜色在渲染多个三角形的时候也可能完全不同。 虽然渲染管线有多个阶段，每个阶段都需要对应的着色器，但其实对于大多数场合，我们必须做的只是顶点和像素着色器，几何着色器和细分着色器是可选的，通常使用默认的着色器就行了。现在的OpenGL中，我们必须定义至少一个顶点着色器和一个像素着色器（因为GPU中没有默认的顶点/像素着色器）。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.230Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" target="_blank" rel="external">http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/&title=《OpenGL渲染管线》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/&title=《OpenGL渲染管线》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OpenGL渲染管线》 — Hexo&url=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CPU优化之降低DrawCall</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/07/unity%E6%B8%B2%E6%9F%93%E7%BB%9F%E8%AE%A1%E7%AA%97%E5%8F%A3%E5%B1%9E%E6%80%A7%E6%80%BB%E7%BB%93/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Unity渲染统计窗口属性总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/&title=《OpenGL渲染管线》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/&title=《OpenGL渲染管线》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OpenGL渲染管线》 — Hexo&url=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

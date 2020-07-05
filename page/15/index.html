@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/15/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Alec">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Hexo</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header index-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Hexo</h1>
+        <h5 class="subtitle">
+            
+                
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+<div class="container body-wrap">
+
+    <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-lua-与c交互之lua-调用c"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-14 21:22:26" datetime="2017-10-14T13:22:26.000Z"  itemprop="datePublished">2017-10-14</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/14/lua-%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8Blua-%E8%B0%83%E7%94%A8c/">Lua 与C#交互之Lua 调用C#</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        在独立的Lua 脚本文件内，我们需要访问项目内已经存在的C#脚本，这些C#脚本都是我们之前已经写好的。 也就是说，我们热更新下来的Lua 代码，要能访问已经存在的C#代码。   Lua不仅可以访问我们C#项目中的代码，还可以访问C#官方的类库。 操作步骤： 1.导入luanet.dll，语法格式：require “luanet” 2.获取程序集，语法格式：luanet.load_assemb...
+    
+
+        <a href="/2017/10/14/lua-%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8Blua-%E8%B0%83%E7%94%A8c/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-lua-与c交互之c调用lua"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-13 23:45:00" datetime="2017-10-13T15:45:00.000Z"  itemprop="datePublished">2017-10-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/13/lua-%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8Bc%E8%B0%83%E7%94%A8lua/">Lua 与C#交互之C#调用Lua</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.Lua与C#的代码空间分配
+我们用VS写在C#项目里面调用Lua代码，实际上最后都是在Lua代码空间来运行，这个空间由系统分配。 [
+                
+                    
+                    
+                
+                ](http://www.wjgbaby.com/wp-content/...
+    
+
+        <a href="/2017/10/13/lua-%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8Bc%E8%B0%83%E7%94%A8lua/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-unity检测物体在屏幕内外"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-10 17:54:39" datetime="2017-10-10T09:54:39.000Z"  itemprop="datePublished">2017-10-10</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/10/unity%E6%A3%80%E6%B5%8B%E7%89%A9%E4%BD%93%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%86%85%E5%A4%96/">Unity检测物体在屏幕内外</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        好记性不如烂笔头。虽然是很细的东西，但是为了防止以后忘记，还是记一下比较好。   直接将代码挂到gameobject上，然后去检测Console面板。 代码如下:
+using System.Collections;using System.Collections.Generic;using UnityEngine;
+public class StayOrLeave : MonoBehavio...
+    
+
+        <a href="/2017/10/10/unity%E6%A3%80%E6%B5%8B%E7%89%A9%E4%BD%93%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%86%85%E5%A4%96/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-lua与c交互之环境配置"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-04 16:11:31" datetime="2017-10-04T08:11:31.000Z"  itemprop="datePublished">2017-10-04</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/04/lua%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Lua与C#交互之环境配置</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Lua与C#交互要用到LuaInterface，起到桥梁的作用。 LuaInterface 是一个开源的项目工程，内部有两个核心的DLL 文件： ①LuaInterface.dll：在C#代码中操作Lua 代码需要依赖该文件； ②luanet.dll：在Lua 代码中访问C#的类库脚本需要依赖该文件。   环境配置要点： 一：将两个dll文件拷贝到项目当中去，并且设置属性为“如果较新则复制”...
+    
+
+        <a href="/2017/10/04/lua%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-c字符串的内存分配和驻留池"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-30 14:34:39" datetime="2017-09-30T06:34:39.000Z"  itemprop="datePublished">2017-09-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/30/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%92%8C%E9%A9%BB%E7%95%99%E6%B1%A0/">C#字符串的内存分配和驻留池机制</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        1.当有多个字符串变量包含了同样的字符串实际值时，CLR可能不会为它们重复地分配内存，而是让它们统统指向同一个字符串对象实例。 str01与str02的值相同，在对str02初始化的时候。并没有重新开辟内存，而是直接将地址指向str01的“wjg”。
+string str01 = “wjg”;string str02 = “wjg”;
+//因为String类重载了==操作符来比较String...
+    
+
+        <a href="/2017/09/30/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%92%8C%E9%A9%BB%E7%95%99%E6%B1%A0/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-多事之周-gyb培训"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-24 21:31:37" datetime="2017-09-24T13:31:37.000Z"  itemprop="datePublished">2017-09-24</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/24/%E5%A4%9A%E4%BA%8B%E4%B9%8B%E5%91%A8-gyb%E5%9F%B9%E8%AE%AD/">多事之周——GYB培训</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        这一周应该是我大学以来最累的一周了
+一点都不像我自由主义的风格
+主要是忙在了实验室招新，3天的GYB创业培训等等。
+实验室招新，有人来就要有人走
+因为基地要求我们团队最多14人
+结果就是最后20人左右的队伍只留了7个人
+然后又招了7个学弟学妹
+这些新人我和中一都是一一面试，精挑细选的
+花费了我们不少时间和精力。
+GYB培训收获巨大，有些简单的道理你可能真的不懂。
+周五到周日是三天的GYB创业...
+    
+
+        <a href="/2017/09/24/%E5%A4%9A%E4%BA%8B%E4%B9%8B%E5%91%A8-gyb%E5%9F%B9%E8%AE%AD/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%88%91%E7%9A%84%E7%94%9F%E6%B4%BB/" rel="tag">我的生活</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-c中和equal的区别"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-18 20:44:53" datetime="2017-09-18T12:44:53.000Z"  itemprop="datePublished">2017-09-18</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/18/c%E4%B8%AD%E5%92%8Cequal%E7%9A%84%E5%8C%BA%E5%88%AB/">C#中==和Equal的区别</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        昨天晚上在群里看到了这道题，我上去就答错了。 正确答案是：true   true   false   true [
+                
+                    
+                    
+                
+                ](http://www.wjgbaby.com/wp-content/uploads/201...
+    
+
+        <a href="/2017/09/18/c%E4%B8%AD%E5%92%8Cequal%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-lua面对对象之继承关系"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-18 01:26:33" datetime="2017-09-17T17:26:33.000Z"  itemprop="datePublished">2017-09-18</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/18/lua%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/">Lua面对对象之继承关系</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        子类继承父类，在子类中就可以访问到父类中的公开的字段和方法。 下面的代码是Father类作为父类，Boy为子类继承自Father。 Boy既可以看作实例化的对象，同时也可以看作子类并添加构造方法。 代码如下：
+--声明父类Father={name}
+function Father:Init(name)    local temp={}    setmetatable(temp,self)  ...
+    
+
+        <a href="/2017/09/18/lua%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-lua面对对象之类与对象"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-13 11:33:37" datetime="2017-09-13T03:33:37.000Z"  itemprop="datePublished">2017-09-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/13/lua%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/">Lua面对对象之类与对象</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Lua本身是没有类和对象的概念的，但是呢大多数程序员都习惯了类和对象的这种套路，不好改正。 程序员心里想的应该是：既然Lua你没有类和对象，那我就自己造一个。 接下来我们就用table表来模拟出Lua的类和对象，以及构造方法。 代码如下：
+--初始化一个类Person={name=”asd”,age,sex,address}
+–模拟类的构造方法，类与对象核心语句:function Perso...
+    
+
+        <a href="/2017/09/13/lua%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-验证table是引用型数据"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-12 23:07:40" datetime="2017-09-12T15:07:40.000Z"  itemprop="datePublished">2017-09-12</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/12/%E9%AA%8C%E8%AF%81table%E6%98%AF%E5%BC%95%E7%94%A8%E5%9E%8B%E6%95%B0%E6%8D%AE/">验证table是引用型数据</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        代码如下：
+str01=”wjgbaby.com”str02=”wjgbaby.com”
+table01={“111”,”222”,”333”}table02={“111”,”222”,”333”}
+print(str01==str02)print(table01==table02)
+结果如下：
+&gt;lua -e “io.stdout:setvbuf ‘no’” “4.lua”truef...
+    
+
+        <a href="/2017/09/12/%E9%AA%8C%E8%AF%81table%E6%98%AF%E5%BC%95%E7%94%A8%E5%9E%8B%E6%95%B0%E6%8D%AE/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+    </ul>
+
+    
+<nav id="page-nav">
+    <div class="inner">
+    <a class="extend prev" rel="prev" href="/page/14/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/16/">下一页</a>
+    </div>
+</nav>
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/page/15/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/page/15/&title=Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/page/15/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/page/15/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/page/15/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/page/15/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

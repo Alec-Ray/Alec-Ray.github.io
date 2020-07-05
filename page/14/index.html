@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/14/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Alec">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Hexo</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header index-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Hexo</h1>
+        <h5 class="subtitle">
+            
+                
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+<div class="container body-wrap">
+
+    <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-ulua基础之框架入门"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-01 17:25:51" datetime="2017-11-01T09:25:51.000Z"  itemprop="datePublished">2017-11-01</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/">Ulua基础之框架入门</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        ULua 基础介绍
+1.SimpleFramework 框架介绍 ①ULua 集成开发环境叫做：SimpleFramework，最新版是0.4.1。 ②SimpleFramework 分为两个版本： NGUI 版和UGUI 版，区别是NGUI 版本的框架资源中含有NGUI 这个插件。 ③SimpleFramework 本身不是Unitypackage 格式，而是一个Unity3D的项目工程，...
+    
+
+        <a href="/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-图像几何变换之bee和whale互换眼睛"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-30 20:43:30" datetime="2017-10-30T12:43:30.000Z"  itemprop="datePublished">2017-10-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/30/%E5%9B%BE%E5%83%8F%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2%E4%B9%8Bbee%E5%92%8Cwhale%E4%BA%92%E6%8D%A2%E7%9C%BC%E7%9D%9B/">图像几何变换之Bee和Whale互换眼睛</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        首先看两张图，Bee的眼睛较大，Whale的眼睛较小，我们要做的就是把他们两个眼睛互换，而且还要保证它的新眼睛大小一致。简单来说就是，比如博主我是大眼睛，那我就一直是大眼睛。 1.Bee： [
+                
+                    
+                    
+                
+                ](http:/...
+    
+
+        <a href="/2017/10/30/%E5%9B%BE%E5%83%8F%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2%E4%B9%8Bbee%E5%92%8Cwhale%E4%BA%92%E6%8D%A2%E7%9C%BC%E7%9D%9B/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">Matlab图像处理</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-wiener滤波之复原运动模糊图像"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-23 20:56:49" datetime="2017-10-23T12:56:49.000Z"  itemprop="datePublished">2017-10-23</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/wiener%E6%BB%A4%E6%B3%A2%E4%B9%8B%E5%A4%8D%E5%8E%9F%E8%BF%90%E5%8A%A8%E6%A8%A1%E7%B3%8A%E5%9B%BE%E5%83%8F/">Wiener滤波之复原运动模糊图像</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        在生活中，我们可能会遇到因为摄像机大幅度抖动而造成的照片模糊，比如下面着两张图，人眼根本无法辨别原本的内容，还好我们有Matlab。 1.模糊的车牌照：[
+                
+                    
+                    
+                
+                ](http://www.wjgbaby.com/wp...
+    
+
+        <a href="/2017/10/23/wiener%E6%BB%A4%E6%B3%A2%E4%B9%8B%E5%A4%8D%E5%8E%9F%E8%BF%90%E5%8A%A8%E6%A8%A1%E7%B3%8A%E5%9B%BE%E5%83%8F/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">Matlab图像处理</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-灰度图之垂直投影和水平投影"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-23 20:30:53" datetime="2017-10-23T12:30:53.000Z"  itemprop="datePublished">2017-10-23</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/%E7%81%B0%E5%BA%A6%E5%9B%BE%E4%B9%8B%E5%9E%82%E7%9B%B4%E6%8A%95%E5%BD%B1%E5%92%8C%E6%B0%B4%E5%B9%B3%E6%8A%95%E5%BD%B1/">灰度图之垂直投影和水平投影</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Matlab代码：
+clc,clear,close all
+I=imread(‘pic.png’);g=rgb2gray(I);     %灰度化处理
+figuresubplot(221),imshow(I);title(‘原图’);subplot(222),imshow(g);title(‘灰度图’);
+[m, n]=size(I);
+%水平投影for x=1:m    S(x)=sum(...
+    
+
+        <a href="/2017/10/23/%E7%81%B0%E5%BA%A6%E5%9B%BE%E4%B9%8B%E5%9E%82%E7%9B%B4%E6%8A%95%E5%BD%B1%E5%92%8C%E6%B0%B4%E5%B9%B3%E6%8A%95%E5%BD%B1/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">Matlab图像处理</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-assetbundle之服务端资源下载到本地"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-22 16:37:51" datetime="2017-10-22T08:37:51.000Z"  itemprop="datePublished">2017-10-22</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/22/assetbundle%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0/">AssetBundle之服务端资源下载到本地</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        在实际项目中，我们不可能每次启动程序都从服务端获取AssetBundle文件。一般都是将获取到的AssetBundle文件存放在本地，方便以后调用。 这两篇博客，都是属于AssetBundle比较核心一部分东西，用到的API也比较多，但是我基本都加了注释，要想熟练掌握还需要多练习的。之所以写下来，大致是为了当作自己的学习笔记，方便日后回头看，可以说是是查漏补缺吧。   这篇主要是写了如何用W...
+    
+
+        <a href="/2017/10/22/assetbundle%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AssetBundle/" rel="tag">AssetBundle</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-assetbundle之服务端资源下载"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-21 22:17:33" datetime="2017-10-21T14:17:33.000Z"  itemprop="datePublished">2017-10-21</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/21/assetbundle%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD/">AssetBundle之服务端资源加载</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        我把AssetBundless整个文件的资源都放在了我的web服务器上，里面除了有AssetBundless自身的4个文件之外，还有player和plane各4个文件。[
+                
+                    
+                    
+                
+                ](http://www.wjgbab...
+    
+
+        <a href="/2017/10/21/assetbundle%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AssetBundle/" rel="tag">AssetBundle</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-assetbundle之本地资源加载"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-21 14:55:13" datetime="2017-10-21T06:55:13.000Z"  itemprop="datePublished">2017-10-21</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/21/assetbundle%E4%B9%8B%E6%9C%AC%E5%9C%B0%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD/">AssetBundle之本地资源加载</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        AssetBundle资源既可以留在本地，也可以存在服务器上不占用安装包体积，这篇文章是写本地加载的。   一:加载AB 资源到内存 AssetBundle ab = AssetBundle.LoadFromFile(“AB 包完整路径”) 从一个完整的路径位置加载AB 资源包到内存，返回一个AssetBundle 对象. 二：从AB 资源中获取资源 T resName = ab.LoadA...
+    
+
+        <a href="/2017/10/21/assetbundle%E4%B9%8B%E6%9C%AC%E5%9C%B0%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AssetBundle/" rel="tag">AssetBundle</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-大吉大利，今晚吃鸡"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-19 23:51:25" datetime="2017-10-19T15:51:25.000Z"  itemprop="datePublished">2017-10-19</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/19/%E5%A4%A7%E5%90%89%E5%A4%A7%E5%88%A9%EF%BC%8C%E4%BB%8A%E6%99%9A%E5%90%83%E9%B8%A1/">大吉大利，今晚吃鸡</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        最近有个叫绝地求生的游戏挺火的
+得了第一名
+系统就会出现“大吉大利，今晚吃鸡”
+今天下午跟三个室友去网吧第一次玩
+我打的还是比较稳的
+打了一下午，就杀了一个人
+还TM是跳完伞刚降落碰到的一个人
+用拳头硬刚的…
+主要是我那几个室友也不会玩
+四个新手
+这种考验操作的游戏
+不多花时间肯定打不好
+等以后有空了再玩吧
+我叫武大锤
+万万没想到
+最后我还是成功吃鸡了
+黄昏的时候
+四位少年走在东方多伦多的街...
+    
+
+        <a href="/2017/10/19/%E5%A4%A7%E5%90%89%E5%A4%A7%E5%88%A9%EF%BC%8C%E4%BB%8A%E6%99%9A%E5%90%83%E9%B8%A1/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%88%91%E7%9A%84%E7%94%9F%E6%B4%BB/" rel="tag">我的生活</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-assetbundle资源打包之细节分析"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-19 23:30:27" datetime="2017-10-19T15:30:27.000Z"  itemprop="datePublished">2017-10-19</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/19/assetbundle%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E4%B9%8B%E7%BB%86%E8%8A%82%E5%88%86%E6%9E%90/">AssetBundle资源打包之细节分析</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.资源打包选项
+在AssetBundle 打包过程中，有一个BuildAssetBundleOptions 枚举类型，通过设置不同的枚举参数，可以实现不同的压缩方式。 1.BuildAssetBundleOptions.None 使用LZMA 压缩算法进行压缩，打包后的资源体积最小。 [
+                
+                    
+             ...
+    
+
+        <a href="/2017/10/19/assetbundle%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E4%B9%8B%E7%BB%86%E8%8A%82%E5%88%86%E6%9E%90/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AssetBundle/" rel="tag">AssetBundle</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-assetbundle资源打包之基本操作"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-18 19:40:35" datetime="2017-10-18T11:40:35.000Z"  itemprop="datePublished">2017-10-18</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/18/assetbundle%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">AssetBundle资源打包之基本操作</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        AssetBundle 的作用类似于电脑上的WinRAR，360 好压之类的压缩软件，可以将一个或者多个资源进行打包管理，顺带还可以对资源的体积进行压缩。   在Unity 内，除去C#脚本文件以外，选中任何文件后，在Inspector 面板的下方都会出现一个Asset Lables 功能区域，通过这个功能可以给资源设置AssetBundle 的文件名和文件后缀。 文件名：资源打包成Asse...
+    
+
+        <a href="/2017/10/18/assetbundle%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AssetBundle/" rel="tag">AssetBundle</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+    </ul>
+
+    
+<nav id="page-nav">
+    <div class="inner">
+    <a class="extend prev" rel="prev" href="/page/13/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/15/">下一页</a>
+    </div>
+</nav>
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/page/14/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/page/14/&title=Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/page/14/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/page/14/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/page/14/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/page/14/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

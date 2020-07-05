@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ULua官方案例之核心脚本分析 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Lua热更新">
+    <meta name="description" content="C#核心脚本 1.框架入口  GlobalGenerator.cs 在场景中有一个空物体，该物体上挂载了一个“GlobalGenerator.cs”脚本。 该脚本字面意思理解是“全局生成器”,它是ULua 热更新框架的入口启动脚本。作用类似于VS 控制台项目中的入口脚本Program.cs。 using UnityEngine;using System.Collections; namespace">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ULua官方案例之核心脚本分析">
+<meta property="og:url" content="http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C#核心脚本 1.框架入口  GlobalGenerator.cs 在场景中有一个空物体，该物体上挂载了一个“GlobalGenerator.cs”脚本。 该脚本字面意思理解是“全局生成器”,它是ULua 热更新框架的入口启动脚本。作用类似于VS 控制台项目中的入口脚本Program.cs。 using UnityEngine;using System.Collections; namespace">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/12/17122401.jpg">
+<meta property="article:published_time" content="2017-12-23T17:22:59.000Z">
+<meta property="article:modified_time" content="2020-07-05T11:24:00.956Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="Lua热更新">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/12/17122401.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ULua官方案例之核心脚本分析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ULua官方案例之核心脚本分析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-23T17:22:59.000Z" itemprop="datePublished" class="page-time">
+  2017-12-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-ulua官方案例之核心脚本分析"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ULua官方案例之核心脚本分析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-24 01:22:59" datetime="2017-12-23T17:22:59.000Z"  itemprop="datePublished">2017-12-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>C#核心脚本</strong></p>
+<p><strong>1.框架入口  GlobalGenerator.cs</strong> 在场景中有一个空物体，该物体上挂载了一个“GlobalGenerator.cs”脚本。 该脚本字面意思理解是“全局生成器”,它是ULua 热更新框架的入口启动脚本。作用类似于VS 控制台项目中的入口脚本Program.cs。</p>
+<p>using UnityEngine;<br>using System.Collections;</p>
+<p>namespace SimpleFramework {<br>    /// <summary><br>    /// 全局构造器，每个场景里都有，所以每个场景都会初始化一遍，也会初始化游戏管理器一次<br>    /// 如果游戏管理器已经存在了，就跳过了，否则创建游戏管理器，来保证游戏里只有一个GameManager<br>    /// </summary><br>    public class GlobalGenerator : MonoBehaviour {</p>
+<pre><code>    void Awake() {
+        InitGameMangager();
+    }
+
+    /// &lt;summary&gt;
+    /// 实例化游戏管理器
+    /// &lt;/summary&gt;
+    public void InitGameMangager() {
+        //定义一个字符串变量.
+        string name = &quot;GameManager&quot;;
+        //在当前场景中查找该名称的变量,如果没有则实例化该游戏物体,并且给它设置物体名称.
+        GameObject manager = GameObject.Find(name);
+        if (manager == null) {
+            manager = new GameObject(name);
+            manager.name = name;
+
+            //调用框架中的功能方法,启动热更新框架.
+            AppFacade.Instance.StartUp();   //启动游戏
+        }
+    }
+}</code></pre><p>}</p>
+<p><strong>2.启动命令  StartUpCommand.cs</strong> 在ULua 框架启动后，会执行到“StartUpCommand.cs”脚本。 这个脚本的作用是给场景内的游戏物体添加必备的管理器脚本。</p>
+<p>using UnityEngine;<br>using System.Collections;<br>using SimpleFramework;<br>using SimpleFramework.Manager;</p>
+<p>/// <summary><br>/// 框架启动命令.<br>/// </summary><br>public class StartUpCommand : ControllerCommand {</p>
+<pre><code>public override void Execute(IMessage message) {
+    if (!Util.CheckEnvironment()) return;
+
+    //查找当前场景中的GlobalGenerator游戏物体.
+    GameObject gameMgr = GameObject.Find(&quot;GlobalGenerator&quot;);
+    //如果存在就给该游戏物体添加一个AppView.cs脚本.
+    if (gameMgr != null) {
+        AppView appView = gameMgr.AddComponent&lt;AppView&gt;();
+    }
+    //-----------------关联命令-----------------------
+    AppFacade.Instance.RegisterCommand(NotiConst.DISPATCH\_MESSAGE, typeof(SocketCommand));
+
+    //-----------------初始化管理器-----------------------
+    AppFacade.Instance.AddManager(ManagerName.Lua, new LuaScriptMgr());
+
+    //给“GameManager游戏物体”动态的添加7个管理器脚本.
+    AppFacade.Instance.AddManager&lt;PanelManager&gt;(ManagerName.Panel);
+    AppFacade.Instance.AddManager&lt;MusicManager&gt;(ManagerName.Music);
+    AppFacade.Instance.AddManager&lt;TimerManager&gt;(ManagerName.Timer);
+    AppFacade.Instance.AddManager&lt;NetworkManager&gt;(ManagerName.Network);
+    AppFacade.Instance.AddManager&lt;ResourceManager&gt;(ManagerName.Resource);
+    AppFacade.Instance.AddManager&lt;ThreadManager&gt;(ManagerName.Thread);
+    AppFacade.Instance.AddManager&lt;GameManager&gt;(ManagerName.Game);
+
+    Debug.Log(&quot;SimpleFramework StartUp--------&gt;&gt;&gt;&gt;&gt;&quot;);
+}</code></pre><p>}</p>
+<p><strong>3.七个管理器脚本</strong> ULua 框架运行后，会自动给“GameManager 游戏物体”添加7 个管理器脚本，这7 个管理器脚本内，存放了大量的“可复用代码”。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2017/12/17122401.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2017/12/17122401-300x276.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2017/12/17122401-300x276.jpg)</div>
+            </figure> <strong>4.游戏管理器  GameManager.cs</strong> 这7 个管理器脚本中，代码量最大的是GameManager.cs 脚本，在开发发中操作也是最多的。 热更新框架中核心的“资源热更新下载功能”就是在该脚本内实现的。 OnResourceInited（）方法：C#与Lua 交互的入口。 部分代码：</p>
+<p>/// <summary><br>/// 资源初始化结束<br>/// </summary><br>public void OnResourceInited() {<br>    //启动Lua管理器,其实还是Lua解析器(Lua运行虚拟机).<br>    LuaManager.Start();<br>    //DoFile方法加载外部的文件并且执行.<br>    LuaManager.DoFile(“Logic/Network”);       //加载网络<br>    LuaManager.DoFile(“Logic/GameManager”);    //加载游戏<br>    initialize = true;                     //初始化完 </p>
+<pre><code>NetManager.OnInit();    //初始化网络
+
+//调用GameManager.lua脚本中的&quot;LuaScriptPanel&quot;方法.
+object\[\] panels = CallMethod(&quot;LuaScriptPanel&quot;);  
+//---------------------Lua面板---------------------------
+foreach (object o in panels) {
+    string name = o.ToString().Trim();
+    if (string.IsNullOrEmpty(name)) continue;
+    //将名称和&quot;Panel&quot;相加组拼成新的名称,如:MessagePanel.
+    name += &quot;Panel&quot;;    //添加
+
+    //加载View/目录下的对应的界面脚本.
+    LuaManager.DoFile(&quot;View/&quot; + name);
+    Debug.LogWarning(&quot;LoadLua----&gt;&gt;&gt;&gt;&quot; + name + &quot;.lua&quot;);
+}
+//------------------------------------------------------------
+//全部加载完毕后,回调执行GameManager.lua脚本中的&quot;OnInitOK&quot;方法.
+CallMethod(&quot;OnInitOK&quot;);   //初始化完成</code></pre><p>}</p>
+<p><strong>Lua 核心脚本</strong></p>
+<p><strong>1.游戏管理器  GameManager.lua</strong> C#版本的GameManger.cs 中会加载Lua 版的GameManger.lua 脚本。 LuaScriptPanel()：返回一个名称数组. OnInitOK()：加载完View 资源后的回调方法.</p>
+<p>require “3rd/pblua/login_pb”<br>require “3rd/pbc/protobuf”</p>
+<p>local lpeg = require “lpeg”</p>
+<p>local json = require “cjson”<br>local util = require “3rd/cjson.util”</p>
+<p>local sproto = require “3rd/sproto/sproto”<br>local core = require “sproto.core”<br>local print_r = require “3rd/sproto/print_r”</p>
+<p>require “Logic/LuaClass”<br>require “Logic/CtrlManager”<br>require “Common/functions”<br>require “Controller/PromptCtrl”</p>
+<p>–管理器–<br>GameManager = {};<br>local this = GameManager;</p>
+<p>local game;<br>local transform;<br>local gameObject;<br>local WWW = UnityEngine.WWW;</p>
+<p>–返回Lua中面板的名称.<br>function GameManager.LuaScriptPanel()<br>    return ‘Prompt’, ‘Message’;<br>end</p>
+<p>function GameManager.Awake()<br>    –warn(‘Awake—&gt;&gt;&gt;’);<br>end</p>
+<p>–启动事件–<br>function GameManager.Start()<br>    –warn(‘Start—&gt;&gt;&gt;’);<br>end</p>
+<p>–初始化完成，发送链接服务器信息–<br>function GameManager.OnInitOK()<br>    –设置Socket相关属性,然后发起请求.<br>    AppConst.SocketPort = 2012;<br>    AppConst.SocketAddress = “127.0.0.1”;<br>    NetManager:SendConnect();</p>
+<pre><code>--执行相应的测试方法.
+this.test\_class\_func();
+this.test\_pblua\_func();
+this.test\_cjson\_func();
+this.test\_pbc\_func();
+this.test\_lpeg\_func();
+this.test\_sproto\_func();
+coroutine.start(this.test\_coroutine);
+
+--启动&quot;控制器管理器脚本&quot;.
+CtrlManager.Init();
+
+--获取Prompt界面的Ctrl,如果当前是“案例模式”,即执行当前的Ctrl中的Awake方法.
+local ctrl = CtrlManager.GetCtrl(CtrlName.Prompt);
+if ctrl ~= nil and AppConst.ExampleMode then
+    ctrl:Awake();
+end
+
+warn(&apos;SimpleFramework InitOK---&gt;&gt;&gt;&apos;);</code></pre><p>end</p>
+<p><strong>2.控制器管理器  CtrlManager.lua</strong> 该脚本用于管理Lua 环境中所有的Ctrl 类型的脚本. 只需要根据开发需求引入对应的Ctrl 文件，并且往Init()方法中添加数据即可。</p>
+<p>require “Common/define”            –引入Define文件.<br>require “Controller/PromptCtrl”    –引入Lua中的Ctrl脚本.<br>require “Controller/MessageCtrl”</p>
+<p>CtrlManager = {};<br>local this = CtrlManager;<br>local ctrlList = {};    –控制器列表–</p>
+<p>–控制器的初始化方法.<br>function CtrlManager.Init()<br>    warn(“CtrlManager.Init—–&gt;&gt;&gt;”);<br>    –ctrlList是一个表,表里面添加元素.<br>    –ctrlList[‘名’] = 值.最终该ctrlList中存放的是所有的Ctrl脚本的对象.<br>    ctrlList[CtrlName.Prompt] = PromptCtrl.New();<br>    ctrlList[CtrlName.Message] = MessageCtrl.New();<br>    –返回当前对象.<br>    return this;<br>end</p>
+<p>–添加控制器–<br>function CtrlManager.AddCtrl(ctrlName, ctrlObj)<br>    ctrlList[ctrlName] = ctrlObj;<br>end</p>
+<p>–获取控制器–<br>function CtrlManager.GetCtrl(ctrlName)<br>    return ctrlList[ctrlName];<br>end</p>
+<p>–移除控制器–<br>function CtrlManager.RemoveCtrl(ctrlName)<br>    ctrlList[ctrlName] = nil;<br>end</p>
+<p>–关闭控制器–<br>function CtrlManager.Close()<br>    warn(‘CtrlManager.Close—-&gt;&gt;&gt;’);<br>end</p>
+<p><strong>3.定义  define.lua</strong> 存放Lua 环境中的一些定义，我们只需要根据开发需求往CtrlName 表中添加数据即可。</p>
+<p>CtrlName = {<br>    Prompt = “PromptCtrl”,<br>    Message = “MessageCtrl”<br>}</p>
+<p>–协议类型–<br>ProtocalType = {<br>    BINARY = 0,<br>    PB_LUA = 1,<br>    PBC = 2,<br>    SPROTO = 3,<br>}<br>–当前使用的协议类型–<br>TestProtoType = ProtocalType.BINARY;</p>
+<p>Util = SimpleFramework.Util;<br>AppConst = SimpleFramework.AppConst;<br>LuaHelper = SimpleFramework.LuaHelper;<br>ByteBuffer = SimpleFramework.ByteBuffer;</p>
+<p>ResManager = LuaHelper.GetResManager();<br>NetManager = LuaHelper.GetNetManager();<br>PanelManager = LuaHelper.GetPanelManager();<br>MusicManager = LuaHelper.GetMusicManager();</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T11:24:00.956Z" itemprop="dateUpdated">2020-07-05 19:24:00</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/" target="_blank" rel="external">http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/&title=《ULua官方案例之核心脚本分析》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/&title=《ULua官方案例之核心脚本分析》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ULua官方案例之核心脚本分析》 — Hexo&url=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/12/24/%E8%AF%95%E7%9D%80%E5%8E%BB%E5%B9%B3%E8%A1%A1%E6%97%B6%E9%97%B4%E5%92%8C%E7%A9%BA%E9%97%B4/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">试着去平衡时间和空间</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/23/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8Blua%E9%80%BB%E8%BE%91%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ULua官方案例之Lua逻辑脚本分析</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/&title=《ULua官方案例之核心脚本分析》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/&title=《ULua官方案例之核心脚本分析》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ULua官方案例之核心脚本分析》 — Hexo&url=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
