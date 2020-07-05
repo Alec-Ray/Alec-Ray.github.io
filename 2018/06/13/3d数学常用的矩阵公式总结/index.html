@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>3D数学常用的矩阵公式总结 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="3D Math">
+    <meta name="description" content="这篇文章主要是一些矩阵[latex]\begin{bmatrix} matrix \end{bmatrix}[&#x2F;latex]公式的总结，为了书写这些麻烦的公式，我去学习了LaTex的一些使用技巧，看上去效果还不错。 由于使用了LaTex语法，LaTex代码在MathJax的JS脚本渲染后，所显示的数学公式在电脑上兼容性很好，但在一些手机浏览器上兼容性不好。在手机上无法自适应页面，一些较长的公式可能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3D数学常用的矩阵公式总结">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这篇文章主要是一些矩阵[latex]\begin{bmatrix} matrix \end{bmatrix}[&#x2F;latex]公式的总结，为了书写这些麻烦的公式，我去学习了LaTex的一些使用技巧，看上去效果还不错。 由于使用了LaTex语法，LaTex代码在MathJax的JS脚本渲染后，所显示的数学公式在电脑上兼容性很好，但在一些手机浏览器上兼容性不好。在手机上无法自适应页面，一些较长的公式可能">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-06-13T06:03:09.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.338Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="3D Math">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">3D数学常用的矩阵公式总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">3D数学常用的矩阵公式总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-13T06:03:09.000Z" itemprop="datePublished" class="page-time">
+  2018-06-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-3d数学常用的矩阵公式总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">3D数学常用的矩阵公式总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-13 14:03:09" datetime="2018-06-13T06:03:09.000Z"  itemprop="datePublished">2018-06-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这篇文章主要是一些矩阵[latex]\begin{bmatrix} matrix \end{bmatrix}[/latex]公式的总结，为了书写这些麻烦的公式，我去学习了LaTex的一些使用技巧，看上去效果还不错。 由于使用了LaTex语法，LaTex代码在MathJax的JS脚本渲染后，所显示的数学公式在电脑上兼容性很好，但在一些手机浏览器上兼容性不好。在手机上无法自适应页面，一些较长的公式可能无法看到全部，所以本文建议在电脑上看。 1. 2D旋转矩阵：\[R(\theta )=\begin{bmatrix} {p}’\\ {q}’ \end{bmatrix}=\begin{bmatrix} cos\theta &amp;sin\theta \\ -sin\theta &amp; cos\theta \end{bmatrix}\] 2. 绕x轴旋转的3D旋转矩阵：\[R_{x}(\theta )=\begin{bmatrix} {p}’\\ {q}’\\ {r}’ \end{bmatrix}=\begin{bmatrix} 1 &amp;0 &amp;0\\ 0 &amp;cos\theta &amp;sin\theta\\ 0 &amp;-sin\theta &amp;cos\theta \end{bmatrix}\] 3. 绕y轴旋转的3D旋转矩阵：\[R_{y}(\theta )=\begin{bmatrix} {p}’\\ {q}’\\ {r}’ \end{bmatrix}=\begin{bmatrix} cos\theta &amp;0 &amp;-sin\theta\\ 0 &amp;1 &amp;0\\ sin\theta &amp;0 &amp;cos\theta \end{bmatrix}\] 4. 绕z轴旋转的3D旋转矩阵：\[R_{z}(\theta )=\begin{bmatrix} {p}’\\ {q}’\\ {r}’ \end{bmatrix}=\begin{bmatrix} cos\theta &amp;sin\theta &amp;0\\ -sin\theta &amp;cos\theta &amp;0\\ 0 &amp;0 &amp;1 \end{bmatrix}\] 5. 沿坐标轴的2D缩放矩阵(k为缩放因子)：\[S(k_{x},k_{y})=\begin{bmatrix} {p}’\\ {q}’ \end{bmatrix}=\begin{bmatrix} k_{x} &amp;0 \\ 0&amp;k_{y} \end{bmatrix}\] 6. 沿坐标轴的3D缩放矩阵：\[S(k_{x},k_{y},k_{z})=\begin{bmatrix} k_{x} &amp;0 &amp;0 \\ 0&amp; k_{y} &amp;0 \\ 0&amp;0 &amp;k_{z} \end{bmatrix}\] 通过使垂直方向上的缩放因子为0，就能向坐标轴或平面投影： 7. 向任意直线投影的2D矩阵：\[P(n)=S(n,0)=\begin{bmatrix} 1-n_{x}^{2} &amp;-n_{x}n_{y} \\ -n_{x}n_{y}&amp; 1-n_{y}^{2} \end{bmatrix}\] 8. 向任意平面投影的3D矩阵：\[P(n)=S(n,0)=\begin{bmatrix} 1-n_{x}^{2}&amp;-n_{x}n_{y} &amp;-n_{x}n_{z} \\ -n_{x}n_{y}&amp; 1-n_{y}^{2} &amp;-n_{y}n_{z} \\ -n_{x}n_{z}&amp;-n_{z}n_{y} &amp; 1-n_{z}^{2} \end{bmatrix}\] 使缩放因子为-1能够很容易的实现镜像变换： 9. 沿任意轴镜像的2D矩阵：\[P(n)=S(n,-1)=\begin{bmatrix} 1-2n_{x}^{2} &amp;-2n_{x}n_{y} \\ -2n_{x}n_{y} &amp; 1-2n_{y}^{2} \end{bmatrix}\] 10. 沿任意轴镜像的3D矩阵：\[P(n)=S(n,-1)=\begin{bmatrix} 1-2n_{x}^{2} &amp;-2n_{x}n_{y} &amp;-2n_{x}n_{z} \\ -2n_{x}n_{y}&amp; 1-2n_{y}^{2} &amp;-2n_{y}n_{z} \\ -2n_{x}n_{z}&amp; -2n_{z}n_{y}&amp; 1-2n_{z}^{2} \end{bmatrix}\] 11. 2X2矩阵的行列式：\[|M|=\begin{vmatrix} m_{11} &amp; m_{12}\\ m_{21}&amp; m_{22} \end{vmatrix}=m_{11}m_{22}-m_{12}m_{21}\] 12. 3X3矩阵的行列式：\[\begin{bmatrix} m_{11} &amp; m_{12} &amp;m_{13} \\ m_{21}&amp;m_{22} &amp;m_{23} \\ m_{31}&amp;m_{32} &amp; m_{33} \end{bmatrix}=m_{11}m_{22}m_{33}+m_{12}m_{23}m_{31}+m_{13}m_{21}m_{32}-m_{13}m_{22}m_{31}-m_{12}m_{21}m_{33}-m_{11}m_{23}m_{32}\] 13. 矩阵[latex]M^{\begin{Bmatrix} ij \end{Bmatrix}}[/latex]称作M的余子式，表示从M中去除第i行和j列后剩下的矩阵：\[\begin{bmatrix} -4&amp;-3 &amp;3 \\ 0&amp; 2&amp;-2 \\ 1&amp;4 &amp;-1 \end{bmatrix}\Rightarrow M^{\begin{Bmatrix} ij \end{Bmatrix}}=\begin{bmatrix} 0 &amp;-2 \\ 1 &amp; -1 \end{bmatrix}\] 14. 矩阵的代数余子式。对方阵M，给定行列元素的代数余子式等于相应的余子式的有符号行列式。[latex]C_{ij}[/latex]表示M的第i行，第j列的代数余子式。注意余子式是一个矩阵，而代数余子式是一个标量：\[C_{ij}=(-1)^{i+j}\left | M^{\begin{Bmatrix} ij \end{Bmatrix}} \right |\] 15. 代数余子式计算n X n阶矩阵的行列式：\[\left | M \right |=\sum_{j=1}^{n}m_{ij}c_{ij} =\sum_{j=1}^{n}m_{ij}(-1)^{i+j}\left | M^{\begin{Bmatrix} ij \end{Bmatrix}} \right |\] 16. 矩阵的逆。方阵M的逆记作[latex]M^{-1}[/latex],当M与[latex]M^{-1}[/latex]相乘时，结果是单位矩阵：\[M(M^{-1})=M^{-1}M=I\] 17. 标准伴随矩阵。M的标准伴随矩阵记作“adj M”，定义为M的代数余子式矩阵的转置矩阵，给出矩阵M：\[M=\begin{bmatrix} -4 &amp;-3 &amp;3 \\ 0&amp; 2 &amp;-2 \\ 1&amp; 4 &amp;-1 \end{bmatrix}\] 计算M的代数余子式矩阵: [latex]c_{11}=+\begin{vmatrix} 2 &amp;-2 \\ 4 &amp; -1 \end{vmatrix}=6[/latex] ，[latex]c_{12}=-\begin{vmatrix} 0 &amp;-2 \\ 1 &amp; -1 \end{vmatrix}=-2[/latex] ， [latex]c_{13}=+\begin{vmatrix} 0 &amp;2 \\ 1 &amp; 4 \end{vmatrix}=-2[/latex] [latex]c_{21}=-\begin{vmatrix} -3&amp;3 \\ 4 &amp;-1 \end{vmatrix}=9[/latex] ，[latex]c_{22}=+\begin{vmatrix} -4&amp;3 \\ 1 &amp;-1 \end{vmatrix}=1[/latex] ，[latex]c_{23}=-\begin{vmatrix} -4&amp;-3 \\ 1 &amp;4 \end{vmatrix}=13[/latex] [latex]c_{31}=+\begin{vmatrix} -3&amp;3 \\ 2&amp;-2 \end{vmatrix}=0[/latex] ，[latex]c_{32}=-\begin{vmatrix} -4&amp;3 \\ 0&amp;-2 \end{vmatrix}=-8[/latex] ，[latex]c_{33}=+\begin{vmatrix} -4&amp;-3 \\ 0&amp;2 \end{vmatrix}=-8[/latex] M的标准伴随矩阵是代数余子式的转置： \[adjM=\begin{bmatrix} c_{11} &amp; c_{12} &amp;c_{13} \\ c_{21} &amp; c_{22} &amp; c_{23}\\ c_{31} &amp; c_{32} &amp; c_{33} \end{bmatrix}^{T}=\begin{bmatrix} 6 &amp;-2 &amp;-2 \\ 9&amp; 1 &amp;13 \\ 0&amp;-8 &amp;-8 \end{bmatrix}^{T}=\begin{bmatrix} 6 &amp;9 &amp;0 \\ -2&amp; 1 &amp;-8 \\ -2&amp;13 &amp;-8 \end{bmatrix}\] 18. 矩阵的逆能够用标准伴随矩阵除以行列式求得： \[M^{-1}=\frac{adjM}{\left | M \right |}\] 求得公式17矩阵的逆： \[M^{-1}=\frac{adjM}{\left | M \right |}=\frac{\begin{bmatrix} 6 &amp;9 &amp;0 \\ -2 &amp;1 &amp;-8 \\ -2&amp;13 &amp;-8 \end{bmatrix}}{-24}=\begin{bmatrix} -1/4 &amp;-3/8 &amp;0 \\ 1/12 &amp;-1/24 &amp;1/3 \\ 1/12 &amp;-13/24 &amp;1/3 \end{bmatrix}\] 19. 检测矩阵的正交性。若方阵M是正交的，则当且仅当M与转置[latex]M^{T}[/latex]的乘积等于单位矩阵。\[MM^{T}=I\] 所以，如果一个矩阵是正交的，那么它的转置就是它的逆(旋转和镜像矩阵是正交的)： \[M^{T}=M^{-1}\] 20. 用4X4矩阵实现3D平移。在4D中，任然可以用矩阵乘法来表达位移，而在3D中是不可能的。即使是在4D中，矩阵乘法仍然是线性变换； \[\begin{bmatrix} x &amp;y &amp;z &amp;1 \end{bmatrix}\begin{bmatrix} 1 &amp;0 &amp;0 &amp;0 \\ 0&amp; 1&amp; 0&amp;0 \\ 0&amp; 0 &amp;1 &amp;0 \\ \Delta x &amp;\Delta y &amp;\Delta z &amp; 1 \end{bmatrix}=\begin{bmatrix} x+\Delta x &amp; y+\Delta y &amp; z+\Delta z &amp;1 \end{bmatrix}\] 21. 用4X4矩阵向z=d平面投影： \[\begin{bmatrix} x &amp;y &amp;z &amp;1 \end{bmatrix}\begin{bmatrix} 1 &amp;0 &amp;0 &amp;0 \\ 0&amp; 1&amp; 0&amp;0 \\ 0&amp; 0 &amp;1 &amp;1/d \\ 0&amp;0&amp;0 &amp; 0 \end{bmatrix}=\begin{bmatrix} x &amp; y &amp; z &amp;z/d \end{bmatrix}\]   参考书籍：《游戏引擎架构》 《3D Math Primer for graphics and game development》</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.338Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/" target="_blank" rel="external">http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-Math/" rel="tag">3D Math</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/&title=《3D数学常用的矩阵公式总结》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/&title=《3D数学常用的矩阵公式总结》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《3D数学常用的矩阵公式总结》 — Hexo&url=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/29/rttnw-ch2%EF%BC%9Abounding-volume-hierarchies/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">RTTNW-ch2：Bounding Volume Hierarchies</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/10/c%E5%87%BD%E6%95%B0%E4%B8%AD%E5%BD%A2%E5%8F%82%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%88%AB/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">C函数中形参传递方式的差别</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/&title=《3D数学常用的矩阵公式总结》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/&title=《3D数学常用的矩阵公式总结》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《3D数学常用的矩阵公式总结》 — Hexo&url=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

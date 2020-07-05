@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>OpenGL笔记七：旋转变换 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="OpenGL">
+    <meta name="description" content="接下来的变换是旋转变换，就是说给定一个角度和点，我们将点绕着一个坐标轴旋转。在旋转过程中发生变化的总是ｘ，ｙ，ｚ三个坐标里面的其中两个，而不让第三个坐标值变化。这意味着，旋转路径总在三个坐标轴平面中的一个之中：绕 Z 轴的是 xy 面、绕 X 轴的是 yz 面、绕 Y 轴的是 xy 面。还有许多复杂的旋转变换可以让你绕任意一个向量旋转，但是眼下我们并不需要讨论这些。 让我们概括地定义这个问题这个问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL笔记七：旋转变换">
+<meta property="og:url" content="http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="接下来的变换是旋转变换，就是说给定一个角度和点，我们将点绕着一个坐标轴旋转。在旋转过程中发生变化的总是ｘ，ｙ，ｚ三个坐标里面的其中两个，而不让第三个坐标值变化。这意味着，旋转路径总在三个坐标轴平面中的一个之中：绕 Z 轴的是 xy 面、绕 X 轴的是 yz 面、绕 Y 轴的是 xy 面。还有许多复杂的旋转变换可以让你绕任意一个向量旋转，但是眼下我们并不需要讨论这些。 让我们概括地定义这个问题这个问">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/02/18022304.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/02/18022305-300x267.gif">
+<meta property="article:published_time" content="2018-02-23T09:24:36.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.197Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="OpenGL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/02/18022304.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">OpenGL笔记七：旋转变换</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">OpenGL笔记七：旋转变换</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-23T09:24:36.000Z" itemprop="datePublished" class="page-time">
+  2018-02-23
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-opengl笔记七：旋转变换"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">OpenGL笔记七：旋转变换</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-23 17:24:36" datetime="2018-02-23T09:24:36.000Z"  itemprop="datePublished">2018-02-23</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>接下来的变换是旋转变换，就是说给定一个角度和点，我们将点绕着一个坐标轴旋转。在旋转过程中发生变化的总是ｘ，ｙ，ｚ三个坐标里面的其中两个，而不让第三个坐标值变化。这意味着，旋转路径总在三个坐标轴平面中的一个之中：绕 Z 轴的是 xy 面、绕 X 轴的是 yz 面、绕 Y 轴的是 xy 面。还有许多复杂的旋转变换可以让你绕任意一个向量旋转，但是眼下我们并不需要讨论这些。 让我们概括地定义这个问题这个问题。看看下面的这个图： [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/02/18022304.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022306-300x278.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022306.jpg) 我们想沿着圆圈从（x1,y1）移动到（x2,y2）。也就是说我们让向量（x1,y1）转过a2角度。我们假设这个圆的半径是1。这意味着下列成立： x1=cos(a1) y1=sin(a1) x2=cos(a1+a2) y2=sin(a1+a2) 我们用下面的三角恒等式来产生 x2 和 y2 ： cos(a+b) = cosacosb - sinasinb sin(a+b) = sinacosb+cosasinb 通过面的式子我们可以推导出： x2=cos(a1+a2) = cosa1cosa2- sina1sina2 = x1cosa2- y1sina2 y2=sin(a1+a2) = sina1cosa2+ cosa1sina2 = y1cosa2+ x1sina2 在上面的图中我们看向 xy 平面，Z 轴指向屏幕内部！如果 X 分量和 Y 分量是四维向量的一部分，那样上面的等式可以写成下面的矩阵形式（不影响 Z 和 W ）为：[![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022302-300x86.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022302.jpg)如果我们想创建一个绕着 Y 轴或者绕着 Z 轴的旋转变换矩阵，那么方程基本相同但是矩阵的安排却略有不同！这是绕Y轴旋转的矩阵： [![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022303-300x81.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022303.jpg) 绕X轴的旋转矩阵为： [![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022304-300x81.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022306-300x278.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022306.jpg) 我们想沿着圆圈从（x1,y1）移动到（x2,y2）。也就是说我们让向量（x1,y1）转过a2角度。我们假设这个圆的半径是1。这意味着下列成立： x1=cos(a1) y1=sin(a1) x2=cos(a1+a2) y2=sin(a1+a2) 我们用下面的三角恒等式来产生 x2 和 y2 ： cos(a+b) = cosacosb - sinasinb sin(a+b) = sinacosb+cosasinb 通过面的式子我们可以推导出： x2=cos(a1+a2) = cosa1cosa2- sina1sina2 = x1cosa2- y1sina2 y2=sin(a1+a2) = sina1cosa2+ cosa1sina2 = y1cosa2+ x1sina2 在上面的图中我们看向 xy 平面，Z 轴指向屏幕内部！如果 X 分量和 Y 分量是四维向量的一部分，那样上面的等式可以写成下面的矩阵形式（不影响 Z 和 W ）为：[![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022302-300x86.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022302.jpg)如果我们想创建一个绕着 Y 轴或者绕着 Z 轴的旋转变换矩阵，那么方程基本相同但是矩阵的安排却略有不同！这是绕Y轴旋转的矩阵： [![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022303-300x81.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022303.jpg) 绕X轴的旋转矩阵为： [![](http://www.wjgbaby.com/wp-content/uploads/2018/02/18022304-300x81.jpg)</div>
+            </figure></p>
+<p><strong>源代码详解:</strong></p>
+<p>在上个教程的基础上这里代码的变换非常少。我们只是改变代码中变换矩阵的内容，将平移变换矩阵换成了旋转变换矩阵而已：</p>
+<p>World.m[0][0]=cosf(Scale);World.m[0][1]=-sinf(Scale);World.m[0][2]=0.0f; World.m[0][3]=0.0f;<br>World.m[1][0]=sinf(Scale);World.m[1][1]=cosf(Scale);World.m[1][2]=0.0f; World.m[1][3]=0.0f;<br>World.m[2][0]=0.0f;World.m[2][1]=0.0f;World.m[2][2]=1.0f;World.m[2][3]=0.0f;<br>World.m[3][0]=0.0f;World.m[3][1]=0.0f;World.m[3][2]=0.0f;World.m[3][3]=1.0f;</p>
+<p>这样会看到图形绕着Z轴旋转了。我们也可以尝试绕其他轴的旋转，但是没有从3d到2d的投影另外两种旋转看上起去会很奇怪，我们会在后面教程中在一个完整的图形变换管线类中来完善它。 <strong>源代码：</strong></p>
+<p>#include &lt;stdio.h&gt;<br>#include&lt;string.h&gt;<br>#include &lt;GL/glew.h&gt;<br>#include &lt;GL/freeglut.h&gt;<br>#include “ogldev_math_3d.h”    //用于OpenGL的3d数学库<br>#include “ogldev_util.h”    //用于读取文本文件</p>
+<p>GLuint VBO;   //全局GLuint引用变量，来操作顶点缓冲器对象<br>GLuint gWorldLocation;    // 平移变换一致变量的句柄引用</p>
+<p>// 定义要读取的顶点着色器脚本和片断着色器脚本的文件名，作为文件读取路径<br>const char* pVSFileName = “shader.vs”;<br>const char* pFSFileName = “shader.fs”;</p>
+<p>static void RenderCallBack()<br>{<br>    glClear(GL_COLOR_BUFFER_BIT);  //清空颜色缓存</p>
+<pre><code>static float Scale = 0.0f;   //维护一个不断慢慢增大的静态浮点数
+Scale += 0.0001f;   //如果图像变化太快或者太慢，可调节此数值
+
+// 4x4的旋转变换矩阵
+Matrix4f World;
+
+World.m\[0\]\[0\] = cosf(Scale); World.m\[0\]\[1\] = -sinf(Scale); World.m\[0\]\[2\] = 0.0f; World.m\[0\]\[3\] = 0.0f;
+World.m\[1\]\[0\] = sinf(Scale); World.m\[1\]\[1\] = cosf(Scale); World.m\[1\]\[2\] = 0.0f; World.m\[1\]\[3\] = 0.0f;
+World.m\[2\]\[0\] = 0.0f; World.m\[2\]\[1\] = 0.0f; World.m\[2\]\[2\] = 1.0f; World.m\[2\]\[3\] = 0.0f;
+World.m\[3\]\[0\] = 0.0f; World.m\[3\]\[1\] = 0.0f; World.m\[3\]\[2\] = 0.0f; World.m\[3\]\[3\] = 1.0f;
+
+// 将矩阵数据加载到shader中
+glUniformMatrix4fv(gWorldLocation, 1, GL\_TRUE, &amp;World.m\[0\]\[0\]);
+
+glEnableVertexAttribArray(0);   //开启顶点属性
+glBindBuffer(GL\_ARRAY\_BUFFER, VBO);   //绑定GL\_ARRAY\_BUFFER缓冲器
+glVertexAttribPointer(0, 3, GL\_FLOAT, GL\_FALSE, 0, 0);   //管线解析bufer中的数据
+
+glDrawArrays(GL\_TRIANGLES, 0, 3);   //画三角形，3个顶点
+glDisableVertexAttribArray(0);   //禁用顶点数据
+glutSwapBuffers();   //交换前后缓存</code></pre><p>}</p>
+<p>static void InitializeGlutCallbacks()<br>{<br>    glutDisplayFunc(RenderCallBack);<br>    glutIdleFunc(RenderCallBack);    //将渲染回调注册为全局闲置回调<br>}</p>
+<p>static void CreateVertexBuffer()<br>{<br>    Vector3f Vertices[3];   //创建含有3个顶点的顶点数组<br>    Vertices[0] = Vector3f(-1.0f, -1.0f, 0.0f);<br>    Vertices[1] = Vector3f(1.0f, -1.0f, 0.0f);<br>    Vertices[2] = Vector3f(0.0f, 1.0f, 0.0f);</p>
+<pre><code>glGenBuffers(1, &amp;VBO);   //创建缓冲器
+glBindBuffer(GL\_ARRAY\_BUFFER, VBO);   //绑定GL\_ARRAY\_BUFFER缓冲器
+
+glBufferData(GL\_ARRAY\_BUFFER, sizeof(Vertices), Vertices, GL\_STATIC\_DRAW);   //绑定顶点数据</code></pre><p>}</p>
+<p>//使用shader文本编译shader对象，并绑定shader到着色器程序中<br>static void AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType)<br>{<br>    // 根据shader类型参数定义两个shader对象<br>    GLuint ShaderObj = glCreateShader(ShaderType);<br>    // 检查是否定义成功<br>    if (ShaderObj == 0)<br>    {<br>        fprintf(stderr, “Error creating shader type %d\n”, ShaderType);<br>        exit(0);<br>    }</p>
+<pre><code>// 定义shader的代码源
+const GLchar\* p\[1\];
+p\[0\] = pShaderText;
+GLint Lengths\[1\];
+Lengths\[0\] = strlen(pShaderText);
+glShaderSource(ShaderObj, 1, p, Lengths);
+glCompileShader(ShaderObj);    // 编译shader对象
+
+// 检查和shader相关的错误
+GLint success;
+glGetShaderiv(ShaderObj, GL\_COMPILE\_STATUS, &amp;success);
+if (!success)
+{
+    GLchar InfoLog\[1024\];
+    glGetShaderInfoLog(ShaderObj, 1024, NULL, InfoLog);
+    fprintf(stderr, &quot;Error compiling shader type %d: &apos;%s&apos;\\n&quot;, ShaderType, InfoLog);
+    exit(1);
+}
+
+// 将编译好的shader对象绑定到program object程序对象上
+glAttachShader(ShaderProgram, ShaderObj);</code></pre><p>}</p>
+<p>// 编译着色器函数<br>static void CompileShaders()<br>{<br>    // 创建着色器程序<br>    GLuint ShaderProgram = glCreateProgram();<br>    // 检查是否创建成功<br>    if (ShaderProgram == 0)<br>    {<br>        fprintf(stderr, “Error creating shader program\n”);<br>        exit(1);<br>    }</p>
+<pre><code>// 存储着色器文本的字符串缓冲
+string vs, fs;
+
+// 分别读取着色器文件中的文本到字符串缓冲区
+if (!ReadFile(pVSFileName, vs))
+{
+    exit(1);
+};
+if (!ReadFile(pFSFileName, fs))
+{
+    exit(1);
+};
+
+// 添加顶点着色器和片段着色器
+AddShader(ShaderProgram, vs.c\_str(), GL\_VERTEX\_SHADER);
+AddShader(ShaderProgram, fs.c\_str(), GL\_FRAGMENT\_SHADER);
+
+// 链接shader着色器程序，并检查程序相关错误
+GLint Success = 0;
+GLchar ErrorLog\[1024\] = { 0 };
+glLinkProgram(ShaderProgram);
+glGetProgramiv(ShaderProgram, GL\_LINK\_STATUS, &amp;Success);
+if (Success == 0)
+{
+    glGetProgramInfoLog(ShaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
+    fprintf(stderr, &quot;Error linking shader program: &apos;%s&apos;\\n&quot;, ErrorLog);
+    exit(1);
+}
+
+// 检查验证在当前的管线状态程序是否可以被执行
+glValidateProgram(ShaderProgram);
+glGetProgramiv(ShaderProgram, GL\_VALIDATE\_STATUS, &amp;Success);
+
+if (!Success)
+{
+    glGetProgramInfoLog(ShaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
+    fprintf(stderr, &quot;Invalid shader program: &apos;%s&apos;\\n&quot;, ErrorLog);
+    exit(1);
+}
+
+// 设置到管线声明中来使用上面成功建立的shader程序
+glUseProgram(ShaderProgram);
+
+// 查询获取一致变量的位置
+gWorldLocation = glGetUniformLocation(ShaderProgram, &quot;gWorld&quot;);
+assert(gWorldLocation != 0xFFFFFFFF);    // 检查错误</code></pre><p>}</p>
+<p>int main(int argc, char** argv)<br>{<br>    glutInit(&amp;argc, argv);<br>    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);</p>
+<pre><code>glutInitWindowSize(400, 400);
+glutInitWindowPosition(100, 100);
+glutCreateWindow(&quot;旋转变换&quot;);
+
+glutDisplayFunc(RenderCallBack);  //开始渲染
+
+InitializeGlutCallbacks();
+
+// 检查GLEW是否就绪，必须要在GLUT初始化之后！
+GLenum res = glewInit();
+if (res != GLEW\_OK)
+{
+    fprintf(stderr, &quot;Error: &apos;%s&apos;\\n&quot;, glewGetErrorString(res));
+    return 1;
+}
+
+glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //缓存清空后的颜色值
+CreateVertexBuffer(); //创建顶点缓冲器
+
+CompileShaders();   // 编译着色器
+
+glutMainLoop();   //通知开始GLUT的内部循环
+
+return 0;</code></pre><p>}</p>
+<p>片断着色器shader.fs脚本代码:</p>
+<p>#version 330  //告诉编译器我们的目标GLSL编译器版本是3.3</p>
+<p>out vec4 FragColor;  // 片段着色器的输出颜色变量</p>
+<p>// 着色器的唯一入口函数<br>void main()<br>{<br>    // 定义输出颜色值<br>    FragColor = vec4(1.0, 0.0, 0.0, 1.0);<br>}</p>
+<p>顶点着色器shader.vs脚本代码：</p>
+<p>#version 330  //告诉编译器我们的目标GLSL编译器版本是3.3</p>
+<p>// 绑定定点属性名和属性，方式二缓冲属性和shader属性对应映射<br>layout (location = 0) in vec3 Position; </p>
+<p>// 平移变换聚矩阵一致变量<br>uniform mat4 gWorld;</p>
+<p>void main()<br>{<br>    // 用平移变换矩阵乘以图形顶点位置对应的4X4矩阵相乘，完成平移变换<br>    gl_Position = gWorld * vec4(Position, 1.0);<br>}</p>
+<p>最终效果（gif图）： <a href="http://www.wjgbaby.com/wp-content/uploads/2018/02/18022305.gif" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2018/02/18022305-300x267.gif" alt=""></a>   参考链接： <a href="http://ogldev.atspace.co.uk/www/tutorial07/tutorial07.html" target="_blank" rel="noopener">http://ogldev.atspace.co.uk/www/tutorial07/tutorial07.html</a> <a href="https://learnopengl.com/Getting-started/Transformations" target="_blank" rel="noopener">https://learnopengl.com/Getting-started/Transformations</a> <a href="http://blog.csdn.net/cordova/article/details/52558133" target="_blank" rel="noopener">http://blog.csdn.net/cordova/article/details/52558133</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.197Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/" target="_blank" rel="external">http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/&title=《OpenGL笔记七：旋转变换》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/&title=《OpenGL笔记七：旋转变换》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OpenGL笔记七：旋转变换》 — Hexo&url=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">标准Shader的十种贴图类型</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/21/ugui%E5%88%B6%E4%BD%9Cboss%E5%9B%BA%E5%AE%9A%E8%A1%80%E6%9D%A1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">UGUI制作Boss固定血条</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/&title=《OpenGL笔记七：旋转变换》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/&title=《OpenGL笔记七：旋转变换》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OpenGL笔记七：旋转变换》 — Hexo&url=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/02/23/opengl%E7%AC%94%E8%AE%B0%E4%B8%83%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>CPU优化之降低DrawCall | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Unity3D">
+    <meta name="description" content="在优化DrawCall之前我们先来看一下GPU和Cpu之间的流水线是如何实现的   DrawCall简介 问题一：CPU和GPU是如何实现并进行工作的？ 如果没有流水线化，那CPU就必须要等到GPU完成上一个渲染任务才能继续发送渲染命令。但这种方法显然效率低下。因此我们就需要GPU和CPU可以同时工作，而解决方案就是使用一个缓冲区。缓冲区里包含了一个命令队列，由CPU添加命令GPU从中读取命令，添">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPU优化之降低DrawCall">
+<meta property="og:url" content="http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在优化DrawCall之前我们先来看一下GPU和Cpu之间的流水线是如何实现的   DrawCall简介 问题一：CPU和GPU是如何实现并进行工作的？ 如果没有流水线化，那CPU就必须要等到GPU完成上一个渲染任务才能继续发送渲染命令。但这种方法显然效率低下。因此我们就需要GPU和CPU可以同时工作，而解决方案就是使用一个缓冲区。缓冲区里包含了一个命令队列，由CPU添加命令GPU从中读取命令，添">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040802.jpg">
+<meta property="article:published_time" content="2018-04-07T19:42:50.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.234Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Unity3D">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040802.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CPU优化之降低DrawCall</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CPU优化之降低DrawCall</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-07T19:42:50.000Z" itemprop="datePublished" class="page-time">
+  2018-04-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-cpu优化之降低drawcall"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CPU优化之降低DrawCall</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-08 03:42:50" datetime="2018-04-07T19:42:50.000Z"  itemprop="datePublished">2018-04-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在优化DrawCall之前我们先来看一下GPU和Cpu之间的流水线是如何实现的  </p>
+<p><strong>DrawCall简介</strong></p>
+<p><strong>问题一：CPU和GPU是如何实现并进行工作的？</strong> 如果没有流水线化，那CPU就必须要等到GPU完成上一个渲染任务才能继续发送渲染命令。但这种方法显然效率低下。因此我们就需要GPU和CPU可以同时工作，而解决方案就是使用一个缓冲区。缓冲区里包含了一个命令队列，由CPU添加命令GPU从中读取命令，添加和读取的过程是相互独立的。命令缓冲区的命令有很多种，而DrawCall只是其中一种，其他命令还有改变渲染状态等   <strong>问题二：为什么DrawCall多了会影响帧率</strong> 我们先举一个例子，创建10000个文件，每个文件的大小为1kb，然后把它们从一个路径复制到另一个路径，你会发现这些文件总的大小不超过10mb但却要花费很长的时间，现在我们再创建一个单独的文件大小为10mb，然后也把他从一个路径复制到另一个路径你会发现这次所用的时间却是很少。这个原因在于每一个复制动作需要很多额外的操作，比如分配内存，创建各种元数据等。从某种层面上讲渲染的以上实验很类似。在每次调用DrawCall之前，CPU都要向GPU发送很多内容，包括数据状态和命令等。在这一阶段CPU需要完成很多工作，当CPU完成这些工作后GPU就可以开始本次的渲染，GPU的渲染能力是很强的，渲染200或者2000个三角玩网格通常是没有区别的，因此渲染速度往往快于CPU的提交命令的速度。如果DrawCall的数量太多，CPU就会话费大量的时间在提交DrawCall上，造成CPU过载   <strong>问题三：如何减少DrawCall</strong> 减少DrawCall的方法有很多，我们这里仅讨论使用批处理的方法。批处理的思想就是把很多小的DrawCall合并为一个大的DrawCall。需要注意的是由于我们是需要在CPU的内存中合并网格，而合并的过程是需要消耗时间的，因此批处理技术更加适合于那些静态的物体，例如不会移动的物体。当然我没也可以对动态的物体进行处理，但是由于这些物体是不断运动的，因此每一帧都要进行合并再发送给GPU，这对空间和时间都会造成一定的影响 <strong>降低Draw Call的方法则主要是减少所渲染物体的材质种类，并通过Draw Call Batching来减少其数量。</strong> <strong>但是，需要注意的是，游戏性能并非Draw Call越小越好。这是因为，决定渲染模块性能的除了Draw Call之外，还有用于传输渲染数据的总线带宽。当我们使用Draw Call Batching将同种材质的网格模型拼合在一起时，可能会造成同一时间需要传输的数据（Texture、VB/IB等）大大增加，以至于造成带宽“堵塞”，在资源无法及时传输过去的情况下，GPU只能等待，从而反倒降低了游戏的运行帧率。</strong> <strong>Draw Call和总线带宽是天平的两端，我们需要做的是尽可能维持天平的平衡，任何一边过高或过低，对性能来说都是无益的。</strong>  </p>
+<p><strong>批处理(Batching)</strong></p>
+<p><strong>静态批处理Static batching：</strong> 静态批处理允许游戏引擎尽可能多的去降低绘制任意大小的物体所产生的DrawCall，它会占用更多的内存资源和更少的CPU资源，因为它需要额外的内存资源来存储合并后的几何结构，如果在静态批处理之前，如果有几个对象共享相同的几何结构，那么将为每个对象创建一个几何图形，无论是在编辑器还是在运行时。这看起来是个艰难的选择，你需要在内存性能和渲染性能间做出最为正确的选择。在内部，静态批处理是通过将静态对象转换为世界空间，并为它们构建一个大的顶点+索引缓冲区。然后，在同一批中，一系列的“便宜”画调用，一系列的“便宜”，几乎没有任何状态变化之间的。所以在技术上它并不保存“三维的调用”，但它可以节省它们之间的状态变化（这是昂贵的部分）。使用静态批处理非常简单啦，只要勾选物体的Static选项即可！ [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040802.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040802-300x259.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040802-300x259.jpg)</div>
+            </figure>   <strong>动态批处理Dynamic batching:</strong></p>
+<p>如果动态物体共用着相同的材质，那么Unity会自动对这些物体进行批处理。</p>
+<p>动态批处理操作是自动完成的，并不需要你进行额外的操作。</p>
+<p>1.批处理动态物体需要在每个顶点上进行一定的开销，所以动态批处理仅支持小于900顶点的网格物体。</p>
+<p>2.如果你的着色器使用顶点位置，法线和UV值三种属性，那么你只能批处理300顶点以下的物体；如果你的着色器需要使用顶点位置，法线，UV0，UV1和切向量，那你只能批处理180顶点以下的物体。</p>
+<p>3.请注意：属性数量的限制可能会在将来进行改变。</p>
+<p>4.不要使用缩放尺度（scale）。分别拥有缩放尺度(1,1,1)和(2,2,2)的两个物体将不会进行批处理。</p>
+<p>5.统一缩放尺度的物体不会与非统一缩放尺度的物体进行批处理。</p>
+<p>使用缩放尺度(1,1,1)和 (1,2,1)的两个物体将不会进行批处理，但是使用缩放尺度(1,2,1)和(1,3,1)的两个物体将可以进行批处理。</p>
+<p>6.使用不同材质的实例化物体（instance）将会导致批处理失败。</p>
+<p>7.拥有lightmap的物体含有额外（隐藏）的材质属性，比如：lightmap的偏移和缩放系数等。所以，拥有lightmap的物体将不会进行批处理（除非他们指向lightmap的同一部分）。</p>
+<p>8.多通道的shader会妨碍批处理操作。比如，几乎unity中所有的着色器在前向渲染中都支持多个光源，并为它们有效地开辟多个通道。</p>
+<p>9.预设体的实例会自动地使用相同的网格模型和材质。</p>
+<p><strong>UGUI批处理：</strong> 在 UGUI 中，Batch是以Canvas为单位的，即在同一个Canvas下的UI元素最终都会被Batch到同一个Mesh中。而在Batch前，UGUI会根据这些UI元素的材质（通常就是Atlas）以及渲染顺序进行重排，在不改变渲染结果的前提下，尽可能将相同材质的UI元素合并在同一个SubMesh中，从而把DrawCall降到最低。而Batch的操作只会在UI元素发生变化时才进行，且合成的Mesh越大，操作的耗时也就越大。 因此，建议尽可能把频繁变化（位置，颜色，长宽等）的UI元素从复杂的Canvas中分离出来，从而避免复杂的Canvas频繁重建。     <strong>粒子系统批处理：</strong> <strong>关于粒子系统拼合，是指引擎会将若干个材质相同且深度相同的粒子系统在渲染前进行合批（Batch），从而通过一个Draw Call来对其粒子系统进行渲染，进而降低粒子系统的渲染开销。</strong> 补充：粒子系统的Draw Call动态拼合与半透明物体的动态拼合机制相当（粒子基本都是半透明材质）。而对半透明物体，由于其渲染顺序的限制（必须从后向前渲染，以保证渲染结果的正确性），动态拼合只能对渲染顺序相邻且材质相同的物体有效。而在决定半透明物体的渲染顺序时，Unity首先会按Shader中的RenderQueue进行排序；其次（相同RenderQueue时），会根据每个半透明物件到屏幕的距离，距离大的优先渲染。 因此，需要尽可能地将相同材质的粒子系统放在比较接近的深度下，才能更多地使动态拼合生效。但通常由于相机的运动、粒子系统的分散分布等原因造成粒子系统之间的穿插，能够动态拼合的数量往往都是很少的，所以我们在粒子系统模块看到的开销分布通常类似该图，主要都是未拼合粒子系统造成。 <strong>经过验证，Unity 5.3.5 版本中恢复了对粒子系统的动态合批功能（可尝试添加多个默认的粒子系统，观察Batches的数量变化）。</strong>   <strong>Mesh批处理：</strong> 默认情况下，带蒙皮的Mesh（Skinned Mesh Renderer）是不支持动态合批的。如果场景中相同材质的蒙皮网格数量很多，可以考虑通过插件MeshBaker来进行合并，具体方法可以参考这个链接<a href="http://blog.uwa4d.com/archives/Resource_Plugin.html" target="_blank" rel="noopener">好插件让你事半功倍！</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.234Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/" target="_blank" rel="external">http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/&title=《CPU优化之降低DrawCall》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/&title=《CPU优化之降低DrawCall》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CPU优化之降低DrawCall》 — Hexo&url=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/21/%E7%89%9B%E5%AE%A2%E3%80%8Abat%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E7%B2%BE%E5%93%81%E8%AF%BE%E3%80%8B%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E6%8E%92%E5%BA%8F/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">牛客网《BAT面试算法精品课》笔记一：排序</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/08/opengl%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">OpenGL渲染管线</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/&title=《CPU优化之降低DrawCall》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/&title=《CPU优化之降低DrawCall》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CPU优化之降低DrawCall》 — Hexo&url=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/04/08/cpu%E4%BC%98%E5%8C%96%E4%B9%8B%E9%99%8D%E4%BD%8Edrawcall/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

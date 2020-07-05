@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>CS：数值和编码 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="计算机系统">
+    <meta name="description" content="信息的二进制编码:• 机器级数据分两大类 – 数值数据：无符号整数、带符号整数、浮点数（实数） – 非数值数据：逻辑数（包括位串）、西文字符和汉字 • 计算机内部所有信息都用二进制（即：0和1）进行编码 • 用二进制编码的原因 – 制造二个稳定态的物理器件容易(电位高&#x2F;低，脉冲有&#x2F;无，正&#x2F;负极) – 二进制编码、计数、运算规则简单 – 正好与逻辑命题真&#x2F;假对应，便于逻辑运算 – 可方便地用逻辑电路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS：数值和编码">
+<meta property="og:url" content="http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="信息的二进制编码:• 机器级数据分两大类 – 数值数据：无符号整数、带符号整数、浮点数（实数） – 非数值数据：逻辑数（包括位串）、西文字符和汉字 • 计算机内部所有信息都用二进制（即：0和1）进行编码 • 用二进制编码的原因 – 制造二个稳定态的物理器件容易(电位高&#x2F;低，脉冲有&#x2F;无，正&#x2F;负极) – 二进制编码、计数、运算规则简单 – 正好与逻辑命题真&#x2F;假对应，便于逻辑运算 – 可方便地用逻辑电路">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050302.png">
+<meta property="article:published_time" content="2018-05-05T05:04:07.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.276Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="计算机系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050302.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CS：数值和编码</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CS：数值和编码</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-05T05:04:07.000Z" itemprop="datePublished" class="page-time">
+  2018-05-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#信息的二进制编码"><span class="post-toc-number">1.</span> <span class="post-toc-text">信息的二进制编码:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数值数据的表示"><span class="post-toc-number">2.</span> <span class="post-toc-text">数值数据的表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#R进位计数制"><span class="post-toc-number">3.</span> <span class="post-toc-text">R进位计数制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十进制数与R进制数之间的转换"><span class="post-toc-number">4.</span> <span class="post-toc-text">十进制数与R进制数之间的转换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定点数和浮点数"><span class="post-toc-number">5.</span> <span class="post-toc-text">定点数和浮点数</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-计算机系统：数值和编码"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CS：数值和编码</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-05 13:04:07" datetime="2018-05-05T05:04:07.000Z"  itemprop="datePublished">2018-05-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="信息的二进制编码"><a href="#信息的二进制编码" class="headerlink" title="信息的二进制编码:"></a><strong>信息的二进制编码:</strong></h3><p>• <strong>机器级数据分两大类</strong> – 数值数据：无符号整数、带符号整数、浮点数（实数） – 非数值数据：逻辑数（包括位串）、西文字符和汉字 <strong>• 计算机内部所有信息都用二进制（即：0和1）进行编码</strong> <strong>• 用二进制编码的原因</strong> – 制造二个稳定态的物理器件容易(电位高/低，脉冲有/无，正/负极) – 二进制编码、计数、运算规则简单 – 正好与逻辑命题真/假对应，便于逻辑运算 – 可方便地用逻辑电路实现算术运算 <strong>• 真值和机器数( 非常重要的概念！)</strong> – 机器数：用0和1编码的计算机内部的0/1序列 – 真值：真正的值，即：现实中带正负号的数 例：unsigned short型变量x的真值是127，其机器数是多少？ 127=27-1，其机器数为0000 0000 0111 1111  </p>
+<h3 id="数值数据的表示"><a href="#数值数据的表示" class="headerlink" title="数值数据的表示"></a><strong>数值数据的表示</strong></h3><p><strong>• 数值数据表示的三要素</strong> – 进位计数制 – 定、浮点表示 – 如何用二进制编码 即：要确定一个数值数据的值必须先确定这三个要素。 例如，20137564的值是多少？ <strong>• 进位计数制</strong> – 十进制、二进制、十六进制、八进制数及其相互转换 <strong>• 定/浮点表示（解决小数点问题）</strong> – 定点整数、定点小数 – 浮点数（可用一个定点小数和一个定点整数来表示） <strong>• 定点数的编码（解决正负号问题）</strong> – 原码、补码、反码、移码（反码很少用）  </p>
+<h3 id="R进位计数制"><a href="#R进位计数制" class="headerlink" title="R进位计数制"></a><strong>R进位计数制</strong></h3><p><strong>日常生活中用十进制表示数值，计算机中用二进制表示所有信息！那为什么还要引入八进制/ 十六进制呢？</strong> <strong>八进制/ 十六进制是二进制的简便表示。便于阅读和书写！</strong> 它们之间对应简单，转换容易。 在机器内部用二进制表示，在屏幕或其他设备上表示时，转换为八进制/十六进制数，可缩短长度。 <strong>八进制：Octal （用后缀“O”表示）</strong> <strong>十六进制：Hexadecimal （用后缀“H”，或前缀“0x”表示）</strong> <strong>后缀“B”表示二进制数，如01011010B</strong> 例：1010 1100 0100 0101 0001 0000 1000 1101B可写成 0xac45108d 0xAC45108D 或ac45108dH AC45108DH 或8进制：25421210215O 010 101 100 010 001 010 001 000 010 001 101 <strong>现代计算机系统多用十六进制表示机器数</strong>  </p>
+<h3 id="十进制数与R进制数之间的转换"><a href="#十进制数与R进制数之间的转换" class="headerlink" title="十进制数与R进制数之间的转换"></a><strong>十进制数与R进制数之间的转换</strong></h3><p><strong>(1) R进制数=&gt; 十进制数</strong> 按“权”展开 例1: (10101.01)2=1x24+1x 22+1x20+1x2-2=(21.25)10 例2: (307.6)8=3x82+7x80+6x8-1=(199.75)10 例1: (3A. 1)16=3x161+10x160+1x16-1=(58.0625)10 <strong>(2)十进制数=&gt; 二进制数，再将二进制转换为16或8进制</strong> 整数部分和小数部分分别转换 <strong>① 整数—-“除基取余，上右下左”</strong> <strong>② 小数—-“乘基取整，上左下右”</strong> 上面这只是理论上的做法 实际上，记住1、2、4、8、16、32、64、128、256、512、1024、2048、4096、8192、16384、32768、65536，…..就可简单进行整数部分的转换记住0.5、0.25、0.125、0.0625、…… 就可简单进行小数部分的转换 <strong>十进制数与二进制数之间的转换：</strong> [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050302.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050301-300x206.png)](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050301.png) **十进制数与8进制数之间的转换：** [![](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050302-300x216.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050301-300x206.png)](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050301.png) **十进制数与8进制数之间的转换：** [![](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050302-300x216.png)</div>
+            </figure>  </p>
+<h3 id="定点数和浮点数"><a href="#定点数和浮点数" class="headerlink" title="定点数和浮点数"></a><strong>定点数和浮点数</strong></h3><p><strong>• 计算机中只有0和1，数值数据中的小数点怎么表示呢？</strong> <strong>– 计算机中只能通过约定小数点的位置来表示</strong> <strong>• 小数点位置约定在固定位置的数称为定点数</strong> <strong>• 小数点位置约定为可浮动的数称为浮点数</strong> <strong>• 定点小数用来表示浮点数的尾数部分</strong> <strong>• 定点整数用来表示整数，分带符号整数和无符号整数</strong> <strong>• 任何实数：X=(-1)s ×M×RE</strong> <strong>其中，S取值为0或1，用来决定数X的符号；M是一个二进制定点小数**</strong>，称为数X的尾数（mantissa）；E是一个二进制定点整数，称为数X<strong><strong>的阶或指数（exponent）；R是基数（radix、base），可以为2、4</strong></strong>和16等。计算机中只要表示S、M和E三个信息，就能确定X的值，这<strong>**称为浮点数</strong>    </p>
+<p>视频链接：</p>
+<p><a href="https://www.icourse163.org/course/0809NJU008-1001625001" target="_blank" rel="noopener">计算机系统基础(一)：程序的表示，转换与链接</a></p>
+<p><a href="https://www.icourse163.org/course/0809NJU008B-1001964032" target="_blank" rel="noopener">计算机系统基础(二)：程序的执行和存储访问</a></p>
+<p><a href="https://www.icourse163.org/course/0809NJU008C-1002532004" target="_blank" rel="noopener">计算机系统基础(三)：异常、中断和输入/输出</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.276Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/" target="_blank" rel="external">http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/&title=《CS：数值和编码》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/&title=《CS：数值和编码》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CS：数值和编码》 — Hexo&url=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/05/cs%EF%BC%9A%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CS：定点数的编码表示</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/30/linux0-11%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux 0.11实验一：环境配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/&title=《CS：数值和编码》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/&title=《CS：数值和编码》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CS：数值和编码》 — Hexo&url=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/05/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E5%80%BC%E5%92%8C%E7%BC%96%E7%A0%81/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

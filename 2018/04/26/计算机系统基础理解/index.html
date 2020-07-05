@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>计算机系统基础理解 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="计算机系统">
+    <meta name="description" content="一.冯诺依曼结构的主要思想： 1. 计算机应由运算器、控制器、存储器、输入设备和输出设备五个基本部件组成。 2. 各基本部件的功能是： • 存储器不仅能存放数据，而且也能存放指令，形式上两者没有区别，但计算机应能区分数据还是指令； • 控制器应能自动取出指令来执行； • 运算器应能进行加&#x2F;减&#x2F;乘&#x2F;除四种基本算术运算，并且也能进行一些逻辑运算和附加运算； • 操作人员可以通过输入设备、输出设备和主机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机系统基础理解">
+<meta property="og:url" content="http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一.冯诺依曼结构的主要思想： 1. 计算机应由运算器、控制器、存储器、输入设备和输出设备五个基本部件组成。 2. 各基本部件的功能是： • 存储器不仅能存放数据，而且也能存放指令，形式上两者没有区别，但计算机应能区分数据还是指令； • 控制器应能自动取出指令来执行； • 运算器应能进行加&#x2F;减&#x2F;乘&#x2F;除四种基本算术运算，并且也能进行一些逻辑运算和附加运算； • 操作人员可以通过输入设备、输出设备和主机">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/04/18042601.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/04/18042603.png">
+<meta property="article:published_time" content="2018-04-26T03:06:35.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.266Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="计算机系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/04/18042601.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">计算机系统基础理解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">计算机系统基础理解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-26T03:06:35.000Z" itemprop="datePublished" class="page-time">
+  2018-04-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-计算机系统基础理解"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">计算机系统基础理解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-26 11:06:35" datetime="2018-04-26T03:06:35.000Z"  itemprop="datePublished">2018-04-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>一.冯诺依曼结构的主要思想：</strong> 1. 计算机应由运算器、控制器、存储器、输入设备和输出设备五个基本部件组成。 2. 各基本部件的功能是： • 存储器不仅能存放数据，而且也能存放指令，形式上两者没有区别，但计算机应能区分数据还是指令； • 控制器应能自动取出指令来执行； • 运算器应能进行加/减/乘/除四种基本算术运算，并且也能进行一些逻辑运算和附加运算； • 操作人员可以通过输入设备、输出设备和主机进行通信。 3. 内部以二进制表示指令和数据。每条指令由操作码和地址码两部分组成。操作码指出操作类型，地址码指出操作数的地址。由一串指令组成程序。 4. 采用“存储程序”工作方式。   <strong>二.计算机如何工作:</strong> 计算机基本部件： CPU：中央处理器；PC：程序计数器；MAR：存储器地址寄存器 ALU：算术逻辑部件；IR：指令寄存器；MDR：存储器数据寄存器 GPRs：通用寄存器组（由若干通用寄存器组成，早期就是累加器） [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/04/18042601.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/04/18042601-1024x522.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/04/18042601-1024x522.png)</div>
+            </figure> 先想象一下妈妈是怎样做一桌你喜欢（指定）的菜的？ 厨房-CPU，你妈-控制器，盘-GPRs，锅灶等-ALU ，架子-存储器 做菜前： 原材料（数据）和菜谱（指令）都按序放在厨房外的架子（存储器）上， 每个架子有编号（存储单元地址）。 菜谱上信息：原料位置、做法、做好的菜放在哪里等 例如，把10、11号架上的原料一起炒，并装入3号盘 然后，我告诉妈妈从第5个架上（起始PC=5）指定菜谱开始做 开始做菜： 第一步：从5号架上取菜谱（根据PC取指令） 第二步：看菜谱（指令译码） 第三步：从架上或盘中取原材料（取操作数） 第四步：洗、切、炒等具体操作（指令执行） 第五步：装盘或直接送桌（回写结果） 第六步：算出下一菜谱所在架子号6=5+1（修改PC的值） 继续做下一道菜（执行下一条指令）   <strong>三.程序的转换处理过程:</strong></p>
+<p>//经典的“ hello.c ”C-源程序<br>#include &lt;stdio.h&gt;<br>int main()<br>{<br>    printf(“hello, world\n”);<br>}</p>
+<p>hello.c的ASCII文本表示： [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/04/18042603.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/04/18042602.png)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18042602.png) 功能：输出“hello,world”，计算机不能直接执行hello.c！ 以下是GCC+Linux平台中的处理过程： [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18042603.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/04/18042602.png)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18042602.png) 功能：输出“hello,world”，计算机不能直接执行hello.c！ 以下是GCC+Linux平台中的处理过程： [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18042603.png)</div>
+            </figure>   四.C程序实例：</p>
+<p>问题一：</p>
+<p>//ISO C90标准下，在32位系统上,以下C表达式的结果是什么？<br>-2147483648 &lt; 2147483647<br>    //false（与事实不符）！Why?</p>
+<p>//以下关系表达式结果呢？<br>int i = -2147483648;<br>i &lt; 2147483647<br>    //true！Why?</p>
+<p>-2147483647-1 &lt; 2147483647<br>//结果怎样？</p>
+<p>/*<br>理解该问题需要知道：编译器如何处理字面量；高级语言中运算规则；<br>高级语言与指令之间的对应；机器指令的执行过程；机器级数据的表示和运算；*/</p>
+<p>问题二：</p>
+<p>sum(int a[ ], unsigned len)<br>{<br>    int i，sum = 0;<br>        for (i = 0; i &lt;= len–1; i++)<br>            sum += a[i];<br>    return sum;<br>}<br>/*<br>当参数len为0时，返回值应该是0，但是在机器上执行时，却发生访存异常。<br>但当len为int型时则正常。Why?访问违例地址为何是0xC0000005?*/</p>
+<p>/*<br>理解该问题需要知道：<br>高级语言中运算规则；机器指令的含义和执行；<br>计算机内部的运算电路；异常的检测和处理；虚拟地址空间；*/</p>
+<p>问题三：</p>
+<p>/*<br>若x和y为int型， 当x=65535时， y=x*x; y的值为多少？<br>y=-131071。Why？<br>现实世界中，x2≥0，但在计算机世界并不一定成立。<br>对于任何int型变量x和y，(x&gt;y) == (-x&lt;-y) 总成立吗？<br>当x=-2147483648，y任意（除-2147483648外）时不成立，Why？<br>在现实世界中成立，但在计算机世界中并不一定成立。*/</p>
+<p>问题四：</p>
+<p>//main.c:<br>int d=100;<br>int x=200;<br>int main()<br>{<br>    p1( );<br>    printf (“d=%d, x=%d\n”, d, x );<br>    return 0;<br>}<br>//p1.c:<br>double d;<br>void p1( )<br>{<br>    d=1.0;<br>}<br>/*<br>打印结果是什么？<br>d=0，x=1 072 693 248<br>Why？*/</p>
+<p>/*<br>解该问题需要知道：<br>机器级数据的表示；变量的存储空间分配;<br>数据的大端/小端存储方式；链接器的符号解析规则;*/</p>
+<p>问题五：</p>
+<p>/* 复制数组到堆中，count为数组元素个数*/<br>int copy_array(int *array, int count) {<br>    int i;<br>    /* 在堆区申请一块内存*/<br>    int *myarray = (int *) malloc(count*sizeof(int));<br>    if (myarray == NULL)<br>        return -1;<br>    for (i = 0; i &lt; count; i++)<br>    myarray[i] = array[i];<br>    return count;<br>}<br>//当count=230+1时，，程序会发生什么情况？</p>
+<p>/*<br>当参数count很大时，则count*sizeof(int)会溢出。<br>如count=230+1时，count*sizeof(int)=4。<br>堆（heap）中大量数据被破坏！*/</p>
+<p>/*<br>理解该问题需要知道：<br>乘法运算及溢出；虚拟地址空间；存储空间映射;*/</p>
+<p>问题六：</p>
+<p>//代码段一：<br>int a = 0x80000000;<br>int b = a / -1;<br>printf(“%d\n”, b);<br>//运行结果为-2147483648</p>
+<p>//代码段二：<br>int a = 0x80000000;<br>int b = -1;<br>int c = a / b;<br>printf(“%d\n”, c);<br>//运行结果为“Floating point exception”，显然CPU检测到了溢出异常</p>
+<p>//为什么两者结果不同？</p>
+<p>/*<br>objdump反汇编代码,得知除以-1被优化成取负指令neg,故未发生除法溢出；*/</p>
+<p>/*<br>a/b用除法指令IDIV实现，但它不生成OF标志，那么如何判断溢出异常的呢？<br>实际上是“除法错”异常#DE（类型0）Linux中，对#DE类型发SIGFPE信号*/</p>
+<p>/*<br>理解该问题需要知道：<br>编译器如何优化；机器级数据的表示；<br>机器指令的含义和执行；计算机内部的运算电路；除法错异常的处理*/</p>
+<p>问题七：</p>
+<p>#include &lt;stdio.h&gt;<br>main()<br>{<br>    double a = 10;<br>    printf(“a = %d\n”, a);<br>}</p>
+<p>/*<br>在IA-32上运行时，打印结果为a=0<br>在x86-64上运行时，打印出来的a是一个不确定值<br>为什么？*/</p>
+<p>/*<br>IEEE 754 的表示；X87 FPU的体系结构；IA-32和x86-64中过程；<br>调用的参数传递；计算机内部的运算电路*/</p>
+<p>问题八：</p>
+<p>double fun(int i)<br>{<br>    volatile double d[1] = {3.14};<br>    volatile long int a[2];<br>    a[i] = 1073741824; /* Possibly out of bounds */<br>    return d[0];<br>}<br>//对于上述C语言函数，i=0~4时，fun(i)分别返回什么值?</p>
+<p>fun(0)  3.14<br>fun(1)  3.14<br>fun(2)  3.1399998664856<br>fun(3)  2.00000061035156<br>fun(4)  3.14, 然后存储保护错<br>/*<br>理解该问题需要知道：<br>机器级数据的表示；<br>过程调用机制；栈帧中数据的布局*/</p>
+<p>问题九：</p>
+<p>void copyij (int src[2048][2048],<br>    int dst[2048][2048])<br>{<br>    int i,j;<br>    for (i = 0; i &lt; 2048; i++)<br>        for ( j = 0; j &lt; 2048; j++)<br>            dst[i][j] = src[i][j];<br>}<br>void copyji (int src[2048][2048],<br>    int dst[2048][2048])<br>{<br>    int i,j;<br>    for ( j = 0; j &lt; 2048; j++)<br>        for (i = 0; i &lt; 2048; i++)<br>            dst[i][j] = src[i][j];<br>}</p>
+<p>//以上两个程序功能完全一样，算法完全一样，因此，时间和空间复杂度完全一样，执行时间一样吗？<br>//事实是第一段代码比第二段代码快了21倍！</p>
+<p>/*<br>理解该问题需要知道：<br>数组的存放方式Cache机制；访问局部性*/</p>
+<p>视频链接：</p>
+<p><a href="https://www.icourse163.org/course/0809NJU008-1001625001" target="_blank" rel="noopener">计算机系统基础(一)：程序的表示，转换与链接</a></p>
+<p><a href="https://www.icourse163.org/course/0809NJU008B-1001964032" target="_blank" rel="noopener">计算机系统基础(二)：程序的执行和存储访问</a></p>
+<p><a href="https://www.icourse163.org/course/0809NJU008C-1002532004" target="_blank" rel="noopener">计算机系统基础(三)：异常、中断和输入/输出</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.266Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/" target="_blank" rel="external">http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/&title=《计算机系统基础理解》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/&title=《计算机系统基础理解》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机系统基础理解》 — Hexo&url=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/27/%E5%85%89%E7%85%A7%E7%B3%BB%E7%BB%9F%E4%B9%8B%E7%81%AF%E5%85%89%E6%8E%A2%E5%A4%B4%E7%BB%84/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">光照系统之灯光探头组</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/22/%E7%89%9B%E5%AE%A2%E7%BD%91%E3%80%8Abat%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E7%B2%BE%E5%93%81%E8%AF%BE%E3%80%8B%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">牛客网《BAT面试算法精品课》笔记十一：动态规划</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/&title=《计算机系统基础理解》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/&title=《计算机系统基础理解》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机系统基础理解》 — Hexo&url=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%90%86%E8%A7%A3/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>单链表反转的四种方法 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据结构与算法,数据结构算法">
+    <meta name="description" content="如何把一个单链表进行反转？ 方法1：将单链表储存为数组，然后按照数组的索引逆序进行反转。 方法2：使用3个指针遍历单链表，逐个链接点进行反转。 方法3：从第2个节点到第N个节点，依次逐节点插入到第1个节点(head节点)之后，最后将第一个节点挪到新表的表尾。 方法4:   递归(相信我们都熟悉的一点是，对于树的大部分问题，基本可以考虑用递归来解决。但是我们不太熟悉的一点是，对于单链表的一些问题，也">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单链表反转的四种方法">
+<meta property="og:url" content="http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="如何把一个单链表进行反转？ 方法1：将单链表储存为数组，然后按照数组的索引逆序进行反转。 方法2：使用3个指针遍历单链表，逐个链接点进行反转。 方法3：从第2个节点到第N个节点，依次逐节点插入到第1个节点(head节点)之后，最后将第一个节点挪到新表的表尾。 方法4:   递归(相信我们都熟悉的一点是，对于树的大部分问题，基本可以考虑用递归来解决。但是我们不太熟悉的一点是，对于单链表的一些问题，也">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040708.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040709.jpg)">
+<meta property="article:published_time" content="2018-04-07T07:38:31.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.226Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="数据结构算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040708.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">单链表反转的四种方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">单链表反转的四种方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-07T07:38:31.000Z" itemprop="datePublished" class="page-time">
+  2018-04-07
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-单链表反转的四种方法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">单链表反转的四种方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-07 15:38:31" datetime="2018-04-07T07:38:31.000Z"  itemprop="datePublished">2018-04-07</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>如何把一个单链表进行反转？ 方法1：将单链表储存为数组，然后按照数组的索引逆序进行反转。 方法2：使用3个指针遍历单链表，逐个链接点进行反转。 方法3：从第2个节点到第N个节点，依次逐节点插入到第1个节点(head节点)之后，最后将第一个节点挪到新表的表尾。 方法4:   递归(相信我们都熟悉的一点是，对于树的大部分问题，基本可以考虑用递归来解决。但是我们不太熟悉的一点是，对于单链表的一些问题，也可以使用递归。可以认为单链表是一颗永远只有左(右)子树的树，因此可以考虑用递归来解决。或者说，因为单链表本身的结构也有自相似的特点，所以可以考虑用递归来解决)   方法1： 浪费空间。 方法2: 使用p和q两个指针配合工作，使得两个节点间的指向反向，同时用r记录剩下的链表。 p = head; q = head-&gt;next; [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040708.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040701.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040701.jpg)head->next = NULL; [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040702.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040702.jpg)现在进入循环体，这是第一次循环。 r = q->next; q->next = p; [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040703.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040703.jpg)p = q; q =r; [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040704.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040704.jpg)第二次循环。 r = q->next [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040705.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040705.jpg)q->next = p; [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040706.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040706.jpg)p = q; [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040707.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040707.jpg)q = r [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040708.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040701.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040701.jpg)head->next = NULL; [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040702.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040702.jpg)现在进入循环体，这是第一次循环。 r = q->next; q->next = p; [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040703.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040703.jpg)p = q; q =r; [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040704.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040704.jpg)第二次循环。 r = q->next [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040705.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040705.jpg)q->next = p; [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040706.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040706.jpg)p = q; [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040707.jpg)](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040707.jpg)q = r [![](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040708.jpg)</div>
+            </figure>第三次循环。。。。。 具体代码如下:</p>
+<p>ActList* ReverseList2(ActList* head)<br>{<br>    //ActList* temp=new ActList;<br> if(NULL==head|| NULL==head-&gt;next) return head;    //少于两个节点没有反转的必要。<br>    ActList* p;<br>    ActList* q;<br>    ActList* r;<br>    p = head;<br>    q = head-&gt;next;<br>    head-&gt;next = NULL; //旧的头指针是新的尾指针，next需要指向NULL<br>    while(q){<br>        r = q-&gt;next; //先保留下一个step要处理的指针<br>        q-&gt;next = p; //然后p q交替工作进行反向<br>        p = q;<br>        q = r;<br>    }<br>    head=p; // 最后q必然指向NULL，所以返回了p作为新的头指针<br>    return head;<br>}</p>
+<p>如果觉得上面的先成环再断环的过程不太好理解，那么可以考虑下面这个办法，增加一个中间变量，使用三个变量来实现。</p>
+<p>struct ListNode{<br>    int val;<br>    ListNode* next;<br>    ListNode(int a):val(a),next(NULL){}<br>};<br>ListNode* reverseLinkedList3(ListNode* head){<br>        if(head==NULL||head-&gt;next==NULL)<br>            return  head;<br>        ListNode* p=head; //指向head<br>        ListNode* r=head-&gt;next; //指向待搬运的节点，即依次指向从第2个节点到最后一个节点的所有节点<br>        ListNode* m=NULL; //充当搬运工作用的节点<br>        ListNode* tail=head-&gt;next;<br>        while(r!=NULL){  //bug2 循环语句写错了, while写成了if<br>            m=r;<br>            r=r-&gt;next;<br>            m-&gt;next=p-&gt;next;<br>            p-&gt;next=m;<br>            //if(r!=NULL)<br>                //std::cout&lt;&lt;”m=”&lt;<m->val&lt;&lt;” ,p=”&lt;<p->val&lt;&lt;” ,r=”&lt;<r->val&lt;&lt;std::endl;<br>            //else<br>                //std::cout&lt;&lt;”m=”&lt;<m->val&lt;&lt;” ,p=”&lt;<p->val&lt;&lt;” ,r=NULL”&lt;&lt;std::endl;<br>        }<br>        head=p-&gt;next;<br>        tail-&gt;next=p;<br>        p-&gt;next=NULL;<br>        tail=p;<br>        return head; // bug1 忘记了return<br>    }</p>
+<p>方法3 还是先看图，[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/04/18040709.jpg)" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/04/18040709-188x300.jpg)" title="从图上观察，方法是：对于一条链表，从第2个节点到第N个节点，依次逐节点插入到第1个节点(head节点)之后，(N-1">
+                </div>
+                <div class="image-caption">从图上观察，方法是：对于一条链表，从第2个节点到第N个节点，依次逐节点插入到第1个节点(head节点)之后，(N-1</div>
+            </figure>次这样的操作结束之后将第1个节点挪到新表的表尾即可。 代码如下:</p>
+<p>ActList* ReverseList3(ActList* head)<br>{<br>    ActList* p;<br>    ActList* q;<br>    p=head-&gt;next;<br>    while(p-&gt;next!=NULL){<br>        q=p-&gt;next;<br>        p-&gt;next=q-&gt;next;<br>        q-&gt;next=head-&gt;next;<br>        head-&gt;next=q;<br>    }  </p>
+<pre><code>p-&gt;next=head;//相当于成环  
+head=p-&gt;next-&gt;next;//新head变为原head的next  
+p-&gt;next-&gt;next=NULL;//断掉环  
+return head;    </code></pre><p>}</p>
+<p>附: 完整的链表创建，显示，反转代码:</p>
+<p>//创建:用q指向当前链表的最后一个节点；用p指向即将插入的新节点。<br>//反向:用p和q反转工作，r记录链表中剩下的还未反转的部分。  </p>
+<p>#include “stdafx.h”<br>#include <iostream><br>using namespace std;  </p>
+<p>struct ActList<br>{<br>    char ActName[20];<br>    char Director[20];<br>    int Mtime;<br>    ActList *next;<br>};  </p>
+<p>ActList* head;  </p>
+<p>ActList*  Create()<br>{//start of CREATE()<br>    ActList* p=NULL;<br>    ActList* q=NULL;<br>    head=NULL;<br>    int Time;<br>    cout&lt;&lt;”Please input the length of the movie.”&lt;&lt;endl;<br>    cin&gt;&gt;Time;<br>    while(Time!=0){<br>    p=new ActList;<br>    //类似表达:  TreeNode* node = new TreeNode;//Noice that [new] should be written out.<br>    p-&gt;Mtime=Time;<br>    cout&lt;&lt;”Please input the name of the movie.”&lt;&lt;endl;<br>    cin&gt;&gt;p-&gt;ActName;<br>    cout&lt;&lt;”Please input the Director of the movie.”&lt;&lt;endl;<br>    cin&gt;&gt;p-&gt;Director;  </p>
+<pre><code>if(head==NULL)  
+{  
+head=p;  
+}  
+else  
+{  
+q-&gt;next=p;  
+}  
+q=p;  
+cout&lt;&lt;&quot;Please input the length of the movie.&quot;&lt;&lt;endl;  
+cin&gt;&gt;Time;  
+}  
+if(head!=NULL)  
+q-&gt;next=NULL;  
+return head;  </code></pre><p>}//end of CREATE()  </p>
+<p>void DisplayList(ActList* head)<br>{//start of display<br>    cout&lt;&lt;”show the list of programs.”&lt;&lt;endl;<br>    while(head!=NULL)<br>    {<br>        cout&lt;<head->Mtime&lt;&lt;”\t”&lt;<head->ActName&lt;&lt;”\t”&lt;<head->Director&lt;&lt;”\t”&lt;&lt;endl;<br>        head=head-&gt;next;<br>    }<br>}//end of display  </p>
+<p>ActList* ReverseList2(ActList* head)<br>{<br>    //ActList* temp=new ActList;<br> if(NULL==head|| NULL==head-&gt;next) return head;<br>    ActList* p;<br>    ActList* q;<br>    ActList* r;<br>    p = head;<br>    q = head-&gt;next;<br>    head-&gt;next = NULL;<br>    while(q){<br>        r = q-&gt;next; //<br>        q-&gt;next = p;<br>        p = q; //<br>        q = r; //<br>    }<br>    head=p;<br>    return head;<br>}  </p>
+<p>ActList* ReverseList3(ActList* head)<br>{<br>    ActList* p;<br>    ActList* q;<br>    p=head-&gt;next;<br>    while(p-&gt;next!=NULL){<br>        q=p-&gt;next;<br>        p-&gt;next=q-&gt;next;<br>        q-&gt;next=head-&gt;next;<br>        head-&gt;next=q;<br>    }  </p>
+<pre><code>p-&gt;next=head;//相当于成环  
+head=p-&gt;next-&gt;next;//新head变为原head的next  
+p-&gt;next-&gt;next=NULL;//断掉环  
+return head;    </code></pre><p>}<br>int main(int argc, char* argv[])<br>{<br>//  DisplayList(Create());<br>//  DisplayList(ReverseList2(Create()));<br>    DisplayList(ReverseList3(Create()));<br>    return 0;<br>}</p>
+<p>  方法4:  递归 因为发现大部分问题都可以从递归角度想想，所以这道题目也从递归角度想了想。 现在需要把A-&gt;B-&gt;C-&gt;D进行反转， 可以先假设B-&gt;C-&gt;D已经反转好，已经成为了D-&gt;C-&gt;B,那么接下来要做的事情就是将D-&gt;C-&gt;B看成一个整体，让这个整体的next指向A，所以问题转化了反转B-&gt;C-&gt;D。那么， 可以先假设C-&gt;D已经反转好，已经成为了D-&gt;C,那么接下来要做的事情就是将D-&gt;C看成一个整体，让这个整体的next指向B，所以问题转化了反转C-&gt;D。那么， 可以先假设D(其实是D-&gt;NULL)已经反转好，已经成为了D(其实是head-&gt;D),那么接下来要做的事情就是将D(其实是head-&gt;D)看成一个整体，让这个整体的next指向C，所以问题转化了反转D。 上面这个过程就是递归的过程，这其中最麻烦的问题是，如果保留新链表的head指针呢？想到了两个办法。</p>
+<p>// 递归版的第一种实现，借助类的成员变量m_phead来表示新链表的头指针。<br>struct ListNode{<br>    int val;<br>    ListNode* next;<br>    ListNode(int a):val(a),next(NULL){}<br>};  </p>
+<p>class Solution{<br>     ListNode* reverseLinkedList4(ListNode* head){ //输入: 旧链表的头指针<br>        if(head==NULL)<br>            return NULL;<br>        if(head-&gt;next==NULL){<br>            m_phead=head;<br>            return head;<br>        }<br>        ListNode* new_tail=reverseLinkedList4(head-&gt;next);<br>        new_tail-&gt;next=head;<br>        head-&gt;next=NULL;<br>        return head; //输出: 新链表的尾指针<br>     }<br>    ListNode* m_phead=NULL;//member variable defined for reverseLinkedList4(ListNode* head)<br>};  </p>
+<p>第二个办法是，增加一个引用型参数 new_head，它用来保存新链表的头指针。</p>
+<p>struct ListNode{<br>    int val;<br>    ListNode* next;<br>    ListNode(int a):val(a),next(NULL){}<br>};  </p>
+<p>class Solution{<br>    ListNode* reverseLinkedList5(ListNode* head, ListNode* &amp; new_head){ //输入参数head为旧链表的头指针。new_head为新链表的头指针。<br>        if(head==NULL)<br>            return NULL;<br>        if(head-&gt;next==NULL){<br>            new_head=head; //当处理到了旧链表的尾指针，也就是新链表的头指针时，对new_head进行赋值。因为是引用型参数，所以在接下来调用中new_head的值逐层传递下去。<br>            return head;<br>        }<br>        ListNode* new_tail=reverseLinkedList5(head-&gt;next,new_head);<br>        new_tail-&gt;next=head;<br>        head-&gt;next=NULL;<br>        return head; //输出参数head为新链表的尾指针。<br>    }<br>};</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.226Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/" target="_blank" rel="external">http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数据结构与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95/" rel="tag">数据结构算法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/&title=《单链表反转的四种方法》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/&title=《单链表反转的四种方法》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《单链表反转的四种方法》 — Hexo&url=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/07/unity%E6%B8%B2%E6%9F%93%E7%BB%9F%E8%AE%A1%E7%AA%97%E5%8F%A3%E5%B1%9E%E6%80%A7%E6%80%BB%E7%BB%93/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Unity渲染统计窗口属性总结</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/05/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B9%8Bbitmap/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">大数据处理之Bitmap</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/&title=《单链表反转的四种方法》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/&title=《单链表反转的四种方法》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《单链表反转的四种方法》 — Hexo&url=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/04/07/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

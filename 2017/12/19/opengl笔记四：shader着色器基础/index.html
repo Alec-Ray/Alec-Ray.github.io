@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>OpenGL笔记四：着色器基础 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="OpenGL">
+    <meta name="description" content="OpenGL的可编程管线如下图所示： 顶点处理器—&gt;几何处理器—&gt;裁剪器—&gt;光栅器（片段处理器） [                                                                                             ](http:&#x2F;&#x2F;www.wjgbaby.com&#x2F;wp-content&#x2F;uploads&#x2F;2017">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL笔记四：着色器基础">
+<meta property="og:url" content="http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="OpenGL的可编程管线如下图所示： 顶点处理器—&gt;几何处理器—&gt;裁剪器—&gt;光栅器（片段处理器） [                                                                                             ](http:&#x2F;&#x2F;www.wjgbaby.com&#x2F;wp-content&#x2F;uploads&#x2F;2017">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/12/17121901.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/12/17121902-1-300x269.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/12/17121903-300x105.png">
+<meta property="article:published_time" content="2017-12-18T20:15:15.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.123Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="OpenGL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/12/17121901.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">OpenGL笔记四：着色器基础</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">OpenGL笔记四：着色器基础</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-18T20:15:15.000Z" itemprop="datePublished" class="page-time">
+  2017-12-19
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-opengl笔记四：shader着色器基础"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">OpenGL笔记四：着色器基础</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-19 04:15:15" datetime="2017-12-18T20:15:15.000Z"  itemprop="datePublished">2017-12-19</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>OpenGL的可编程管线如下图所示： <strong>顶点处理器—&gt;几何处理器—&gt;裁剪器—&gt;光栅器（片段处理器）</strong> [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2017/12/17121901.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2017/12/17121901-215x300.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2017/12/17121901-215x300.png)</div>
+            </figure> <strong>顶点处理器，</strong>负责对传入渲染管线的每个顶点执行顶点着色器中的内容，顶点着色器并不关心所要渲染的基本图元的拓扑结构。此外，你不能在顶点处理器中丢弃任何一个顶点。每个顶点都只被顶点处理器处理一次。 <strong>几何处理器</strong>，组成图元所需要的顶点以及其邻接关系都会被提供给着色器。这使得着色器能够考虑除顶点本身之外的其他信息。除此之外，几何处理器也可以将在绘制函数中确定的拓扑关系修改成另外一种拓扑关系。 <strong>裁剪器</strong>，这是一个单一功能的固定功能单元，通过规范化盒子对图元进行裁剪。同时它还通过近裁剪面和远裁剪面对其进行裁剪。同时他也支持用户自定义裁剪面对场景进行裁剪。未被裁剪掉的顶点会变换到屏幕坐标系之下，之后通过光栅化将顶点按照拓扑结构渲染到屏幕上。 <strong>顶点着色器、片元着色器、几何着色器这三个可编程阶段是可选择的，如果我们不向其绑定 Shader 程序就会执行默认的固定管线的函数。</strong>   1.</p>
+<pre><code>GLuint ShaderProgram = glCreateProgram();</code></pre><p>我们通过创建一个shader程序对象来开始我们的着色器工程，我们将会把所有的shader程序都链接到这个sahder程序对象上。 2.</p>
+<pre><code>GLuint ShaderObj = glCreateShader(ShaderType);</code></pre><p>通过调用上面的函数我们创建了两个 Shader 对象，其中一个 Shader 对象的类型为 GL_VERTEX_SHADER，另一个为 GL_FRAGMENT_SHADER。这两个类型的 Shader对象的指定 Shader 源程序和编译 Shader 程序的过程是一样的。 3.</p>
+<pre><code>const GLchar* p[1];
+p[0] = pShaderText;
+GLint Lengths[1];
+Lengths[0]= strlen(pShaderText);
+glShadersource(ShaderObj, 1, p, Lengths);</code></pre><p>在对 Shader 对象进行编译之前我们必须为其指定 Shader 源程序，glShadersource 函数需要一个 Shader 对象作为参数，源程序可以分布在多个字符串数组中，你需要提供这些数组的指针数组以及一个用于存放对应数组长度的整数数组。为了简单起见，整个着色器代码我们仅使用一个字符串数组，源程序指针数组和和长度数组都只有一个元素。glShadersource(ShaderObj, 1, p, Lengths)的第二个参数是这两个数组的元素个数。 4.</p>
+<pre><code>glCompileShader(ShaderObj);</code></pre><p>编译shader程序。 5.</p>
+<pre><code>GLint success;
+glGetShaderiv(ShaderObj, GL_COMPILE_STATUS, &amp;success);
+if (!success) {
+    GLchar InfoLog[1024];
+    glGetShaderInfoLog(ShaderObj, sizeof(InfoLog), NULL,InfoLog);
+    fprintf(stderr, &quot;Error compiling shader type %d:&apos;%s&apos;\n&quot;, ShaderType, InfoLog);
+}</code></pre><p>很多时候，你会遇到一些编译错误。上面的代码能获得编译状态并且显示编译器遇到的错误。 6.</p>
+<pre><code>glAttachShader(ShaderProgram, ShaderObj);</code></pre><p>最后，我们将编译之后的 Shader 对象附加到程序对象上，这和在 Makefile 中链接一个对象链表类似。因为我们这儿没有 Makefile 所以通过编程来实现这种功能。只有被附加到程序对象上的 Shader 对象才会参与链接过程。 7.</p>
+<pre><code>glLinkProgram(ShaderProgram);</code></pre><p>在编译好所有 Shader 对象以及将他们附加到程序对象之后我们就可以进行链接操作。注意在链接程序对象之后你可以通过为每个 Shader 对象调用 glDetachShader 和 glDeleteShader 方法来删除其中的 Shader 对象。OpenGL驱动程序会为其生成的大部分对象维持一个引用计数。如果我们在创建一个 Shader 对象之后又将其删除则驱动程序会将这个 Shader 对象剔除掉，但是如果我们将 Shader 对象附加到程序对象之后调用 glDeleteShader 函数则只会将 Shader 对象标记为删除部分，你需要调用 glDetachShader 函数其引用计数才会下降到0之后才会被移除。 8.</p>
+<pre><code>glGetProgramiv(ShaderProgram, GL_LINK_STATUS,&amp;Success);
+if (Success == 0) {
+    glGetProgramInfoLog(ShaderProgram, sizeof(ErrorLog), NULL,ErrorLog);
+    fprintf(stderr, &quot;Error linking shader program:&apos;%s&apos;\n&quot;, ErrorLog);
+}</code></pre><p>需要注意的是我们检查程序相关的错误（如链接错误）与检查 Shader 相关错误有些许不同。我们使用 glGetShaderiv 函数和 glGetShaderInfoLog 函数代替 glGetShaderiv 函数和 glGetShaderInfoLog 函数。 9.</p>
+<pre><code>glValidateProgram(ShaderProgram);</code></pre><p>对链接了的程序对象进行验证。它们之间的区别是链接主要检查基于着色器组合的错误，而上面调用的函数则是验证基于当前的管线状态程序是否能够成功执行。在一个有多个shader程序和很多状态变化的复杂程序中，在每次绘制之前都进行验证是更加明智的。在我们这个简单的程序中我们仅仅对其调用了一次。当然你也可以仅仅在开发过程中进行这样的验证而避免在最终产品中增加这个不必要的开销。 10.</p>
+<pre><code>glUseProgram(ShaderProgram);</code></pre><p>最将链接之后的 Shader 程序对象添加到渲染管线中。除非我们使用其他的 Shader 程序对象来替换当前的程序对象或者通过调用 glUseProgram（NULL）显式的禁用它的使用（并且启用固定管线），否则这个 Shader 程序对象会对每次的绘制都会产生效果。如果你创建的 Shader 程序对象只包含一种类型的 Shader 程序，那么其他阶段的操作会默认的调用固定管线中的功能。 11.</p>
+<pre><code>#version 330</code></pre><p>这告诉编译器我们的 Shader 程序是针对3.3版本的 GLSL，如果编译器不支持这个版本则会报错。 12.</p>
+<pre><code>layout (location = 0) in vec3 Position;</code></pre><p>这条语句出现在顶点着色器中，他声明了一个指定为顶点属性的float类型三维向量，这个向量在shader中被表示为‘Position’。‘顶点属性’意味着 GPU 中的 Shader 程序每调用一次，顶点缓冲区都会为其提供一个新的顶点数据。语句中的第一部分——layout (location = 0)将属性名称与缓冲区中的属性进行绑定 13.</p>
+<pre><code>void main()</code></pre><p>我们可以通过将多个 Shader 对象链接到一起来创建你自己的着色器，但是在每个着色器阶段（VS，GS，FS）只能有一个 main 函数作为着色器的入口点 14.</p>
+<pre><code>gl_Position = vec4(0.5 * Position.x, 0.5 *Position.y, Position.z, 1.0);</code></pre><p>在这里我们通过编码对传入的顶点位置进行变换，我们将顶点的 X、Y 分量的值减半而保持 Z 方向值不变，gl-Position 是一个特殊的内置变量，他能够存放齐次（包含X,Y,Z和W分量）顶点坐标。在光栅化过程中系统会寻找这个变量并使用它作为顶点在屏幕上的位置（需要经过一些矩阵变换）。将顶点的X,Y分量减半意味着我们将会看到一个面积只有前面教程中的四分之一的三角形。需要注意的是我们将W分量设置为1.0，这对于三角形的正确显示是非常重要的，实现从3D到2D的投影变换实际上是在两个不同的阶段实现的，首先你需要让所有的顶点都乘上投影矩阵（我们将在后面的教程中对此进行介绍），之后 GPU 在对其进行光栅化之前自动对位置属性（Position）执行透视分割。这意味着 gl-Position 中的所有分量都会除以W分量。 15.</p>
+<pre><code>out vec4 FragColor;</code></pre><p>一般情况下片元着色器的作用就是确定片元的颜色，除此之外，片元着色器也完全可以丢弃片元或则改变其Z值（Z值的改变会对之后的深度测试产生影响）。输出颜色是通过声明上面的变量实现，四个分量分别表示R，G，B和A（alpha）。被写入到这个变量中的值会被光栅化程序接受并最终写入到帧缓存中。 16.</p>
+<pre><code>FragColor = vec4(1.0, 0.0, 0.0, 1.0);</code></pre><p>没有使用片元着色器的物体都被绘制成默认的白色。这里我们将颜色设置为红色。   项目代码：</p>
+<p>#include &lt;stdio.h&gt;<br>#include&lt;string.h&gt;<br>#include &lt;GL/glew.h&gt;        // GLEW扩展库,注意glew.h必须要写在前面<br>#include &lt;GL/freeglut.h&gt;    // freeGLUT图形库</p>
+<p>#include “ogldev_math_3d.h”    //用于OpenGL的3d数学库,这里主要用到了顶点这个数据结构，里面报错的代码可以先注释掉<br>#include “ogldev_util.h”    //用于读取文本文件</p>
+<p>GLuint VBO;   //全局GLuint引用变量，来操作顶点缓冲器对象</p>
+<p>// 定义要读取的顶点着色器脚本和片断着色器脚本的文件名，作为文件读取路径<br>const char* pVSFileName = “shader.vs”;<br>const char* pFSFileName = “shader.fs”;</p>
+<p>static void RenderCallBack()<br>{<br>    glClear(GL_COLOR_BUFFER_BIT); //清空颜色缓存</p>
+<pre><code>glEnableVertexAttribArray(0);   //开启顶点属性
+glBindBuffer(GL\_ARRAY\_BUFFER, VBO);   //绑定GL\_ARRAY\_BUFFER缓冲器
+glVertexAttribPointer(0, 3, GL\_FLOAT, GL\_FALSE, 0, 0);   //管线解析bufer中的数据
+
+glDrawArrays(GL\_TRIANGLES, 0, 3);   //画三角形，3个顶点
+glDisableVertexAttribArray(0);   //禁用顶点数据
+glutSwapBuffers();   //交换前后缓存</code></pre><p>}</p>
+<p>static void InitializeGlutCallbacks()<br>{<br>    glutDisplayFunc(RenderCallBack);<br>}</p>
+<p>static void CreateVertexBuffer()<br>{<br>    Vector3f Vertices[3];   //创建含有3个顶点的顶点数组<br>    Vertices[0] = Vector3f(-1.0f, -1.0f, 0.0f);<br>    Vertices[1] = Vector3f(1.0f, -1.0f, 0.0f);<br>    Vertices[2] = Vector3f(0.0f, 1.0f, 0.0f);</p>
+<pre><code>glGenBuffers(1, &amp;VBO);   //创建缓冲器
+glBindBuffer(GL\_ARRAY\_BUFFER, VBO);   //绑定GL\_ARRAY\_BUFFER缓冲器
+
+glBufferData(GL\_ARRAY\_BUFFER, sizeof(Vertices), Vertices, GL\_STATIC\_DRAW);   //绑定顶点数据</code></pre><p>}</p>
+<p>//使用shader文本编译shader对象，并绑定shader都想到着色器程序中<br>static void AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType)<br>{<br>    // 根据shader类型参数定义两个shader对象<br>    GLuint ShaderObj = glCreateShader(ShaderType);<br>    // 检查是否定义成功<br>    if (ShaderObj == 0)<br>    {<br>        fprintf(stderr, “Error creating shader type %d\n”, ShaderType);<br>        exit(0);<br>    }</p>
+<pre><code>// 定义shader的代码源
+const GLchar\* p\[1\];
+p\[0\] = pShaderText;
+GLint Lengths\[1\];
+Lengths\[0\] = strlen(pShaderText);
+glShaderSource(ShaderObj, 1, p, Lengths);
+glCompileShader(ShaderObj);    // 编译shader对象
+
+// 检查和shader相关的错误
+GLint success;
+glGetShaderiv(ShaderObj, GL\_COMPILE\_STATUS, &amp;success);
+if (!success)
+{
+    GLchar InfoLog\[1024\];
+    glGetShaderInfoLog(ShaderObj, 1024, NULL, InfoLog);
+    fprintf(stderr, &quot;Error compiling shader type %d: &apos;%s&apos;\\n&quot;, ShaderType, InfoLog);
+    exit(1);
+}
+
+// 将编译好的shader对象绑定到program object程序对象上
+glAttachShader(ShaderProgram, ShaderObj);</code></pre><p>}</p>
+<p>// 编译着色器函数<br>static void CompileShaders()<br>{<br>    // 创建着色器程序<br>    GLuint ShaderProgram = glCreateProgram();<br>    // 检查是否创建成功<br>    if (ShaderProgram == 0)<br>    {<br>        fprintf(stderr, “Error creating shader program\n”);<br>        exit(1);<br>    }</p>
+<pre><code>// 存储着色器文本的字符串缓冲
+string vs, fs;
+
+// 分别读取着色器文件中的文本到字符串缓冲区
+if (!ReadFile(pVSFileName, vs))
+{
+    exit(1);
+};
+if (!ReadFile(pFSFileName, fs))
+{
+    exit(1);
+};
+
+// 添加顶点着色器和片段着色器
+AddShader(ShaderProgram, vs.c\_str(), GL\_VERTEX\_SHADER);
+AddShader(ShaderProgram, fs.c\_str(), GL\_FRAGMENT\_SHADER);
+
+// 链接shader着色器程序，并检查程序相关错误
+GLint Success = 0;
+GLchar ErrorLog\[1024\] = { 0 };
+glLinkProgram(ShaderProgram);
+glGetProgramiv(ShaderProgram, GL\_LINK\_STATUS, &amp;Success);
+if (Success == 0)
+{
+    glGetProgramInfoLog(ShaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
+    fprintf(stderr, &quot;Error linking shader program: &apos;%s&apos;\\n&quot;, ErrorLog);
+    exit(1);
+}
+
+// 检查验证在当前的管线状态程序是否可以被执行
+glValidateProgram(ShaderProgram);
+glGetProgramiv(ShaderProgram, GL\_VALIDATE\_STATUS, &amp;Success);
+if (!Success)
+{
+    glGetProgramInfoLog(ShaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
+    fprintf(stderr, &quot;Invalid shader program: &apos;%s&apos;\\n&quot;, ErrorLog);
+    exit(1);
+}
+
+// 设置到管线声明中来使用上面成功建立的shader程序
+glUseProgram(ShaderProgram);</code></pre><p>}</p>
+<p>int main(int argc, char** argv)<br>{<br>    glutInit(&amp;argc, argv);<br>    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);</p>
+<pre><code>glutInitWindowSize(400, 400);
+glutInitWindowPosition(100, 100);
+glutCreateWindow(&quot;Shader三角形&quot;);
+
+glutDisplayFunc(RenderCallBack);  //开始渲染
+
+InitializeGlutCallbacks();
+
+// 检查GLEW是否就绪，必须要在GLUT初始化之后！
+GLenum res = glewInit();
+if (res != GLEW\_OK)
+{
+    fprintf(stderr, &quot;Error: &apos;%s&apos;\\n&quot;, glewGetErrorString(res));
+    return 1;
+}
+
+glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //缓存清空后的颜色值
+CreateVertexBuffer(); //创建顶点缓冲器
+
+CompileShaders();   // 编译着色器
+
+glutMainLoop();   //通知开始GLUT的内部循环
+
+return 0;</code></pre><p>}</p>
+<p>顶点着色器shader.vs代码：</p>
+<p>#version 330  //告诉编译器我们的目标GLSL编译器版本是3.3</p>
+<p>layout (location = 0) in vec3 Position; // 绑定定点属性名和属性，方式二缓冲属性和shader属性对应映射</p>
+<p>void main()<br>{<br>    gl_Position = vec4(0.5 * Position.x, 0.5 * Position.y, Position.z, 1.0); // 为glVertexAttributePointer提供返回值<br>}</p>
+<p>片段着色器shader.fs代码：</p>
+<p>#version 330  //告诉编译器我们的目标GLSL编译器版本是3.3</p>
+<p>out vec4 FragColor;  // 片段着色器的输出颜色变量</p>
+<p>// 着色器的唯一入口函数<br>void main()<br>{<br>    // 定义输出颜色值<br>    FragColor = vec4(1.0, 0.0, 0.0, 1.0);<br>}</p>
+<p>运行结果：<a href="http://www.wjgbaby.com/wp-content/uploads/2017/12/17121902-1.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/12/17121902-1-300x269.png" alt=""></a>     <strong>BUG修复</strong>：在使用ogldev_util.h这个头文件的时候，运行程序一直报ReadFile函数的错误：<a href="http://www.wjgbaby.com/wp-content/uploads/2017/12/17121903.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/12/17121903-300x105.png" alt=""></a> 我在网上也发现了一些遇到这种问题的人，但是没有找到解决方案。最终还是靠自己解决了这个问题，主要是把ogldev_util.cpp中的ReadFile的核心代码放到了ogldev_util.h中，然后添加部分引用，下面展示部分代码，只修改ogldev_util.h里面的这部分就行：</p>
+<p>#ifndef OGLDEV_UTIL_H<br>#define    OGLDEV_UTIL_H</p>
+<p>#ifndef WIN32<br>#include &lt;unistd.h&gt;<br>#endif<br>#include &lt;stdlib.h&gt;<br>#include &lt;stdio.h&gt;<br>#include <string><br>#include <vector><br>#include &lt;string.h&gt;<br>#include &lt;assert.h&gt;<br>#include “ogldev_types.h”</p>
+<p>#include <iostream><br>#include <fstream><br>#ifdef WIN32<br>#include &lt;Windows.h&gt;<br>#else<br>#include &lt;sys/time.h&gt;<br>#endif</p>
+<p>#include &lt;sys/types.h&gt;<br>#include &lt;sys/stat.h&gt;<br>#include &lt;fcntl.h&gt;<br>#include &lt;errno.h&gt;<br>#include &lt;stdarg.h&gt;</p>
+<p>using namespace std;</p>
+<p>bool ReadFile(const char* fileName, string&amp; outFile)<br>{<br>    ifstream f(fileName);<br>    bool ret = false;<br>    if (f.is_open()) {<br>    string line;<br>    while (getline(f, line)) {<br>        outFile.append(line);<br>        outFile.append(“\n”);<br>    }<br>    f.close();<br>    ret = true;<br>    }</p>
+<pre><code>return ret;</code></pre><p>}<br>char* ReadBinaryFile(const char* pFileName, int&amp; size);</p>
+<pre><code>参考链接： [http://ogldev.atspace.co.uk/www/tutorial04/tutorial04.html](http://ogldev.atspace.co.uk/www/tutorial04/tutorial04.html) [http://blog.csdn.net/cordova/article/details/52495077#cpp](http://blog.csdn.net/cordova/article/details/52495077#cpp)</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.123Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/" target="_blank" rel="external">http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/&title=《OpenGL笔记四：着色器基础》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/&title=《OpenGL笔记四：着色器基础》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OpenGL笔记四：着色器基础》 — Hexo&url=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/12/23/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8Blua%E9%80%BB%E8%BE%91%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ULua官方案例之Lua逻辑脚本分析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/17/1025-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8-25/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">1025. 反转链表 (25)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/&title=《OpenGL笔记四：着色器基础》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/&title=《OpenGL笔记四：着色器基础》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OpenGL笔记四：着色器基础》 — Hexo&url=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

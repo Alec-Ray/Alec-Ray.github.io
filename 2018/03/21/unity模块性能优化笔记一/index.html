@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Unity模块性能优化笔记一 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Unity3D">
+    <meta name="description" content="UI模块： NGUI:UIRect.Start()函数在耗时监测时绿色线条很多的话，说明UI界面在频繁Instantiate&#x2F;Destory。 [                                                                                             背包等UI需要大量切换时，不推荐使用Instantiate&#x2F;Dest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity模块性能优化笔记一">
+<meta property="og:url" content="http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="UI模块： NGUI:UIRect.Start()函数在耗时监测时绿色线条很多的话，说明UI界面在频繁Instantiate&#x2F;Destory。 [                                                                                             背包等UI需要大量切换时，不推荐使用Instantiate&#x2F;Dest">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032101.png)">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032103.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032106.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032107.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032110.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032111-300x164.png">
+<meta property="article:published_time" content="2018-03-21T07:31:30.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.202Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Unity3D">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032101.png)">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Unity模块性能优化笔记一</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Unity模块性能优化笔记一</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-21T07:31:30.000Z" itemprop="datePublished" class="page-time">
+  2018-03-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-unity模块性能优化笔记一"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Unity模块性能优化笔记一</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-21 15:31:30" datetime="2018-03-21T07:31:30.000Z"  itemprop="datePublished">2018-03-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>UI模块：</strong></p>
+<p><strong>NGUI:UIRect.Start()函数在耗时监测时绿色线条很多的话，说明UI界面在频繁Instantiate/Destory。</strong> [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032101.png)" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032101-300x131.png)" title="背包等UI需要大量切换时，不推荐使用Instantiate/Destory或Active/Deactive来频繁切换；">
+                </div>
+                <div class="image-caption">背包等UI需要大量切换时，不推荐使用Instantiate/Destory或Active/Deactive来频繁切换；</div>
+            </figure>改为将对象移回屏幕内。这样性能就好多了。 <strong>UGUI:如何定位Mesh重建是否合理？</strong> 1.动态元素和静态元素分离； 2.合理配置UI Canvas/Panel，一个Canvas下的Widget不宜过多 <strong>UGUI和NGUI的性能区别：</strong> 如果都合理搭配，UGUI在性能上还是有一点优势的，在Unity5.2、5.3之后UGUI有一部分网格合并的操作是放在多线程中进行，相对来讲，性能有一定的提升； 但NGUI的优化相对更简单一些，主要是因为NGUI的Drawcall相对容易估计，可以知道Drawcall从哪里来的，也更容易定位网格的刷新是由什么元素引起的， 但UGUI的Drawcall难以估计，且网格重建的开销因为引入了多线程，也会被隐藏起来，所以优化起来，UGUI的难度相对更高一些； <strong>UI被多线程渲染影响的原因：</strong> 无论是UGUI，还是NGUI，都有一个特点，就是他的UI mesh可能会因为没有动静分离或别的原因产生一个网格的重建， 在网格重建之后，我们会发现它的半透明会非常的高，WaitingForJob会开销比较大，具体原因没有一个理论上的解释。 解决方案： 1.解决动静分离的问题 2.优化DrawCall <strong>如何进行UI的动静分离：</strong> 首先要区分动态元素和静态元素的区别，静态元素就是比如主页面，都是静止的一些icon等，当你不去点击的时候都是精致的 动态的就是你改变了它的Active/Deactive或Instantiate/Destory 从UGUI或NGUI的底层来讲的话，就是要看哪些东西是引起了UI DrawCall的变化， 如果这个panel或canvas引起了DrwaCall的变化，那么可以认为是动态的 如果在一些帧中不变，那么可以认为是静态的； 对于<strong>NGUI中UIPanel.LateUpdate的优化</strong>，主要着眼于UIPanel的布局，其原则如下： 1.尽可能将动态UI元素和静态UI元素分离到不同的UIPanel中（UI的重建以UIPanel为单位），从而尽可能将因为变动的UI元素引起的重构控制在较小的范围内； 2.尽可能让动态UI元素按照同步性进行划分，即运动频率不同的UI元素尽可能分离放在不同的UIPanel中； 3.控制同一个UIPanel中动态UI元素的数量，数量越多，所创建的Mesh越大，从而使得重构的开销显著增加。比如，战斗过程中的HUD运动血条可能会出现较多，此时，建议研发团队将运动血条分离成不同的UIPanel，每组UIPanel下5~10个动态UI为宜。这种做法，其本质是从概率上尽可能降低单帧中UIPanel的重建开销。  </p>
+<p><strong>物理模块：</strong></p>
+<p>物理模块的耗时跟Update其实是没有太大关系的，举个例子，比如物理模块的timestep默认为0.02，就是20毫秒更新一次， 如果游戏比较卡的话，比如一帧用了100ms，那么物理模块就要执行5次，耗时直接就上去了； 如果对物理模块完全没有使用的话，可以把0.02直接变成0.1，也就是100毫秒更新一次，对游戏运行不会有特别大的影响 如果对物理模块没有使用，并且FixedUpdate也没有使用的话，timestep值可以调的更高； <strong>Contacts数量：碰撞对数量</strong> NGUI将UI控件都当做3D世界中的物体来做碰撞体，当碰撞对中出现UI碰撞对的时候，是因为NGUI将带有collider和rigidbody的同一深度的UI物体都当成了碰撞体。 解决方案：Edit/Project Setting/Physics,把ui和ui的碰撞去掉; Active Rigidbody数量小于50是比较好的，因为大家经常调用Rigidbody里面的API； 少量调用没有问题，如果某一帧里面大量Rigidbody大量在调用，会造成一些物理上的开销， 因为Rigidbody的physics是自己计算的，由于重力的原因，当我们移动时，跟mesh collider地表会有一个大的开销； [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032103.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032102-300x250.png)](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032102.png) 碰撞体数量建议是100以下。但是三四百也没问题，这个要取决于Contacts数量，也就是碰撞对数量， 如果碰撞对数量为0，那么碰撞体数量高一点也没关系； [![](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032103-300x129.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032102-300x250.png)](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032102.png) 碰撞体数量建议是100以下。但是三四百也没问题，这个要取决于Contacts数量，也就是碰撞对数量， 如果碰撞对数量为0，那么碰撞体数量高一点也没关系； [![](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032103-300x129.jpg)</div>
+            </figure> 影响物理系统耗时的因素主要为Contacts数量（碰撞对数量）、Rigidbody API的使用情况和每帧的调用次数。 1.第一种情况是最为常见的引发物理模块耗时较大的原因，因此，我们在UWA性能报告中对其进行了详细的分析，如果你的报告中Contacts数量较高，切记要验证其合理性。 2.第二情况造成较大CPU开销的情况不多，不过如果你的项目是多角色游戏（比如MMO、MOBA、ARPG割草游戏等），那么你需要注意了。在我们优化过的一些项目中，通过Rigidbody API来移动GameObject位置（设置velocity、改变center等）确实会存在较高的性能开销。如果你的项目也有类似的做法，那么要时刻关注物理模块的开销了。 3.第三种情况同样也是目前引发物理模块耗时较高的原因。因为Unity引擎默认情况下，物理的更新频率是0.02s，即每20ms更新一次，所以，当你的项目比较卡时（开发过程中的项目在中低端设备上恐怕没几个是不卡的），物理模块会让你的项目更卡。举个例子，如果上一帧CPU耗时为100ms的话，那么物理模块会执行5次，从而进一步加大物理系统的耗时。这种情况下，物理模块的耗时是很有欺骗性的，你花了好长时间去研究物理的耗时，最后发现原来这个“锅”不是它的…所以，如果你的项目也遇到了这种情况，切记不要再上当了。  </p>
+<p><strong>动画模块：</strong></p>
+<p>MeshSkinning.Update耗时越低越好，蒙皮网格的顶点的面片尽可能的降低，1500面片左右就非常合理； [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032106.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032104-300x127.png)](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032104.png) Animation.Update and Animator.Update： Animator.Update会有一些峰值，一般是在从新开始或者切镜头的时候可能会产生，都是属于一些离散点； [![](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032105-300x131.png)](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032105.png) 代码效率中会有Animators.Update: Animator.ApplyOnAnimatorMove比较高的原因是项目组重写了AvatarController.OnAnimatorMove()， 调用次数高说明每一帧都有大量的角色进行cpu的开销 所以优化cpu的话有两点，第一点看看逻辑代码是否OK，第二点看是不是调用的次数太高了； Animators.ProcessAnimationsJob里面是一些对AnimatonClip的采样和读取， unity5.3之后放到了子线程，WaitingForJob就是等待子线程处理， 根据角色的多少以及AnimationClip的复杂程度，会有一个比较高的耗时； Animators.FireAnimationEventsAndBehaviours占用比较高的一般都是动画事件， ActionEventListener.SoundActivity()，ActionEventListener.effectActivity()，ActionEventListener.bulletActivity()是动画脚本事件 Animators.DirtySceneObjects是经常会比较高的， [![](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032106-300x177.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032104-300x127.png)](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032104.png) Animation.Update and Animator.Update： Animator.Update会有一些峰值，一般是在从新开始或者切镜头的时候可能会产生，都是属于一些离散点； [![](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032105-300x131.png)](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032105.png) 代码效率中会有Animators.Update: Animator.ApplyOnAnimatorMove比较高的原因是项目组重写了AvatarController.OnAnimatorMove()， 调用次数高说明每一帧都有大量的角色进行cpu的开销 所以优化cpu的话有两点，第一点看看逻辑代码是否OK，第二点看是不是调用的次数太高了； Animators.ProcessAnimationsJob里面是一些对AnimatonClip的采样和读取， unity5.3之后放到了子线程，WaitingForJob就是等待子线程处理， 根据角色的多少以及AnimationClip的复杂程度，会有一个比较高的耗时； Animators.FireAnimationEventsAndBehaviours占用比较高的一般都是动画事件， ActionEventListener.SoundActivity()，ActionEventListener.effectActivity()，ActionEventListener.bulletActivity()是动画脚本事件 Animators.DirtySceneObjects是经常会比较高的， [![](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032106-300x177.png)</div>
+            </figure>  </p>
+<p><strong>粒子系统：</strong></p>
+<p><strong>unity5.3之后，粒子系统由主线程调到了子线程</strong> ParticleSystem.ScheduleGeometryJobs 粒子系统的计算和准备 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032107.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032107-300x128.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032107-300x128.png)</div>
+            </figure> ParticleSystem.Update的优化建议： 1.严格控制粒子系统的active的数量，每一帧里面的数量越多，ParticleSystem.Update就越高，无论这个粒子系统是否在视域体里面 2.对于视域体外面的，可以根据一些具体情况看看ParticleSystem是否可以进行关闭，可以通过一些方式， 一.比如说直接就计算粒子系统它的一个距离，当距离比较远时，可以进行关闭； 二.其次就是算一个它的UV，就是往屏幕上做投影，发现它在屏幕外测的时候，也是可以尝试着进行关闭 三.在unity5.2之后，unity有一个很好的功能就是CullingGroup， CullingGroup可以告许你每一帧它是否在视域体外或者是它跟相机的一个距离 这样就会有效的降低ParticleSystem.Update的cpu性能开销。 根据移动设备对粒子系统进行管理，对于低端设备尽可能降低粒子系统的复杂程度和屏幕覆盖面积，从而降低其渲染方面的开销，提升低端设备的运行流畅性。<strong>具体做法如下：</strong> 1.在中低端机型上降低粒子数、同屏粒子数，比如仅显示“关键”粒子特效或自身角色释放的粒子特效等，从而降低Update的CPU开销； 2.尝试关闭离当前视域体或当前相机较远的粒子系统，离近后再进行开启，从而避免不必要的粒子系统Update的开销； 3.尽可能降低粒子特效在屏幕中的覆盖面积，覆盖面积越大，层叠数越多，其渲染开销越大； 4.对于Unity 5.x项目，可尝试升级到5.3以后版本，因为Unity在5.3版本后对粒子系统底层进行了深入的优化。  </p>
+<p><strong>加载模块：</strong></p>
+<p>当GameObject数量和资源数量较高时，会造成RUUA CPU开销比较高，耗时会增高； [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032110.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032108-300x257.png)](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032108.png) RUUA CPU就是Resources.UnloadUnusedAssets CPU； [![](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032109-300x258.png)](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032109.png) Resources.UnloadUnusedAssets CPU耗时主要是判断asset是否是Unused，那么如何判断呢， Unity引擎并不是按照引用计数的，因为这样会出现很多问题，比如相互引用等，他已经游离了，但是引用计数不为0； unity主要是还是通过查看asset是否被索引，如果没有被索引的话，才会被认为时Unused, 所以当我们的GameObject数量和资源数量较高时，RUUA CPU的循环就比较多，开销会比较多； Loading.UpdatePreloading CPU耗时是unity引擎最为耗时的主要的一个加载模块开销，小于1500毫秒就可以了； Loading.UpdatePreloading 在代码效率里的堆栈信息： GarbageCollectAssetsProfile比较高，因为它就是RUUA CPU里的Unused的开销； Application.LoadLevelAsync Integrate是加载场景； GC.Collect是垃圾回收； UnloadScene就是收集上一个场景的gameobject和以及它身上的component进行卸载，就是Destory； Loading.AwakeFromLoad是加载场景后做的一些其它事情，比如Mesh.AwakeFromLoad将Mesh从cpu传到gpu； [![](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032110-300x188.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032108-300x257.png)](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032108.png) RUUA CPU就是Resources.UnloadUnusedAssets CPU； [![](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032109-300x258.png)](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032109.png) Resources.UnloadUnusedAssets CPU耗时主要是判断asset是否是Unused，那么如何判断呢， Unity引擎并不是按照引用计数的，因为这样会出现很多问题，比如相互引用等，他已经游离了，但是引用计数不为0； unity主要是还是通过查看asset是否被索引，如果没有被索引的话，才会被认为时Unused, 所以当我们的GameObject数量和资源数量较高时，RUUA CPU的循环就比较多，开销会比较多； Loading.UpdatePreloading CPU耗时是unity引擎最为耗时的主要的一个加载模块开销，小于1500毫秒就可以了； Loading.UpdatePreloading 在代码效率里的堆栈信息： GarbageCollectAssetsProfile比较高，因为它就是RUUA CPU里的Unused的开销； Application.LoadLevelAsync Integrate是加载场景； GC.Collect是垃圾回收； UnloadScene就是收集上一个场景的gameobject和以及它身上的component进行卸载，就是Destory； Loading.AwakeFromLoad是加载场景后做的一些其它事情，比如Mesh.AwakeFromLoad将Mesh从cpu传到gpu； [![](http://www.wjgbaby.com/wp-content/uploads/2018/03/18032110-300x188.png)</div>
+            </figure> 加载资源是放在Update里面合适还是放在协程里面： 一般是用协程，不过放在Update里面也没什么问题 目前大部分手游可以使用2048*2048的贴图；  </p>
+<p><strong>GC调用：</strong></p>
+<p>调用频率是一个很重要的标准， <a href="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032111.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2018/03/18032111-300x164.png" alt=""></a> 1.要尽可能的优化代码的堆内存,可以减少foreach，link的使用，减少stream关联等，这些问题并不是最主要的 最主要的是如果项目里的运行一万帧超过了20M，那么GC回来的很快，实际项目中会把代码都拆开， 然后定位到底哪个函数在这一万帧中分配了多少堆内存，所以其实并不是特别在意foreach，link使用，stream关联等 XML文件或者配置文件或者解密加密这一块经常会有几十M的堆内存分配，大部分的堆内存都是配置文件造成的 所以尽可能的要在1万帧以下小于20M，最高不要超过30M； 2.当堆内存降下来后，可以尝试放开手动的GC调用； GC释放策略： 在场景切换的时候进行一些GC的，会耗费100毫秒左右； 不建议在UI开启或关闭的时候进行   UWA视频链接：<a href="https://v.qq.com/x/page/x0378dxq4m3.html" target="_blank" rel="noopener">https://v.qq.com/x/page/x0378dxq4m3.html</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.202Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/" target="_blank" rel="external">http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/&title=《Unity模块性能优化笔记一》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/&title=《Unity模块性能优化笔记一》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Unity模块性能优化笔记一》 — Hexo&url=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/28/%E5%B8%B8%E8%A7%81http%E7%8A%B6%E6%80%81%E7%A0%81/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">常见HTTP状态码</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/25/%E6%A0%87%E5%87%86shader%E7%9A%84%E5%8D%81%E7%A7%8D%E8%B4%B4%E5%9B%BE%E7%B1%BB%E5%9E%8B/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">标准Shader的十种贴图类型</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/&title=《Unity模块性能优化笔记一》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/&title=《Unity模块性能优化笔记一》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Unity模块性能优化笔记一》 — Hexo&url=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/03/21/unity%E6%A8%A1%E5%9D%97%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0%E4%B8%80/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

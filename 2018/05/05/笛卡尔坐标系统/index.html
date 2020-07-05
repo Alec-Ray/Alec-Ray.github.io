@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>笛卡尔坐标系统 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="3D Math">
+    <meta name="description" content="一. 1D数学  很久以前，牧羊人为了“数羊”而产生了自然数，一只羊，两只羊，三只羊……。 当羊非常多时，人们意识到这样数羊不行，于是放弃了计数而是用“很多羊”来代替。 不同的文明在不同点放弃了计数，智者定义了“零”的概念，即没有羊。 人们习惯性的把羊放成一排来计数，这导致了数轴概念的产生。 如果你要要卖你的10羊，而你其实并没有羊，这就产生了债务和负数的概念，你拥有“负十”只羊，这种情况又导致了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笛卡尔坐标系统">
+<meta property="og:url" content="http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一. 1D数学  很久以前，牧羊人为了“数羊”而产生了自然数，一只羊，两只羊，三只羊……。 当羊非常多时，人们意识到这样数羊不行，于是放弃了计数而是用“很多羊”来代替。 不同的文明在不同点放弃了计数，智者定义了“零”的概念，即没有羊。 人们习惯性的把羊放成一排来计数，这导致了数轴概念的产生。 如果你要要卖你的10羊，而你其实并没有羊，这就产生了债务和负数的概念，你拥有“负十”只羊，这种情况又导致了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050527.jpg">
+<meta property="article:published_time" content="2018-05-05T11:17:21.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.293Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="3D Math">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050527.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">笛卡尔坐标系统</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">笛卡尔坐标系统</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-05T11:17:21.000Z" itemprop="datePublished" class="page-time">
+  2018-05-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一-1D数学"><span class="post-toc-number">1.</span> <span class="post-toc-text">一. 1D数学</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二-2D笛卡尔数学"><span class="post-toc-number">2.</span> <span class="post-toc-text">二. 2D笛卡尔数学</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三-从2D到3D"><span class="post-toc-number">3.</span> <span class="post-toc-text">三. 从2D到3D</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-笛卡尔坐标系统"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">笛卡尔坐标系统</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-05 19:17:21" datetime="2018-05-05T11:17:21.000Z"  itemprop="datePublished">2018-05-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="一-1D数学"><a href="#一-1D数学" class="headerlink" title="一. 1D数学"></a><strong>一. 1D数学</strong></h3><p>  很久以前，牧羊人为了“数羊”而产生了自然数，一只羊，两只羊，三只羊……。 当羊非常多时，人们意识到这样数羊不行，于是放弃了计数而是用<strong>“很多羊”</strong>来代替。 不同的文明在不同点放弃了计数，智者定义了<strong>“零”</strong>的概念，即没有羊。 人们习惯性的把羊放成一排来计数，这导致了<strong>数轴</strong>概念的产生。 如果你要要卖你的10羊，而你其实并没有羊，这就产生了<strong>债务和负数</strong>的概念，你拥有<strong>“负十”</strong>只羊，这种情况又导致了整数的产生：由<strong>自然数</strong>和他们的<strong>相反数（负数</strong>）组成。 贫穷使有的人买不起整只羊，只能买的起<strong>四分之一</strong>只羊，这就产生了<strong>分数</strong>。比如2/5，134/1000等，为了方便，人们又发明了<strong>小数点表示法</strong>，用“3.1415”来代替冗长的31415/10000. 再后来，人们发现某些数字无法用<strong>有理数</strong>表示，比如π，这就产生了所谓的<strong>实数</strong>，实数包含<strong>有理数</strong>和π这样的<strong>无理数。</strong> 有理数可数，而实数不可数。 研究<strong>自然数和整数</strong>的领域称为<strong>离散数学</strong>，研究<strong>实数</strong>的领域称作<strong>连续数学。</strong>   <strong>也许宇宙中就存在着一个超越我们科技的文明，他们从来没听说连续数学，基本微积分理论，甚至是无限这样的概念，他们从不使用π，而是使用3.14159（或更精确些：3.1415926535897932382626433）就可以构造完美的世界。</strong> 为虚拟世界选择度量单位的关键是选择离散的精度，有一种错误的观点认为short，int是离散的，而float，double是连续的，而实际上这些数据都是离散的。 <strong>以前的计算机图形学教材通常建议选择整数，因为那时硬件处理浮点数的的能力要比处理整数弱，但对于现在的硬件，这种说法已经过时了。</strong>   <strong>计算机图形学第一准则：近似原则，如果它看上去是对的那它就是对的</strong>  </p>
+<h3 id="二-2D笛卡尔数学"><a href="#二-2D笛卡尔数学" class="headerlink" title="二. 2D笛卡尔数学"></a><strong>二. 2D笛卡尔数学</strong></h3><p>2D笛卡尔坐标系的两条定义： 1.每个2D笛卡尔坐标系都有一个特殊的点，称坐原点，它是坐标系的中心。 2.每个2D笛卡尔坐标系都有两条过原点的直线向两边无限延伸，称作“轴”（axis）。   所有2D坐标系都是等价的。例如，两个2D坐标系A和B，旋转坐标系A，总能使七x，y轴的指向和B的相同（假设坐标轴互相垂直）  </p>
+<h3 id="三-从2D到3D"><a href="#三-从2D到3D" class="headerlink" title="三. 从2D到3D"></a><strong>三. 从2D到3D</strong></h3><p>左手坐标系和右手坐标系： [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050527.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050527.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050527.jpg)</div>
+            </figure> <strong>3D坐标系之间是不一定等价的。如果同属于左手坐标系或右手坐标系，则可以通过旋转来重合，否则不可以。</strong> 左，右手坐标系可以相互转换，最简单的方法是只翻转一个轴的符号。注意如果同时翻转两个轴的符号，结果和不翻转是一样的。 不同领域使用不同的坐标系，传统的计算机图形学使用左手坐标系，而线性代数则倾向于使用右手坐标系。 当三维图形以左手坐标系渲染至二维屏幕时，，z轴坐标增加意味着场景的深度增加（即与虚拟摄像机的距离增加），此特性会应用到z缓冲方案中，以解决深度遮挡。   参考书籍：《游戏引擎架构》 《3D Math Primer for graphics and game development》</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.293Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/" target="_blank" rel="external">http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-Math/" rel="tag">3D Math</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/&title=《笛卡尔坐标系统》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/&title=《笛卡尔坐标系统》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《笛卡尔坐标系统》 — Hexo&url=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/05/girlbg/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">girlBG</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/05/05/cs%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%97%B6%E7%9A%84%E5%AD%97%E8%8A%82%E6%8E%92%E5%88%97/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CS：数据存储时的字节排列</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/&title=《笛卡尔坐标系统》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/&title=《笛卡尔坐标系统》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《笛卡尔坐标系统》 — Hexo&url=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/05/05/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

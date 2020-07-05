@@ -199,9 +199,427 @@ Qu...
 
         </li>
     
+        <li class="post-list-item fade">
+            <article id="post-rttnw-ch4：perlin-noise"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-07-02 21:54:53" datetime="2018-07-02T13:54:53.000Z"  itemprop="datePublished">2018-07-02</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/07/02/rttnw-ch4%EF%BC%9Aperlin-noise/">RTTNW-ch4：Perlin Noise</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        柏林噪声由Ken Perlin发明，很多人使用柏林噪音来获得一个比较酷的纹理效果。 Perlin纹理不会像这样返回白噪声： [
+                
+                    
+                    
+                
+                ](http://www.wjgbaby.com/wp-content/uploa...
+    
+
+        <a href="/2018/07/02/rttnw-ch4%EF%BC%9Aperlin-noise/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-rttnw-ch3：solid-textures"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-07-01 23:44:21" datetime="2018-07-01T15:44:21.000Z"  itemprop="datePublished">2018-07-01</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/07/01/rttnw-ch3%EF%BC%9Asolid-textures/">RTTNW-ch3：Solid Textures</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        图形中的纹理通常表示在表面上生成颜色的函数，我们将首先使所有颜色成为一种纹理。
+class texture  {    public:        virtual vec3 value(float u, float v, const vec3&amp; p) const = 0;};
+class constant_texture : public texture {    public: ...
+    
+
+        <a href="/2018/07/01/rttnw-ch3%EF%BC%9Asolid-textures/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-rttnw-ch2：bounding-volume-hierarchies"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-06-29 02:21:55" datetime="2018-06-28T18:21:55.000Z"  itemprop="datePublished">2018-06-29</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/06/29/rttnw-ch2%EF%BC%9Abounding-volume-hierarchies/">RTTNW-ch2：Bounding Volume Hierarchies</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        这部分是迄今为止我们正在研究的光线追踪器中最困难的部分。 我们的光线与物体相交点是光线追踪器的主要时间瓶颈，时间是与物体的数量呈线性关系。但它是对同一个模型的重复搜索，所以我们可以使用二分搜索进行对数查找。 两个最常见的排序方法是划分空间和划分对象。后者通常是编码起来更容易，而且大多数模型的运行速度都很快。 关键在于在找到一个边界体积包围所有物体。
+if (ray hits bounding...
+    
+
+        <a href="/2018/06/29/rttnw-ch2%EF%BC%9Abounding-volume-hierarchies/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-3d数学常用的矩阵公式总结"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-06-13 14:03:09" datetime="2018-06-13T06:03:09.000Z"  itemprop="datePublished">2018-06-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/">3D数学常用的矩阵公式总结</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        这篇文章主要是一些矩阵[latex]\begin{bmatrix} matrix \end{bmatrix}[/latex]公式的总结，为了书写这些麻烦的公式，我去学习了LaTex的一些使用技巧，看上去效果还不错。 由于使用了LaTex语法，LaTex代码在MathJax的JS脚本渲染后，所显示的数学公式在电脑上兼容性很好，但在一些手机浏览器上兼容性不好。在手机上无法自适应页面，一些较长的公...
+    
+
+        <a href="/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-Math/" rel="tag">3D Math</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-c函数中形参传递方式的差别"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-06-10 00:14:25" datetime="2018-06-09T16:14:25.000Z"  itemprop="datePublished">2018-06-10</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/06/10/c%E5%87%BD%E6%95%B0%E4%B8%AD%E5%BD%A2%E5%8F%82%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%88%AB/">C函数中形参传递方式的差别</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        C函数中的形式参数可以是基本类型变量名，构造类型变量名和指针类型变量名。对于不同的形式参数，其传递参数的方式不同，总体来说分成两种：按值传递和按地址传递。 当形参是基本类型变量名时，采用按值传递方式；当形参是指针类型变量名或者构造类型变量名时，采用按地址传递方式。 下面通过两个相似的程序说明二者的区别：
+//程序一：按地址传递参数#include &lt;stdio.h&gt;swap(in...
+    
+
+        <a href="/2018/06/10/c%E5%87%BD%E6%95%B0%E4%B8%AD%E5%BD%A2%E5%8F%82%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%88%AB/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-blackbg"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-06-04 12:32:30" datetime="2018-06-04T04:32:30.000Z"  itemprop="datePublished">2018-06-04</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/06/04/blackbg/">blackBG</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+    
+
+        <a href="/2018/06/04/blackbg/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-linux-0-11实验一：操作系统的引导"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-05-31 17:08:52" datetime="2018-05-31T09:08:52.000Z"  itemprop="datePublished">2018-05-31</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/05/31/linux-0-11%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%95%E5%AF%BC/">Linux 0.11实验二：操作系统的引导</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        实验目的熟悉hit-oslab实验环境； 建立对操作系统引导过程的深入认识； 掌握操作系统的基本开发过程； 能对操作系统代码进行简单的控制，揭开操作系统的神秘面纱
+实验内容此次实验的基本内容是： 阅读《Linux内核完全注释》的第6章，对计算机和Linux 0.11的引导过程进行初步的了解； 按照下面的要求改写0.11的引导程序bootsect.s 有兴趣同学可以做做进入保护模式前的设置程序...
+    
+
+        <a href="/2018/05/31/linux-0-11%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%95%E5%AF%BC/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-rttnw-ch01：motion-blur"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-05-30 19:02:43" datetime="2018-05-30T11:02:43.000Z"  itemprop="datePublished">2018-05-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/">RTTNW-ch1：Motion Blur</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Peter Shirley有三本光线追踪的书： 《Ray Tracing In The Weekend》：用两天学光线追踪 《Ray Tracing The Next Week》：用一周学光线追踪 《Ray Tracing The Rest Of Your Life》：用余生学光线追踪   接下来的一系列笔记是第二本书，这篇讲动态模糊。   在现实生活中，我们拍照时相机会打开一段时间，在其期...
+    
+
+        <a href="/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-rtiow-ch12：where-next"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-05-21 22:55:38" datetime="2018-05-21T14:55:38.000Z"  itemprop="datePublished">2018-05-21</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/05/21/rtiow-ch12%EF%BC%9Awhere-next/">RTIOW-ch12：Where next</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        制作书籍的封面图： cpp:
+#include #include #include #include “sphere.h”#include “hitable_list.h”#include “camera.h”#include “material.h”
+using namespace std;
+//获得反射射线vec3 RandomInUnitsphere(){    vec3 p;    ...
+    
+
+        <a href="/2018/05/21/rtiow-ch12%EF%BC%9Awhere-next/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
     </ul>
 
     
+<nav id="page-nav">
+    <div class="inner">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    </div>
+</nav>
+
 
 </div>
 

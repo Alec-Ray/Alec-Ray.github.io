@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Matlab实时人脸识别与追踪 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Matlab图像处理">
+    <meta name="description" content="这是我的Matlab大作业，实时人脸识别与追踪，主要运用了Matlab计算机视觉工具箱，维奥拉-琼斯算法，KTL算法。 直接运行代码会出现”错误使用webcam，尚未安装MATLAB Support Package for USB Webcams。打开Support Package Installer即可安装Webcam Support Package”这个错误。 [">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matlab实时人脸识别与追踪">
+<meta property="og:url" content="http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这是我的Matlab大作业，实时人脸识别与追踪，主要运用了Matlab计算机视觉工具箱，维奥拉-琼斯算法，KTL算法。 直接运行代码会出现”错误使用webcam，尚未安装MATLAB Support Package for USB Webcams。打开Support Package Installer即可安装Webcam Support Package”这个错误。 [">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/01/18010403.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/01/18010402.jpg">
+<meta property="article:published_time" content="2018-01-04T13:38:19.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.143Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Matlab图像处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/01/18010403.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Matlab实时人脸识别与追踪</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Matlab实时人脸识别与追踪</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-04T13:38:19.000Z" itemprop="datePublished" class="page-time">
+  2018-01-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-matlab实时人脸识别与追踪"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Matlab实时人脸识别与追踪</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-04 21:38:19" datetime="2018-01-04T13:38:19.000Z"  itemprop="datePublished">2018-01-04</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这是我的Matlab大作业，实时人脸识别与追踪，主要运用了Matlab计算机视觉工具箱，维奥拉-琼斯算法，KTL算法。 直接运行代码会出现”错误使用webcam，尚未安装MATLAB Support Package for USB Webcams。打开Support Package Installer即可安装Webcam Support Package”这个错误。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/01/18010403.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/01/18010403-300x21.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/01/18010403-300x21.png)</div>
+            </figure> 这是因为我们实时的调取笔记本上的摄像头来进行每一帧图像的检测，所以需要用到webcam摄像头。 首先点击Support Package Installer安装Webcam Support Package，然后会有几个选项都选Next，最后有个Log In，登陆你的Matlab账号，然后直接运行就行了。   完整代码以及注释：</p>
+<p>%使用KLT算法的3个前提假设：<br>    %亮度恒定<br>    %时间连续或者是运动是“小运动”<br>    %空间一致，临近点有相似运动，保持相邻</p>
+<p>clc,clear,close all;<br>%创建人脸检测对象，后面捕捉我英俊的脸庞，调用CascadeObjectDetector.m，使用了维奥拉-琼斯算法<br>faceDetector = vision.CascadeObjectDetector();     </p>
+<p>%使用点跟踪器进行视频稳定、摄像机运动估计和目标跟踪，它特别适合跟踪不改变形状的对象和显示视觉纹理的对象<br>%2表示对可能出现的错误进行双向限制，即使存在噪声也能正确显示<br>pointTracker = vision.PointTracker(‘MaxBidirectionalError’, 2);</p>
+<p>%创建摄像头对象<br>cam = webcam();</p>
+<p>%获取当前图像帧和其大小，如果一直执行，则每次返回最新的一帧<br>videoFrame = snapshot(cam);<br>frameSize = size(videoFrame); </p>
+<p>%创建播放视频对象<br>videoPlayer = vision.VideoPlayer(‘Position’, [100 100 [frameSize(2), frameSize(1)]+30]);        </p>
+<p>runLoop = true;     %默认开启循环<br>numPts = 0;         %特征点初始为0<br>frameCount = 0;     %帧数初始为0</p>
+<p>%当runLoop为真并且帧数小于1000时，开启循环<br>while runLoop &amp;&amp; frameCount &lt; 1000</p>
+<pre><code>%获取当前图像帧，如果一直执行，则每次返回最新的一帧
+videoFrame = snapshot(cam);
+%处理成灰度图像
+videoFrameGray = rgb2gray(videoFrame);
+%每循环一次帧数就加1
+frameCount = frameCount + 1;    
+
+if numPts &lt; 10
+    %检测方式，bbox是1\*4向量，分布表示\[x y width height\]，即边界框的左上角像素点坐标和边界框的size
+    bbox = faceDetector.step(videoFrameGray);    
+
+    if ~isempty(bbox)
+        %在脸部区域识别特征点，指定被保留特征值的最小值,一般为1 
+        points = detectMinEigenFeatures(videoFrameGray, &apos;ROI&apos;, bbox(1, :));       
+
+        %用初始化框架的点的位置初始化踪迹
+        xyPoints = points.Location;
+
+        numPts = size(xyPoints,1);
+
+        release(pointTracker);
+        initialize(pointTracker, xyPoints, videoFrameGray);
+
+        %复制点用于之前的点和现在的框架之间进行几何转换
+        oldPoints = xyPoints;      
+
+        %将框架转化为一系列的4个点\[x1 y1 x2 y2 x3 y3 x4 y4\] ，即使被识别的脸发生旋转也能够被看到 
+        bboxPoints = bbox2points(bbox(1, :));    
+
+        %reshape表示重新调整矩阵的行数、列数、维数
+        bboxPolygon = reshape(bboxPoints&apos;, 1, \[\]);    
+
+        % 在被检测的脸的周围插入边界框
+        videoFrame = insertShape(videoFrame, &apos;Polygon&apos;, bboxPolygon, &apos;LineWidth&apos;, 3);
+
+        % 显示被追随的点，在图像或视频中插入标记符号
+        videoFrame = insertMarker(videoFrame, xyPoints, &apos;+&apos;, &apos;Color&apos;, &apos;white&apos;);
+    end
+
+else
+    %检测点的踪迹，注意有一些点可能丢失
+    %xyPoints是xx \* 2数组，xx表示特征点数目，xyPoints是所有特征的的坐标
+    %isFound是xx \* 1数组，表示特征点是否有track ok。ok是1，否则为0
+    \[xyPoints, isFound\] = step(pointTracker, videoFrameGray);
+    visiblePoints = xyPoints(isFound, :);
+    oldInliers = oldPoints(isFound, :);
+
+    numPts = size(visiblePoints, 1);       
+
+    if numPts &gt;= 10
+        %在之前的点和新的点之间进行几何转换并建立边界线 
+        \[xform, oldInliers, visiblePoints\] = estimateGeometricTransform(...
+            oldInliers, visiblePoints, &apos;similarity&apos;, &apos;MaxDistance&apos;, 4);            
+
+        %运行边界点的转换
+        bboxPoints = transformPointsForward(xform, bboxPoints);
+
+        %reshape表示重新调整矩阵的行数、列数、维数
+        bboxPolygon = reshape(bboxPoints&apos;, 1, \[\]); 
+
+         % 在被追随的物体周围插入边界框
+        videoFrame = insertShape(videoFrame, &apos;Polygon&apos;, bboxPolygon, &apos;LineWidth&apos;, 3);
+
+         % 显示被追随的点，在图像或视频中插入标记
+        videoFrame = insertMarker(videoFrame, visiblePoints, &apos;+&apos;, &apos;Color&apos;, &apos;green&apos;);
+
+        %重置点
+        oldPoints = visiblePoints;
+        %设置跟随点，很多点在跟踪过程中丢失后，用于点的重新检测
+        setPoints(pointTracker, oldPoints);
+    end
+
+end
+
+%使用视频播放器对象显示被注释的视频帧
+step(videoPlayer, videoFrame);
+%检测视频播放窗口是否已经关闭
+runLoop = isOpen(videoPlayer);</code></pre><p>end</p>
+<p>%清空<br>clear cam;<br>release(videoPlayer);<br>release(pointTracker);<br>release(faceDetector);</p>
+<p>运行效果如下，这只是一张截图，没有录屏，建议自己动手实现一下啊。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/01/18010402.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/01/18010402-300x229.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/01/18010402-300x229.jpg)</div>
+            </figure>在项目运行中，你可以对着笔记本的摄像头扭动你的头部和大幅度移动，以及改变你身边的灯光环境，观察其它效果。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.143Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/" target="_blank" rel="external">http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">Matlab图像处理</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/&title=《Matlab实时人脸识别与追踪》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/&title=《Matlab实时人脸识别与追踪》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Matlab实时人脸识别与追踪》 — Hexo&url=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/06/%E9%95%BF%E5%A4%9C%E6%BC%AB%E6%BC%AB%EF%BC%8C%E6%97%A0%E5%BF%83%E7%9D%A1%E7%9C%A0/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">长夜漫漫，无心睡眠</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/03/2017%E5%B9%B4%E6%88%91%E9%83%BD%E5%90%AC%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">2017年我都听了些什么</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/&title=《Matlab实时人脸识别与追踪》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/&title=《Matlab实时人脸识别与追踪》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Matlab实时人脸识别与追踪》 — Hexo&url=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/01/04/matlab%E5%AE%9E%E6%97%B6%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%B8%8E%E8%BF%BD%E8%B8%AA/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

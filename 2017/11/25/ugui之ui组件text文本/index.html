@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>UGUI之UI组件Text文本 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="UGUI,Unity_UGUI">
+    <meta name="description" content="UGUI虽然不是太难的东西，但是知识点还是很多的。目前UGUI学的不精，因此有系统的完整学习一遍是很有必要的，我会尽量把笔记做详细，方便以后回顾。   一.Canvas 形态 当我们鼠标选中Canvas 游戏物体后，在Scene 面板会显示一个白色边框，虽然四个角都有“调节点”，但是这个的范围是不可以手动调节的，如下图所示，Rect Transform不可以调节： [">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UGUI之UI组件Text文本">
+<meta property="og:url" content="http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="UGUI虽然不是太难的东西，但是知识点还是很多的。目前UGUI学的不精，因此有系统的完整学习一遍是很有必要的，我会尽量把笔记做详细，方便以后回顾。   一.Canvas 形态 当我们鼠标选中Canvas 游戏物体后，在Scene 面板会显示一个白色边框，虽然四个角都有“调节点”，但是这个的范围是不可以手动调节的，如下图所示，Rect Transform不可以调节： [">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112502.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112503.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112504.png">
+<meta property="article:published_time" content="2017-11-24T19:18:53.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.052Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="UGUI">
+<meta property="article:tag" content="Unity_UGUI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112502.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">UGUI之UI组件Text文本</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">UGUI之UI组件Text文本</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-24T19:18:53.000Z" itemprop="datePublished" class="page-time">
+  2017-11-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-ugui之ui组件text文本"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">UGUI之UI组件Text文本</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-25 03:18:53" datetime="2017-11-24T19:18:53.000Z"  itemprop="datePublished">2017-11-25</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>UGUI虽然不是太难的东西，但是知识点还是很多的。目前UGUI学的不精，因此有系统的完整学习一遍是很有必要的，我会尽量把笔记做详细，方便以后回顾。  </p>
+<p>一.Canvas 形态</p>
+<p>当我们鼠标选中Canvas 游戏物体后，在Scene 面板会显示一个白色边框，虽然四个角都有“调节点”，但是这个的范围是不可以手动调节的，如下图所示，Rect Transform不可以调节： [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112502.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112501-300x200.jpg)](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112501.jpg) 这个Canvas 的宽和高是自动适配当前的Scene 视图的宽和高的，也就是说会跟随Scene 视图的形态发生宽和高的改变。 如果出现“奇怪的形状”,那是因为你的Scene 的奇怪比例导致的，如下图所示： [![](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112502-269x300.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112501-300x200.jpg)](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112501.jpg) 这个Canvas 的宽和高是自动适配当前的Scene 视图的宽和高的，也就是说会跟随Scene 视图的形态发生宽和高的改变。 如果出现“奇怪的形状”,那是因为你的Scene 的奇怪比例导致的，如下图所示： [![](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112502-269x300.jpg)</div>
+            </figure> 在当前状态最常用的操作是：手型工具，2D 工具。  </p>
+<p>二.Text 游戏物体组成部分</p>
+<p>  ①Rect Transform：用于控制UI 物体的基本属性。 ②Canvas Renderer：画板UI 渲染器，UI 游戏物体必备且不可编辑的组件。 ③Text 组件：当前UI 物体的的核心组件。 ④Default UI Material：默认UI 材质球，UI 的显示也是需要材质球的。 备注： ①②④是所有的UGUI 游戏物体必备的组件，其实UI 的形态改变，就是通过使用不同的UI 组件来实现的。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112503.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112503-155x300.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112503-155x300.jpg)</div>
+            </figure>  </p>
+<p>三.Text 面板属性</p>
+<p>Text：文本 控制当前的UI 游戏物体要显示的文本内容。 Font：字体 控制文字显示的样子；Unity 支持的字体格式是TTF 格式。 在企业项目开发中，一款游戏，一般会使用到三到五款字体文件。 Font Style：字体样式 正常字体，加粗，倾斜，加粗并且倾斜。 这样的字体样式在Word，Excel，Web 开发都是有的，最基础的字体美化。 Font Size：字体大小 控制字体的显示大小，但是当字体很大的时候，需要配合调整当前区域的宽和高，否则字体将因为空间太小，无法显示。 Line Spacing：行间距 当Text 内的文本是多行数据的时候，控制行与行之间的间隔空隙。 Rich Text：富文本支持 勾选开启后，我们可以在Text 内编写富文本标签。 比如：&lt;color=“red”&gt;<a href="http://www.wjgbaby.com" target="_blank" rel="noopener">www.wjgbaby.com</a></color> Alignment：对其方式 控制文本在区域内的九宫显示位置。 Horizontal Overflow：水平溢出 Wrap：文本将自动换行，当达到水平边界 Overflow：文本可以超出水平边界，继续显示 Vertical Overflow：垂直溢出 Truncate：文本不显示超出垂直边界的部分 Overflow：文本可以超出垂直边界，继续显示 Best Fit：勾选后，编辑器会变化，显示Min Size和Max Size Min Size：最小大小 Max Size：最大大小 当边框很大时，文字最大显示Max Size字体大小；当边框很小时，文字最小显示Min Size字体大小，边框显示不了MinSize字体大小就不再显示文字了。 Color：颜色 控制文本显示的颜色。 Raycast Target：射线投射目标 当前游戏物体是否接受射线，如果取消勾选，射线将会直接穿透该物体，勾选则会阻挡射线。 备注：UGUI 的UI 交互，是系统以鼠标点击位置发射射线与UI 进行交互的，比如说button按钮就是摄像机一直向按钮的UI发送射线，如果取消勾选Raycast Target，交互事件就不会执行。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17112504.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112504-260x300.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2017/11/17112504-260x300.png)</div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.052Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/" target="_blank" rel="external">http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-UGUI/" rel="tag">Unity_UGUI</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/&title=《UGUI之UI组件Text文本》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/&title=《UGUI之UI组件Text文本》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《UGUI之UI组件Text文本》 — Hexo&url=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6image%E5%9B%BE%E7%89%87/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">UGUI之UI组件Image图片</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/24/617-merge-two-binary-trees/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">617. Merge Two Binary Trees</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/&title=《UGUI之UI组件Text文本》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/&title=《UGUI之UI组件Text文本》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《UGUI之UI组件Text文本》 — Hexo&url=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2017/11/25/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6text%E6%96%87%E6%9C%AC/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

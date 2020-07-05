@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>向量运算 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="3D Math">
+    <meta name="description" content="数学中专门研究向量的分支称作线性代数，向量在线性代数中只是一个数组。 向量与点的关系：点有位置，但没有实际的大小或者厚度；向量有大小和方向，但没有位置。点与向量在概念上完全不同，而在数学上却还是等价的。思考位置时，想象一个点，思考位移时，想象一个和向量和一个箭头。 零向量是唯一一个没有方向的向量。但是也不能将零向量认为是一个点，因为零向量没有定义某个位置。应该认为零向量表示的是“没有位移”，就像标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="向量运算">
+<meta property="og:url" content="http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数学中专门研究向量的分支称作线性代数，向量在线性代数中只是一个数组。 向量与点的关系：点有位置，但没有实际的大小或者厚度；向量有大小和方向，但没有位置。点与向量在概念上完全不同，而在数学上却还是等价的。思考位置时，想象一个点，思考位移时，想象一个和向量和一个箭头。 零向量是唯一一个没有方向的向量。但是也不能将零向量认为是一个点，因为零向量没有定义某个位置。应该认为零向量表示的是“没有位移”，就像标">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050701.png)">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050702.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050704.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050707.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050706.png">
+<meta property="article:published_time" content="2018-05-07T10:13:12.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.297Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="3D Math">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050701.png)">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">向量运算</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">向量运算</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-07T10:13:12.000Z" itemprop="datePublished" class="page-time">
+  2018-05-07
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标量与向量的乘法注意点："><span class="post-toc-number">1.</span> <span class="post-toc-text">标量与向量的乘法注意点：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#向量的加法和减法："><span class="post-toc-number">2.</span> <span class="post-toc-text">向量的加法和减法：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#单位向量（unit-vector）"><span class="post-toc-number">3.</span> <span class="post-toc-text">单位向量（unit vector）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#向量的距离公式"><span class="post-toc-number">4.</span> <span class="post-toc-text">向量的距离公式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#向量点乘"><span class="post-toc-number">5.</span> <span class="post-toc-text">向量点乘</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#向量投影"><span class="post-toc-number">6.</span> <span class="post-toc-text">向量投影</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#向量叉乘"><span class="post-toc-number">7.</span> <span class="post-toc-text">向量叉乘</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-向量运算"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">向量运算</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-07 18:13:12" datetime="2018-05-07T10:13:12.000Z"  itemprop="datePublished">2018-05-07</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>数学中专门研究向量的分支称作线性代数，向量在线性代数中只是一个数组。 <strong>向量与点的关系：</strong>点有位置，但没有实际的大小或者厚度；向量有大小和方向，但没有位置。点与向量在概念上完全不同，而在数学上却还是等价的。思考位置时，想象一个点，思考位移时，想象一个和向量和一个箭头。 <strong>零向量</strong>是唯一一个没有方向的向量。但是也不能将零向量认为是一个点，因为零向量没有定义某个位置。应该认为零向量表示的是“没有位移”，就像标量零表示的是“没有数量一样”。  </p>
+<h3 id="标量与向量的乘法注意点："><a href="#标量与向量的乘法注意点：" class="headerlink" title="标量与向量的乘法注意点："></a>标量与向量的乘法注意点：</h3><p>1.标量与向量相乘时，不需要写乘号，将两个挨着写即表示相乘（常将标量写在左边） 2.乘法和除法优先级高于加法和减法； 3.标量不能除以向量，并且向量不能除以另一个向量； 4.负向量被认为是乘法的特殊情况，乘以标量-1. <strong>几何解释：几何意义上，向量乘以标量k的效果是以|k|缩放向量的长度。</strong>  </p>
+<h3 id="向量的加法和减法："><a href="#向量的加法和减法：" class="headerlink" title="向量的加法和减法："></a>向量的加法和减法：</h3><p>1.向量不能与标量或维数不同的向量相加减； 2.和标量加法一样，向量加法满足交换律，但向量减法不满足交换律。永远有a+b=b+a，但a-b=-(b-a)，仅当a=b时，a-b=b-a <strong>几何解释：向量a和向量b的几何解释为：平移向量，使向量a的头连接b向量的尾，接着从a的尾向b的头画一个向量，这就是向量加法的“三角形法则”。</strong>  </p>
+<h3 id="单位向量（unit-vector）"><a href="#单位向量（unit-vector）" class="headerlink" title="单位向量（unit vector）"></a>单位向量（unit vector）</h3><p>单位向量就是大小为1的向量，又称作“标准化向量”或“法线”。 标准化步骤：将向量除以它的大小(模)即可。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050701.png)" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050701-300x246.png)" title="几何解释：2D环境中，如果以原点为尾画一个单位向量，那么向量的头将接触到圆心在原点的单位圆(单位圆半径为1">
+                </div>
+                <div class="image-caption">几何解释：2D环境中，如果以原点为尾画一个单位向量，那么向量的头将接触到圆心在原点的单位圆(单位圆半径为1</div>
+            </figure>；在3D环境中，单位向量将触到单位球。 零向量不能被标准化。数学上这是不允许的，因为将导致除零。几何上也没有意义，因为零向量没有方向。  </p>
+<h3 id="向量的距离公式"><a href="#向量的距离公式" class="headerlink" title="向量的距离公式"></a>向量的距离公式</h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050702.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050702-300x132.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050702-300x132.png)</div>
+            </figure>  </p>
+<h3 id="向量点乘"><a href="#向量点乘" class="headerlink" title="向量点乘"></a><strong>向量点乘</strong></h3><p>点乘，又称点积（dot product），标量积（scalar product），内积（inner product）； 向量点乘就是对应分量乘积的和，其结果是一个标量： [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050704.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050703-300x289.png)](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050703.png) 几何解释：点乘结果描述了两个向量的相似程度，点乘结果越大，两向量越相近。 [![](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050704-300x266.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050703-300x289.png)](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050703.png) 几何解释：点乘结果描述了两个向量的相似程度，点乘结果越大，两向量越相近。 [![](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050704-300x266.png)</div>
+            </figure>  </p>
+<h3 id="向量投影"><a href="#向量投影" class="headerlink" title="向量投影"></a>向量投影</h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050707.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050707-300x119.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050707-300x119.png)</div>
+            </figure>  </p>
+<h3 id="向量叉乘"><a href="#向量叉乘" class="headerlink" title="向量叉乘"></a><strong>向量叉乘</strong></h3><p>叉乘，又称叉积（cross product），矢量积（vector product），外积（outer product） 和点乘不一样，点乘得到一个标量并满足交换律，向量叉乘得到一个向量并且不满足交换律。 两个向量叉乘得到的向量，该向量垂直于原来的两个相乘向量。 叉乘公式： [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18050706.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050705-300x162.png)](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050705.png) 几何解释： [![](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050706-300x205.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050705-300x162.png)](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050705.png) 几何解释： [![](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050706-300x205.png)</div>
+            </figure>   如果a，b平行或者任意一个为0，则a与b的叉乘为0 叉乘对0的解释是：他平行于任意其他向量。注意这和点乘的解释不同，点乘的解释是和人以其他的向量垂直。（当然，定义零向量平行或垂直于任意向量都是不对的，因为零向量没有方向） <strong>叉乘最重要的应用就是创建垂直于平面，三角形或多边形的垂直的向量。</strong>     参考书籍：《游戏引擎架构》 《3D Math Primer for graphics and game development》</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.297Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/" target="_blank" rel="external">http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-Math/" rel="tag">3D Math</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/&title=《向量运算》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/&title=《向量运算》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《向量运算》 — Hexo&url=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/08/%E5%AE%9E%E7%8E%B03d%E5%90%91%E9%87%8F%E7%B1%BBvector3/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">实现3D向量类Vector3</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/05/06/%E5%A4%9A%E5%9D%90%E6%A0%87%E7%B3%BB/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">多坐标系</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/&title=《向量运算》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/&title=《向量运算》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《向量运算》 — Hexo&url=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/05/07/%E5%90%91%E9%87%8F%E8%BF%90%E7%AE%97/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
