@@ -23,7 +23,7 @@
     <meta name="keywords" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/page/11/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Alec">
@@ -60,7 +60,7 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
                 主页
@@ -160,11 +160,11 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-rttnw-ch4：perlin-noise"
+            <article id="post-标准shader之四大渲染模式"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-07-02 21:54:53" datetime="2018-07-02T13:54:53.000Z"  itemprop="datePublished">2018-07-02</time>
+        <time class="post-time" title="2017-11-29 15:21:29" datetime="2017-11-29T07:21:29.000Z"  itemprop="datePublished">2017-11-29</time>
 
         
 
@@ -176,7 +176,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/07/02/rttnw-ch4%EF%BC%9Aperlin-noise/">RTTNW-ch4：Perlin Noise</a>
+      <a class="post-title-link" href="/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/">Unity标准Shader之四大渲染模式</a>
     </h3>
   
 
@@ -186,22 +186,395 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        柏林噪声由Ken Perlin发明，很多人使用柏林噪音来获得一个比较酷的纹理效果。 Perlin纹理不会像这样返回白噪声： [
+        一.四大渲染模式
+1.Opaque（不透明） 作用：用于渲染所有不透明的物体，这类物体在场景中是最多的。60%的使用比例。 演示：渲染一个红色的Cylinder。 创建一个Opaque模式的材质球拖到物体身上，调节Albedo颜色：  2.Cutout（镂空） 作用：用于渲染有镂空的物体，这类物体在场景中并不太多。5%的使用比例。 例如：一块破布上面有几个洞，一张残缺不全的纸。 演示：渲染一...
+    
+
+        <a href="/2017/11/29/%E6%A0%87%E5%87%86shader%E4%B9%8B%E5%9B%9B%E5%A4%A7%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-PBR-GI%E6%B8%B2%E6%9F%93/" rel="tag">Unity_PBR/GI渲染</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-unity天空盒与内置shader基础"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-29 00:09:13" datetime="2017-11-28T16:09:13.000Z"  itemprop="datePublished">2017-11-29</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/29/unity%E5%A4%A9%E7%A9%BA%E7%9B%92%E4%B8%8E%E5%86%85%E7%BD%AEshader%E5%9F%BA%E7%A1%80/">Unity天空盒与内置Shader基础</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.颜色空间
+1.两种颜色空间 Gamma 空间：移动端，页游，HoloLens，性能比较低的硬件设备。 Linear 空间：PC 端，主机端。 Unity 默认的颜色空间（Color Space）设置选项是选择为Gamma，但是如果我们使用PBR 渲染流程（标准着色器）就必须将颜色空间修改为Linear。 2.修改颜色空间 Edit –&gt; Project Settings –&gt;...
+    
+
+        <a href="/2017/11/29/unity%E5%A4%A9%E7%A9%BA%E7%9B%92%E4%B8%8E%E5%86%85%E7%BD%AEshader%E5%9F%BA%E7%A1%80/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity-PBR-GI%E6%B8%B2%E6%9F%93/" rel="tag">Unity_PBR/GI渲染</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-ugui之表格布局组件grid-layout-group"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-28 20:45:25" datetime="2017-11-28T12:45:25.000Z"  itemprop="datePublished">2017-11-28</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/28/ugui%E4%B9%8B%E8%A1%A8%E6%A0%BC%E5%B8%83%E5%B1%80%E7%BB%84%E4%BB%B6grid-layout-group/">UGUI之表格布局组件Grid Layout Group</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.Grid Layout Group 组件
+Grid Layout Group：表格(网格)布局组件，可以让数据按表格的形式排列。 Cell Size：子物体尺寸； Spacing：子物体之间的间距； Start Corner：子物体开始的角度位置； Start Axis：子物体开始的轴向； Child Alignment：子物体对其方式； Constraint：约束方式，灵活–灵活列数–...
+    
+
+        <a href="/2017/11/28/ugui%E4%B9%8B%E8%A1%A8%E6%A0%BC%E5%B8%83%E5%B1%80%E7%BB%84%E4%BB%B6grid-layout-group/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-ugui之ui组件canvasscaler画布定位"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-28 18:24:59" datetime="2017-11-28T10:24:59.000Z"  itemprop="datePublished">2017-11-28</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/28/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6canvasscaler%E7%94%BB%E5%B8%83%E5%AE%9A%E4%BD%8D/">UGUI之UI组件CanvasScaler画布定位</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.Canvas Scaler 组件介绍
+在Unity 项目开发过程中，对于UI 界面有一个很关键的技术，叫做“屏幕自适应”，就是说我们的游戏UI要能自动适配不同的屏幕比例和屏幕尺寸。 在UGUI 中用于实现“屏幕自适应”需要用到两个组件： ①AnChors [锚点] ②Canvas Scaler [画布定位器] 这两个组件配合使用，才能相对完美的实现UI 屏幕自适应的开发需求。 Canva...
+    
+
+        <a href="/2017/11/28/ugui%E4%B9%8Bui%E7%BB%84%E4%BB%B6canvasscaler%E7%94%BB%E5%B8%83%E5%AE%9A%E4%BD%8D/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-ugui之ui-组件canvas-画布"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-28 17:08:25" datetime="2017-11-28T09:08:25.000Z"  itemprop="datePublished">2017-11-28</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/28/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6canvas-%E7%94%BB%E5%B8%83/">UGUI之UI组件Canvas画布</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.Canvas 组件介绍
+Canvas 组件的用途是用于UGUI 系统内的UI 游戏物体的渲染。 如果没有该组件，所有的UGUI 游戏物体都将无法显示。 而Canvas 组件本身又分为三种渲染模式： ①Screen Space - Overlay ②Screen Space - Camera ③World Space 这三种渲染模式分别用于不同的渲染需求，Canvas 组件上其余的属性都是...
+    
+
+        <a href="/2017/11/28/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6canvas-%E7%94%BB%E5%B8%83/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-ugui之ui-组件scrollrect-卷动区域"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-28 15:19:28" datetime="2017-11-28T07:19:28.000Z"  itemprop="datePublished">2017-11-28</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/28/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6scrollrect-%E5%8D%B7%E5%8A%A8%E5%8C%BA%E5%9F%9F/">UGUI之UI组件ScrollRect卷动区域</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.ScrollRect 组件介绍
+1.ScrollRect：卷动区域。 “卷动区域”是在ScrollBar 的基础之上延伸出来的UI 界面效果。 单独是ScrollBar 组件是无意义的，需要结合ScrollRect 才能真正实现功能。 2.ScrollRect 组成部分分析 ScrollRect Image [核心组件，背景图片] |—Mask Image [遮罩，用于遮罩的图片] |—...
+    
+
+        <a href="/2017/11/28/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6scrollrect-%E5%8D%B7%E5%8A%A8%E5%8C%BA%E5%9F%9F/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-ugui之ui-组件inputfield-输入栏"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-28 01:52:55" datetime="2017-11-27T17:52:55.000Z"  itemprop="datePublished">2017-11-28</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/28/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6inputfield-%E8%BE%93%E5%85%A5%E6%A0%8F/">UGUI之UI组件InputField输入栏</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.InputField 组件介绍
+1.InputField：输入栏，输入框。 输入栏的主要用途是接收用户输入的单行数据，常见于输入用户名，密码。 2.InputField 组成部分分析 InputField Image [整体控制组件，背景图片] |—Text [提示文本] |—Text [接收用户输入的文本] [
+                
+                    ...
+    
+
+        <a href="/2017/11/28/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6inputfield-%E8%BE%93%E5%85%A5%E6%A0%8F/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-ugui之ui-组件scrollbar-卷动条"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-27 16:34:06" datetime="2017-11-27T08:34:06.000Z"  itemprop="datePublished">2017-11-27</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/27/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6scrollbar-%E5%8D%B7%E5%8A%A8%E6%9D%A1/">UGUI之UI组件Scrollbar卷动条</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.Scrollbar 介绍
+Scrollbar：卷动条。浏览器最右边竖向的下滑条就是卷动条的例子。  
+二.Scrollbar 组成部分分析
+Scrollbar Image [整体功能控制+ 背景图片显示] |—空物体[控制子物体活动范围] |—Image [滑块图片] [
                 
                     
-                    
+                    ...
+    
+
+        <a href="/2017/11/27/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6scrollbar-%E5%8D%B7%E5%8A%A8%E6%9D%A1/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-ugui之ui-组件slider-滑块"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-25 23:49:59" datetime="2017-11-25T15:49:59.000Z"  itemprop="datePublished">2017-11-25</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/25/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6slider-%E6%BB%91%E5%9D%97/">UGUI之UI组件Slider滑块</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.Slider 组成
+  1.Slider：滑块 Slider 一般是由两部分组成：滑块，滑动条。 2.Slider 组件[核心控制组件] |—Image 组件[Slider 的背景图片] |—空物体[用于控制填充图片的活动范围] |—Image 组件[填充图片] |—空物体[用于控制滑块图片的活动范围] |—Image 组件[滑块图片] [
                 
-                ](http://www.wjgbaby.com/wp-content/uploa...
+      ...
     
 
-        <a href="/2018/07/02/rttnw-ch4%EF%BC%9Aperlin-noise/" class="post-more waves-effect waves-button">
+        <a href="/2017/11/25/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6slider-%E6%BB%91%E5%9D%97/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
 
     </div>
     
@@ -210,11 +583,11 @@
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-rttnw-ch3：solid-textures"
+            <article id="post-ugui之ui-组件toggle-复选框"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-07-01 23:44:21" datetime="2018-07-01T15:44:21.000Z"  itemprop="datePublished">2018-07-01</time>
+        <time class="post-time" title="2017-11-25 16:36:22" datetime="2017-11-25T08:36:22.000Z"  itemprop="datePublished">2017-11-25</time>
 
         
 
@@ -226,7 +599,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/07/01/rttnw-ch3%EF%BC%9Asolid-textures/">RTTNW-ch3：Solid Textures</a>
+      <a class="post-title-link" href="/2017/11/25/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6toggle-%E5%A4%8D%E9%80%89%E6%A1%86/">UGUI之UI组件Toggle复选框</a>
     </h3>
   
 
@@ -236,390 +609,21 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        图形中的纹理通常表示在表面上生成颜色的函数，我们将首先使所有颜色成为一种纹理。
-class texture  {    public:        virtual vec3 value(float u, float v, const vec3&amp; p) const = 0;};
-class constant_texture : public texture {    public: ...
-    
-
-        <a href="/2018/07/01/rttnw-ch3%EF%BC%9Asolid-textures/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-rttnw-ch2：bounding-volume-hierarchies"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-06-29 02:21:55" datetime="2018-06-28T18:21:55.000Z"  itemprop="datePublished">2018-06-29</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/06/29/rttnw-ch2%EF%BC%9Abounding-volume-hierarchies/">RTTNW-ch2：Bounding Volume Hierarchies</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        这部分是迄今为止我们正在研究的光线追踪器中最困难的部分。 我们的光线与物体相交点是光线追踪器的主要时间瓶颈，时间是与物体的数量呈线性关系。但它是对同一个模型的重复搜索，所以我们可以使用二分搜索进行对数查找。 两个最常见的排序方法是划分空间和划分对象。后者通常是编码起来更容易，而且大多数模型的运行速度都很快。 关键在于在找到一个边界体积包围所有物体。
-if (ray hits bounding...
-    
-
-        <a href="/2018/06/29/rttnw-ch2%EF%BC%9Abounding-volume-hierarchies/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-3d数学常用的矩阵公式总结"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-06-13 14:03:09" datetime="2018-06-13T06:03:09.000Z"  itemprop="datePublished">2018-06-13</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/">3D数学常用的矩阵公式总结</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        这篇文章主要是一些矩阵[latex]\begin{bmatrix} matrix \end{bmatrix}[/latex]公式的总结，为了书写这些麻烦的公式，我去学习了LaTex的一些使用技巧，看上去效果还不错。 由于使用了LaTex语法，LaTex代码在MathJax的JS脚本渲染后，所显示的数学公式在电脑上兼容性很好，但在一些手机浏览器上兼容性不好。在手机上无法自适应页面，一些较长的公...
-    
-
-        <a href="/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-Math/" rel="tag">3D Math</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-c函数中形参传递方式的差别"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-06-10 00:14:25" datetime="2018-06-09T16:14:25.000Z"  itemprop="datePublished">2018-06-10</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/06/10/c%E5%87%BD%E6%95%B0%E4%B8%AD%E5%BD%A2%E5%8F%82%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%88%AB/">C函数中形参传递方式的差别</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        C函数中的形式参数可以是基本类型变量名，构造类型变量名和指针类型变量名。对于不同的形式参数，其传递参数的方式不同，总体来说分成两种：按值传递和按地址传递。 当形参是基本类型变量名时，采用按值传递方式；当形参是指针类型变量名或者构造类型变量名时，采用按地址传递方式。 下面通过两个相似的程序说明二者的区别：
-//程序一：按地址传递参数#include &lt;stdio.h&gt;swap(in...
-    
-
-        <a href="/2018/06/10/c%E5%87%BD%E6%95%B0%E4%B8%AD%E5%BD%A2%E5%8F%82%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%88%AB/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-linux-0-11实验一：操作系统的引导"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-31 17:08:52" datetime="2018-05-31T09:08:52.000Z"  itemprop="datePublished">2018-05-31</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/31/linux-0-11%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%95%E5%AF%BC/">Linux 0.11实验二：操作系统的引导</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        实验目的熟悉hit-oslab实验环境； 建立对操作系统引导过程的深入认识； 掌握操作系统的基本开发过程； 能对操作系统代码进行简单的控制，揭开操作系统的神秘面纱
-实验内容此次实验的基本内容是： 阅读《Linux内核完全注释》的第6章，对计算机和Linux 0.11的引导过程进行初步的了解； 按照下面的要求改写0.11的引导程序bootsect.s 有兴趣同学可以做做进入保护模式前的设置程序...
-    
-
-        <a href="/2018/05/31/linux-0-11%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%95%E5%AF%BC/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-rttnw-ch01：motion-blur"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-30 19:02:43" datetime="2018-05-30T11:02:43.000Z"  itemprop="datePublished">2018-05-30</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/">RTTNW-ch1：Motion Blur</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Peter Shirley有三本光线追踪的书： 《Ray Tracing In The Weekend》：用两天学光线追踪 《Ray Tracing The Next Week》：用一周学光线追踪 《Ray Tracing The Rest Of Your Life》：用余生学光线追踪   接下来的一系列笔记是第二本书，这篇讲动态模糊。   在现实生活中，我们拍照时相机会打开一段时间，在其期...
-    
-
-        <a href="/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-rtiow-ch12：where-next"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-21 22:55:38" datetime="2018-05-21T14:55:38.000Z"  itemprop="datePublished">2018-05-21</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/21/rtiow-ch12%EF%BC%9Awhere-next/">RTIOW-ch12：Where next</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        制作书籍的封面图： cpp:
-#include #include #include #include “sphere.h”#include “hitable_list.h”#include “camera.h”#include “material.h”
-using namespace std;
-//获得反射射线vec3 RandomInUnitsphere(){    vec3 p;    ...
-    
-
-        <a href="/2018/05/21/rtiow-ch12%EF%BC%9Awhere-next/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-rtiow-ch11：defocus-blur"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-19 00:51:17" datetime="2018-05-18T16:51:17.000Z"  itemprop="datePublished">2018-05-19</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/19/rtiow-ch11%EF%BC%9Adefocus-blur/">RTIOW-ch11：Defocus Blur</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        散焦模糊”在摄影上又称“景深”。 在现实的相机中，我们需要做“散焦模糊”的原因是：我们需要一个更大的孔来收集光线增加图片的亮度（而不是“针孔”）。我们称“更大的孔”为“光圈”。 光圈的增大，导致图片出现散焦而模糊。 但是我们可以调节成像的位置，改变图片的清晰度，使图片在当前光圈条件下尽可能清晰。 所以，接下来，我们会引入两个参数：aperture（光圈）和focus_dist（成像位置）。 ...
-    
-
-        <a href="/2018/05/19/rtiow-ch11%EF%BC%9Adefocus-blur/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-rtiow-ch10：positionable-camera"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-17 21:08:49" datetime="2018-05-17T13:08:49.000Z"  itemprop="datePublished">2018-05-17</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/17/rtiow-ch10%EF%BC%9Apositionable-camera/">RTIOW-ch10：Positionable camera</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        我们的相机之前一直都是固定死的，这次让我们来做些改变，让我们使用一个可调整的视野（fov）。 先看一下我们之前是如何设置camera的：[
+        一.Toggle 组件介绍
+1.Toggle：切换键，复选框。[简单演示] 2.Toggle 组成部分分析 Toggle 组件[核心组件，用于控制整个UI 游戏物体] |—Image 组件[背景图片] |     |—Image 组件[复选标记，只要当选中时，该图片才会显示] |—Text 组件[功能文字描述] [
                 
                     
-                    
-                
-                ](http://www.wjgbaby.com/wp-content...
+...
     
 
-        <a href="/2018/05/17/rtiow-ch10%EF%BC%9Apositionable-camera/" class="post-more waves-effect waves-button">
+        <a href="/2017/11/25/ugui%E4%B9%8Bui-%E7%BB%84%E4%BB%B6toggle-%E5%A4%8D%E9%80%89%E6%A1%86/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UGUI/" rel="tag">UGUI</a></li></ul>
 
     </div>
     
@@ -632,7 +636,7 @@ using namespace std;
     
 <nav id="page-nav">
     <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/10/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/12/">下一页</a>
     </div>
 </nav>
 
@@ -676,7 +680,7 @@ using namespace std;
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/page/11/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -686,22 +690,22 @@ using namespace std;
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/&title=Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/page/11/&title=Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/page/11/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/page/11/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/page/11/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -712,7 +716,7 @@ using namespace std;
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/page/11/" alt="微信分享二维码">
 </div>
 
 

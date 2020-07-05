@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>RTIOW-ch7：Diffuse Materials | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Ray Tracing">
+    <meta name="description" content="现在我们每个像素都有对象和多条光线，我们可以做出一些逼真的外观材质。我们将从漫反射（无光泽）材质开始。 不发光的漫反射物体仅仅呈现周围的颜色，从漫反射表面反射的光有其随机的方向。现实生活中，我们经常接触到一些看起来暗淡粗糙的物体，他们之所以显得不那么光鲜，是因为当光线照射到他们之上时，其凹凸不平的表面令光线缺乏统一的反射方向。所以，如果我们发送三条光线进入两​​个漫射之间的裂缝表面他们将有不同的随">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RTIOW-ch7：Diffuse Materials">
+<meta property="og:url" content="http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="现在我们每个像素都有对象和多条光线，我们可以做出一些逼真的外观材质。我们将从漫反射（无光泽）材质开始。 不发光的漫反射物体仅仅呈现周围的颜色，从漫反射表面反射的光有其随机的方向。现实生活中，我们经常接触到一些看起来暗淡粗糙的物体，他们之所以显得不那么光鲜，是因为当光线照射到他们之上时，其凹凸不平的表面令光线缺乏统一的反射方向。所以，如果我们发送三条光线进入两​​个漫射之间的裂缝表面他们将有不同的随">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18051605.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18051606.jpg">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18051607.jpg">
+<meta property="article:published_time" content="2018-05-16T10:55:19.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.316Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="Ray Tracing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18051605.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">RTIOW-ch7：Diffuse Materials</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">RTIOW-ch7：Diffuse Materials</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-16T10:55:19.000Z" itemprop="datePublished" class="page-time">
+  2018-05-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-triow-ch7：diffuse-materials"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">RTIOW-ch7：Diffuse Materials</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-16 18:55:19" datetime="2018-05-16T10:55:19.000Z"  itemprop="datePublished">2018-05-16</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>现在我们每个像素都有对象和多条光线，我们可以做出一些逼真的外观材质。我们将从漫反射（无光泽）材质开始。 不发光的漫反射物体仅仅呈现周围的颜色，从漫反射表面反射的光有其随机的方向。现实生活中，我们经常接触到一些看起来暗淡粗糙的物体，他们之所以显得不那么光鲜，是因为当光线照射到他们之上时，其凹凸不平的表面令光线缺乏统一的反射方向。所以，如果我们发送三条光线进入两​​个漫射之间的裂缝表面他们将有不同的随机行为： [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18051605.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18051604.png)](http://www.wjgbaby.com/wp-content/uploads/2018/05/18051604.png) 某些光线也可能被吸收而不是被反射。表面越黑暗，越有可能吸收，这就是为什么它是黑暗的原因。 法向量N，撞点p，随机点s。从与击中点相切的单位半径球体中选取一个随机点s，并发送一个从命中点p到随机点s的射线，这条射线就是我们反射出去的射线。[![](http://www.wjgbaby.com/wp-content/uploads/2018/05/18051605.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18051604.png)](http://www.wjgbaby.com/wp-content/uploads/2018/05/18051604.png) 某些光线也可能被吸收而不是被反射。表面越黑暗，越有可能吸收，这就是为什么它是黑暗的原因。 法向量N，撞点p，随机点s。从与击中点相切的单位半径球体中选取一个随机点s，并发送一个从命中点p到随机点s的射线，这条射线就是我们反射出去的射线。[![](http://www.wjgbaby.com/wp-content/uploads/2018/05/18051605.png)</div>
+            </figure> cpp:</p>
+<p>#include <iostream><br>#include <fstream><br>#include <random><br>#include “sphere.h”<br>#include “hitable_list.h”<br>#include “camera.h”</p>
+<p>using namespace std;</p>
+<p>//获得反射射线<br>vec3 RandomInUnitSphere()<br>{<br>    vec3 p;<br>    do<br>    {<br>        p = 2.0f * vec3((rand() % 100 / float(100)), (rand() % 100 / float(100)), (rand() % 100 / float(100))) - vec3(1.0f, 1.0f, 1.0f);<br>    } while (dot(p, p) &gt;= 1.0f);</p>
+<pre><code>return p;</code></pre><p>}</p>
+<p>vec3 Color(const ray&amp; r, hitable* world)<br>{<br>    hit_record rec;<br>    if (world-&gt;hit(r, 0.0, FLT_MAX, rec))<br>    {<br>        vec3 target = rec.p + rec.normal + RandomInUnitSphere();<br>        //递归，每次吸收50%的能量<br>        return 0.5f * Color(ray(rec.p, target - rec.p), world);<br>    }<br>    else<br>    {<br>        vec3 unit_direction = unit_vector(r.direction());<br>        float t = 0.5f * (unit_direction.y() + 1.0f);<br>        //线性混合，t=1时蓝色，t=0时白色，t介于中间时是混合颜色<br>        //blended_value = (1-t)*start_value + t*end_value<br>        return (1.0f - t) * vec3(1.0f, 1.0f, 1.0f) + t * vec3(0.5f, 0.7f, 1.0f);<br>    }<br>}</p>
+<p>int main()<br>{<br>    ofstream outfile;<br>    outfile.open(“IMG01.ppm”);</p>
+<pre><code>int nx = 800;
+int ny = 400;
+//采样次数
+int ns = 100;
+outfile &lt;&lt; &quot;P3\\n&quot; &lt;&lt; nx &lt;&lt; &quot; &quot; &lt;&lt; ny &lt;&lt; &quot;\\n255\\n&quot;;
+
+hitable\* list\[2\];
+list\[0\] = new sphere(vec3(0.0f, 0.0f, -1.0f), 0.5f);
+list\[1\] = new sphere(vec3(0.0f, -100.5f, -1.0f), 100.0f);
+hitable\* world = new hitable\_list(list, 2);
+
+camera cam;
+
+//随机数，每个像素点的区域是以像素中心点为中心向外距离为1的范围
+default\_random\_engine reng;
+uniform\_real\_distribution&lt;float&gt; uni\_dist(0.0f, 1.0f);
+
+for (int j = ny - 1; j &gt;= 0; j--)
+{
+    for (int i = 0; i &lt; nx; i++)
+    {
+        vec3 col(0.0f, 0.0f, 0.0f);
+        //每个区域采样ns次
+        for (int s = 0; s &lt; ns; s++)
+        {
+            float u = float(i + uni\_dist(reng)) / float(nx);
+            float v = float(j + uni\_dist(reng)) / float(ny);
+            ray r = cam.getray(u, v);
+            //vec3 p = r.point\_at\_parameter(2.0);
+            //将本区域（(u,v)到(u+1,v+1)）的颜色值累加
+            col += Color(r, world);
+        }
+        //获得区域的颜色均值
+        col /= float(ns);
+        //gamma矫正
+        col = vec3(sqrt(col\[0\]), sqrt(col\[1\]), sqrt(col\[2\]));
+        int ir = int(255.99 \* col\[0\]);
+        int ig = int(255.99 \* col\[1\]);
+        int ib = int(255.99 \* col\[2\]);
+        outfile &lt;&lt; ir &lt;&lt; &quot; &quot; &lt;&lt; ig &lt;&lt; &quot; &quot; &lt;&lt; ib &lt;&lt; &quot;\\n&quot;;
+    }
+}
+outfile.close();
+return 0;</code></pre><p>}</p>
+<p>最终效果： [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18051606.jpg" alt="](http://www.wjgbaby.com/wp-content/uploads/2018/05/18051606.jpg)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2018/05/18051606.jpg)</div>
+            </figure>   gamma矫正：</p>
+<p>//获得区域的颜色均值<br>col /= float(ns);<br>//gamma矫正<br>col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));<br>int ir = int(255.99 * col[0]);<br>int ig = int(255.99 * col[1]);<br>int ib = int(255.99 * col[2]);<br>outfile &lt;&lt; ir &lt;&lt; “ “ &lt;&lt; ig &lt;&lt; “ “ &lt;&lt; ib &lt;&lt; “\n”;</p>
+<p>未gamma矫正的效果如下：   <a href="http://www.wjgbaby.com/wp-content/uploads/2018/05/18051607.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18051607.jpg" alt=""></a> 注意球体下的阴影。这张照片非常黑暗，但我们的球体只每次反弹吸收一半的能量，所以它们是50％的反射，这些阴影本应该是浅灰色的。作者的观点： To a first approximation, we can use “gamma 2” which means raising the color to the power 1/gamma, or in our simple case ½, which is just square-root。 第一个近似值，我们可以使用“gamma 2”，这意味着增加颜色的作用1/gamma，或者在我们的简单些情况里，这仅仅是平方根。   参考书籍：《Ray Tracing in One Weekend》 RTIOW系列项目地址：<a href="https://github.com/WJGwjg/Ray-Tracing-In-One-Weekend" target="_blank" rel="noopener">GitHub</a> RTIOW系列笔记： <a href="http://www.wjgbaby.com/2018/05/13/%E3%80%8Aray-tracing-in-one-weekend%E3%80%8Bch1%EF%BC%9Aoutput-an-image/" target="_blank" rel="noopener">RTIOW-ch1：Output an image</a> <a href="http://www.wjgbaby.com/2018/05/13/rtiow-ch2%EF%BC%9Athe-vec3-class/" target="_blank" rel="noopener">RTIOW-ch2：The vec3 class</a> <a href="http://www.wjgbaby.com/2018/05/14/rtiow-rays-a-simple-camera-and-background/" target="_blank" rel="noopener">RTIOW-ch3：Rays, a simple camera, and background</a> <a href="http://www.wjgbaby.com/2018/05/14/1225/" target="_blank" rel="noopener">RTIOW-ch4：Adding a sphere</a> <a href="http://www.wjgbaby.com/2018/05/15/rtiow-ch5%EF%BC%9Asurface-normals-and-multiple-objects/" target="_blank" rel="noopener">RTIOW-ch5：Surface normals and multiple objects</a> <a href="http://www.wjgbaby.com/2018/05/16/rtiow-ch6%EF%BC%9Aantialiasing/" target="_blank" rel="noopener">RTIOW-ch6：Antialiasing</a> <a href="http://www.wjgbaby.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/" target="_blank" rel="noopener">RTIOW-ch7：Diffuse Materials</a> <a href="http://www.wjgbaby.com/2018/05/17/rtiow-ch8%EF%BC%9Ametal/" target="_blank" rel="noopener">RTIOW-ch8：Metal</a> <a href="http://www.wjgbaby.com/2018/05/17/rtiow-ch9%EF%BC%9Adielectrics/" target="_blank" rel="noopener">RTIOW-ch9：Dielectrics</a> <a href="http://www.wjgbaby.com/2018/05/17/rtiow-ch10%EF%BC%9Apositionable-camera/" target="_blank" rel="noopener">RTIOW-ch10：Positionable camera</a> <a href="http://www.wjgbaby.com/2018/05/19/rtiow-ch11%EF%BC%9Adefocus-blur/" target="_blank" rel="noopener">RTIOW-ch11：Defocus Blur</a> <a href="http://www.wjgbaby.com/2018/05/21/rtiow-ch12%EF%BC%9Awhere-next/" target="_blank" rel="noopener">RTIOW-ch12：Where next</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.316Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/" target="_blank" rel="external">http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/&title=《RTIOW-ch7：Diffuse Materials》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/&title=《RTIOW-ch7：Diffuse Materials》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RTIOW-ch7：Diffuse Materials》 — Hexo&url=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/17/rtiow-ch8%EF%BC%9Ametal/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">RTIOW-ch8：Metal</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/05/16/rtiow-ch6%EF%BC%9Aantialiasing/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RTIOW-ch6：Antialiasing</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/&title=《RTIOW-ch7：Diffuse Materials》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/&title=《RTIOW-ch7：Diffuse Materials》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RTIOW-ch7：Diffuse Materials》 — Hexo&url=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/05/16/triow-ch7%EF%BC%9Adiffuse-materials/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

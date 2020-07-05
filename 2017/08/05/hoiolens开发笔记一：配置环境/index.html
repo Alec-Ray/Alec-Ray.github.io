@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>HoIoLens开发笔记一：配置环境 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="AR-VR-MR">
+    <meta name="description" content="微软黑科技HoIoLens终于在国内开卖了，个人开发者版本23000RMB,商业版本三万多吧。高昂的售价给开发者带来了不小的难度，但是微软出了一个模拟器可以让我们不需要物理设备来测试我们的Demo，实际开发中还是在物理设备上测试是最好的。   HoIoLens的开发环境配置要求比较多： 1.首先你的电脑系统必须是64win10，而且不能是家庭版，因为家庭版不支持Hyper-V，所以我建议去装个wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HoIoLens开发笔记一：配置环境">
+<meta property="og:url" content="http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="微软黑科技HoIoLens终于在国内开卖了，个人开发者版本23000RMB,商业版本三万多吧。高昂的售价给开发者带来了不小的难度，但是微软出了一个模拟器可以让我们不需要物理设备来测试我们的Demo，实际开发中还是在物理设备上测试是最好的。   HoIoLens的开发环境配置要求比较多： 1.首先你的电脑系统必须是64win10，而且不能是家庭版，因为家庭版不支持Hyper-V，所以我建议去装个wi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080509-300x244.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080512-239x300.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080511-300x148.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080510-274x300.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080513-300x107.jpg">
+<meta property="article:published_time" content="2017-08-05T09:01:04.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:50.894Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="AR-VR-MR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080509-300x244.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HoIoLens开发笔记一：配置环境</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HoIoLens开发笔记一：配置环境</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-05T09:01:04.000Z" itemprop="datePublished" class="page-time">
+  2017-08-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-hoiolens开发笔记一：配置环境"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HoIoLens开发笔记一：配置环境</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-05 17:01:04" datetime="2017-08-05T09:01:04.000Z"  itemprop="datePublished">2017-08-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>微软黑科技HoIoLens终于在国内开卖了，个人开发者版本23000RMB,商业版本三万多吧。高昂的售价给开发者带来了不小的难度，但是微软出了一个模拟器可以让我们不需要物理设备来测试我们的Demo，实际开发中还是在物理设备上测试是最好的。   HoIoLens的开发环境配置要求比较多： 1.首先你的电脑系统必须是64win10，而且不能是家庭版，因为家庭版不支持Hyper-V，所以我建议去装个win10专业版再深入研究，因为这是第一步。<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080509.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080509-300x244.png" alt=""></a> 2，你电脑至少需要8G内存，如果少于8G会导致项目运行失败，我8G的内存每次测试都能飙到百分之八九十。 2.你的vs版本必须是Visual Studio 2015 Update 2之后的版本，建议安装Visual Studio 2015 Update 3.   看了上面的几个条件，是不是想放弃，因为你很可能都不满足，没关系，花10分钟重装个系统吧，下面开始实际操作： 注意：需要按步骤一步一步来 1.安装Visual Studio 2015 Update 3 <a href="http://blog.csdn.net/wuyb_2004/article/details/51992038" target="_blank" rel="noopener">http://blog.csdn.net/wuyb_2004/article/details/51992038</a> 可以选择社区版或企业版, 需要注意的是安装的时候一定要勾选Tools (1.4) and Windows 10 SDK (10.0.10586)，如果不装的话，那么接下来HoloLens Emulator将会装不了<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080512.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080512-239x300.png" alt=""></a> 2.开启Hyper-V 打开控制面板，选择程序，点击启用或关闭windows功能<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080511.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080511-300x148.png" alt=""></a> 勾选Hyper-v这个选项，然后电脑应该会提示需要重启<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080510.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080510-274x300.png" alt=""></a>3.BIOS中设置开启： Hardware-assisted virtualization Second Level Address Translation (SLAT) Hardware-based Data Execution Prevention (DEP) 如果没开启就开启，如果说你实在找不到前三项中的某一个，可以先不管，继续下一步，后期出错了可以再检查bios。 这一步是必须的，找到Security，启用Intel (R) Virtualization Technology，保存退出。<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080513.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080513-300x107.jpg" alt=""></a> 4.安装HoloLens Emulator <a href="http://go.microsoft.com/fwlink/?LinkID=823018" target="_blank" rel="noopener">http://go.microsoft.com/fwlink/?LinkID=823018</a> 大小在1G左右，直接安装到默认目录即可，避免VS找不到 5。下载Unity，建议下载Unity5.6，5.5版本也可以。 <a href="https://unity3d.com/cn/get-unity/download/archive?_ga=2.103143812.581686941.1501922750-85097662.1496740748" target="_blank" rel="noopener">https://unity3d.com/cn/get-unity/download/archive?_ga=2.103143812.581686941.1501922750-85097662.1496740748</a> Unity2017版本刚出来，我也不清楚怎么样，微软跟Unity的蜜月期应该不会这么短暂吧 6.配置环境已经完成了，实践是检验真理的唯一标准，后面几篇文章讲实践。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:50.894Z" itemprop="dateUpdated">2020-07-05 16:56:50</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" target="_blank" rel="external">http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AR-VR-MR/" rel="tag">AR-VR-MR</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/&title=《HoIoLens开发笔记一：配置环境》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/&title=《HoIoLens开发笔记一：配置环境》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HoIoLens开发笔记一：配置环境》 — Hexo&url=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/06/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%85%A8%E6%81%AF%E5%BA%94%E7%94%A8/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">HoIoLens开发笔记二：实现全息应用</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/05/ar%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8sdk%E6%8E%A8%E8%8D%90/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">AR开发常用SDK推荐</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/&title=《HoIoLens开发笔记一：配置环境》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/&title=《HoIoLens开发笔记一：配置环境》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HoIoLens开发笔记一：配置环境》 — Hexo&url=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2017/08/05/hoiolens%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

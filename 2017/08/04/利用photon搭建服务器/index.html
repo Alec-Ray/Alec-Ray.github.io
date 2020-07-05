@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>利用Photon搭建服务器 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Unity3D,Photon">
+    <meta name="description" content="首先从photon官网下载sdk，下载后直接解压有四个文件： deploy：存放photon的服务器控制程序和服务端Demo，也是我们使用次数最多的文件夹 doc：官方文档 lib：Photon类库，服务端需要引用 src-server：服务端Demo源代码 创建一个简单的服务端： 1.从vs新建一个类库，命名为ChatRoom，进去后把类名修改为MyServer，然后新建一个名叫MyClient">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Photon搭建服务器">
+<meta property="og:url" content="http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首先从photon官网下载sdk，下载后直接解压有四个文件： deploy：存放photon的服务器控制程序和服务端Demo，也是我们使用次数最多的文件夹 doc：官方文档 lib：Photon类库，服务端需要引用 src-server：服务端Demo源代码 创建一个简单的服务端： 1.从vs新建一个类库，命名为ChatRoom，进去后把类名修改为MyServer，然后新建一个名叫MyClient">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080421-300x161.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080422-300x84.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080423-300x82.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080424-300x255.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080425-199x300.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080426-300x67.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080427-300x106.png">
+<meta property="article:published_time" content="2017-08-04T06:07:53.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:50.863Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="Unity3D">
+<meta property="article:tag" content="Photon">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080421-300x161.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">利用Photon搭建服务器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">利用Photon搭建服务器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-04T06:07:53.000Z" itemprop="datePublished" class="page-time">
+  2017-08-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-利用photon搭建服务器"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">利用Photon搭建服务器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-04 14:07:53" datetime="2017-08-04T06:07:53.000Z"  itemprop="datePublished">2017-08-04</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>首先从photon官网下载sdk，下载后直接解压有四个文件： deploy：存放photon的服务器控制程序和服务端Demo，也是我们使用次数最多的文件夹 doc：官方文档 lib：Photon类库，服务端需要引用 src-server：服务端Demo源代码 创建一个简单的服务端： 1.从vs新建一个类库，命名为ChatRoom，进去后把类名修改为MyServer，然后新建一个名叫MyClient的类。 2.点击项目名称下的引用，然后点击浏览，选择你photon解压的文件夹下的lib文件夹里面的一下dll：<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080421.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080421-300x161.png" alt=""></a> 3.给MyServer实现ApplicationBase接口，点击显示可能的修补程序<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080422.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080422-300x84.png" alt=""></a> 选择第一项：<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080423.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080423-300x82.png" alt=""></a> 实现抽象类：<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080424.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080424-300x255.png" alt=""></a> <a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080425.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080425-199x300.png" alt=""></a> 4.接下来回到MyClient中，添加接口ClientPee<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080426.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080426-300x67.png" alt=""></a>   生成构造函数并实现抽象类：<a href="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080427.png" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2017/08/17080427-300x106.png" alt=""></a> MyServer和MyClient两个类连接：</p>
+<p>protected override PeerBase CreatePeer(InitRequest initRequest)<br>        {</p>
+<pre><code>        return new MyClient(initRequest);
+    }
+
+5.复制以下代码到MyServer中，并在Setup()中调用</code></pre><p>  /// <summary><br>        /// 产生一个log文件，存放我们的log<br>        /// </summary><br>        protected virtual void InitLogging()<br>        {<br>            ExitGames.Logging.LogManager.SetLoggerFactory(Log4NetLoggerFactory.Instance);<br>            GlobalContext.Properties[“Photon:ApplicationLogPath”] = Path.Combine(this.ApplicationRootPath, “log”);<br>            GlobalContext.Properties[“LogFileName”] = “wjg” + this.ApplicationName;<br>            XmlConfigurator.ConfigureAndWatch(new FileInfo(Path.Combine(this.BinaryPath, “log4net.config”)));<br>        }</p>
+<pre><code>6.日志配置文件： 打开src-server\\Loadbalancing\\LoadBalancing文件夹，把log4net.config文件拖到我们的ChatRoom项目中，文件属性设置为始终复制[{% image http://www.wjgbaby.com/wp-content/uploads/2017/08/17080433.png '](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080428-300x235.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080428.png) 7.打开log4net，以下节点暂时用不到，可以删除[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080429-300x153.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080429.png) 8.在deploy新建文件夹ChatRoom，在ChatRoom新建文件夹bin，回到项目中，点击属性-->生成-->输出路径，将输出路径设置为我们新建的bin文件夹，然后生成解决方案。 9.打开deploy\\bin\_Win64下的PhotonServer.config。 复制<LoadBalancing </LoadBalancing>所有的东西粘贴到倒数第二行，也就是</Configuration>上面一行 修改LoadBalancing为ChatServer，除了首尾修改，还需修改DisplayName[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080430-300x114.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080430.png) 其他的Application可以删掉，我们用不到，复制一下作如下修改：[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080431-300x152.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080431.png) Name：服务器名称 BaseDirectory:设置的是deploy目录为基础设置，这里服务端程序文件夹在deploy里的TestPhotonServer Assembly:Application入口程序所在的namespace Type:入口类的完整限定性名称 ForceAutoRestart:强制重启 WatchFiles:调用的文件后缀，dll和config ExcludeFiles:一般是日志配置文件 给OverrideApplication改名字：[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080432-300x227.png)](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080432.png) 10.现在启动win64下的PhotonControl程序，点击可以看到ChatServer，选择start as application，服务器启动，打开日志，出现Service is running就表示我们的服务器已经正常启动了。[![](http://www.wjgbaby.com/wp-content/uploads/2017/08/17080433-300x99.png)' '' %}</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:50.863Z" itemprop="dateUpdated">2020-07-05 16:56:50</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank" rel="external">http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Photon/" rel="tag">Photon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&title=《利用Photon搭建服务器》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&title=《利用Photon搭建服务器》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《利用Photon搭建服务器》 — Hexo&url=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/04/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%BC%96%E5%86%99/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">客户端的编写</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/04/%E5%88%A9%E7%94%A8%E4%B8%83%E7%89%9B%E4%BA%91%E8%8E%B7%E5%BE%9710g%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E5%92%8Ccdn%E5%8A%A0%E9%80%9F/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">利用七牛云获得10G存储空间和CDN加速</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&title=《利用Photon搭建服务器》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&title=《利用Photon搭建服务器》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《利用Photon搭建服务器》 — Hexo&url=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

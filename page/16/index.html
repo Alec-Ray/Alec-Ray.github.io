@@ -23,7 +23,7 @@
     <meta name="keywords" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/page/16/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Alec">
@@ -60,7 +60,7 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
                 主页
@@ -160,11 +160,11 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-rttnw-ch4：perlin-noise"
+            <article id="post-验证table是引用型数据"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-07-02 21:54:53" datetime="2018-07-02T13:54:53.000Z"  itemprop="datePublished">2018-07-02</time>
+        <time class="post-time" title="2017-09-12 23:07:40" datetime="2017-09-12T15:07:40.000Z"  itemprop="datePublished">2017-09-12</time>
 
         
 
@@ -176,7 +176,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/07/02/rttnw-ch4%EF%BC%9Aperlin-noise/">RTTNW-ch4：Perlin Noise</a>
+      <a class="post-title-link" href="/2017/09/12/%E9%AA%8C%E8%AF%81table%E6%98%AF%E5%BC%95%E7%94%A8%E5%9E%8B%E6%95%B0%E6%8D%AE/">验证table是引用型数据</a>
     </h3>
   
 
@@ -186,22 +186,22 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        柏林噪声由Ken Perlin发明，很多人使用柏林噪音来获得一个比较酷的纹理效果。 Perlin纹理不会像这样返回白噪声： [
-                
-                    
-                    
-                
-                ](http://www.wjgbaby.com/wp-content/uploa...
+        代码如下：
+str01=”wjgbaby.com”str02=”wjgbaby.com”
+table01={“111”,”222”,”333”}table02={“111”,”222”,”333”}
+print(str01==str02)print(table01==table02)
+结果如下：
+&gt;lua -e “io.stdout:setvbuf ‘no’” “4.lua”truef...
     
 
-        <a href="/2018/07/02/rttnw-ch4%EF%BC%9Aperlin-noise/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/12/%E9%AA%8C%E8%AF%81table%E6%98%AF%E5%BC%95%E7%94%A8%E5%9E%8B%E6%95%B0%E6%8D%AE/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
 
     </div>
     
@@ -210,11 +210,11 @@
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-rttnw-ch3：solid-textures"
+            <article id="post-一吻便杀一个人"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-07-01 23:44:21" datetime="2018-07-01T15:44:21.000Z"  itemprop="datePublished">2018-07-01</time>
+        <time class="post-time" title="2017-09-12 18:26:29" datetime="2017-09-12T10:26:29.000Z"  itemprop="datePublished">2017-09-12</time>
 
         
 
@@ -226,7 +226,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/07/01/rttnw-ch3%EF%BC%9Asolid-textures/">RTTNW-ch3：Solid Textures</a>
+      <a class="post-title-link" href="/2017/09/12/%E4%B8%80%E5%90%BB%E4%BE%BF%E6%9D%80%E4%B8%80%E4%B8%AA%E4%BA%BA/">一吻便杀一个人</a>
     </h3>
   
 
@@ -236,19 +236,29 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        图形中的纹理通常表示在表面上生成颜色的函数，我们将首先使所有颜色成为一种纹理。
-class texture  {    public:        virtual vec3 value(float u, float v, const vec3&amp; p) const = 0;};
-class constant_texture : public texture {    public: ...
+        “一吻便颠倒众生，一吻便杀一个人”
+这是杨千嬅在《处处吻》里面的一句歌词
+我觉得用在这里挺合适。
+最近关于WePhone的开发者之死新闻很多
+我的一位室友，一位android大佬这样看待这件事：
+男性程序员把大部分时间用在了技术上
+身边很少有女性，而且也不怎么会跟女性交流
+所以单身较多
+结果突然来了个漂亮的，一直缠着你
+就很难抵挡住诱惑。
+我们都在这个行业里
+大致了解这个行业的艰辛
+我是赞同...
     
 
-        <a href="/2018/07/01/rttnw-ch3%EF%BC%9Asolid-textures/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/12/%E4%B8%80%E5%90%BB%E4%BE%BF%E6%9D%80%E4%B8%80%E4%B8%AA%E4%BA%BA/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%88%91%E7%9A%84%E7%94%9F%E6%B4%BB/" rel="tag">我的生活</a></li></ul>
 
     </div>
     
@@ -257,11 +267,11 @@ class constant_texture : public texture {    public: ...
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-rttnw-ch2：bounding-volume-hierarchies"
+            <article id="post-lua的metatable元表"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-06-29 02:21:55" datetime="2018-06-28T18:21:55.000Z"  itemprop="datePublished">2018-06-29</time>
+        <time class="post-time" title="2017-09-12 16:33:18" datetime="2017-09-12T08:33:18.000Z"  itemprop="datePublished">2017-09-12</time>
 
         
 
@@ -273,7 +283,7 @@ class constant_texture : public texture {    public: ...
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/06/29/rttnw-ch2%EF%BC%9Abounding-volume-hierarchies/">RTTNW-ch2：Bounding Volume Hierarchies</a>
+      <a class="post-title-link" href="/2017/09/12/lua%E7%9A%84metatable%E5%85%83%E8%A1%A8/">Lua的Metatable元表</a>
     </h3>
   
 
@@ -283,18 +293,17 @@ class constant_texture : public texture {    public: ...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        这部分是迄今为止我们正在研究的光线追踪器中最困难的部分。 我们的光线与物体相交点是光线追踪器的主要时间瓶颈，时间是与物体的数量呈线性关系。但它是对同一个模型的重复搜索，所以我们可以使用二分搜索进行对数查找。 两个最常见的排序方法是划分空间和划分对象。后者通常是编码起来更容易，而且大多数模型的运行速度都很快。 关键在于在找到一个边界体积包围所有物体。
-if (ray hits bounding...
+        在Lua中使用一个表操作另外的一个表的时候就需要用到metatable   1.关联两个表[将表B 设置成表A 的元表]，需要用一个新的函数： setmetatable(表A, 表B) 2.getmetatable(表名) 如果表名有元表，就返回元表的类型和地址；如果没有元表，则返回一个nil。   3.__index索引(注意前面是两个_) 设置元表的“__index 索引”，让这个索引指...
     
 
-        <a href="/2018/06/29/rttnw-ch2%EF%BC%9Abounding-volume-hierarchies/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/12/lua%E7%9A%84metatable%E5%85%83%E8%A1%A8/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
 
     </div>
     
@@ -303,11 +312,11 @@ if (ray hits bounding...
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-3d数学常用的矩阵公式总结"
+            <article id="post-lua的模块化实现"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-06-13 14:03:09" datetime="2018-06-13T06:03:09.000Z"  itemprop="datePublished">2018-06-13</time>
+        <time class="post-time" title="2017-09-11 19:45:04" datetime="2017-09-11T11:45:04.000Z"  itemprop="datePublished">2017-09-11</time>
 
         
 
@@ -319,7 +328,7 @@ if (ray hits bounding...
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/">3D数学常用的矩阵公式总结</a>
+      <a class="post-title-link" href="/2017/09/11/lua%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E5%AE%9E%E7%8E%B0/">Lua的模块化实现</a>
     </h3>
   
 
@@ -329,17 +338,20 @@ if (ray hits bounding...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        这篇文章主要是一些矩阵[latex]\begin{bmatrix} matrix \end{bmatrix}[/latex]公式的总结，为了书写这些麻烦的公式，我去学习了LaTex的一些使用技巧，看上去效果还不错。 由于使用了LaTex语法，LaTex代码在MathJax的JS脚本渲染后，所显示的数学公式在电脑上兼容性很好，但在一些手机浏览器上兼容性不好。在手机上无法自适应页面，一些较长的公...
+        1.新建一个名为temp的lua文件，代码如下：
+--初始化模块，命名与文件名相同temp={}–定义变量：模块名.变量名temp.name=”WuJianGang”
+–定义方法：模块名.方法名function temp.jiafa(a,b)    print(a..”+”..b..”=”..(a+b))end
+function temp.jianfa(a,b)    print(a..”-...
     
 
-        <a href="/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/11/lua%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E5%AE%9E%E7%8E%B0/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-Math/" rel="tag">3D Math</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
 
     </div>
     
@@ -348,11 +360,11 @@ if (ray hits bounding...
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-c函数中形参传递方式的差别"
+            <article id="post-lua笔记之table表"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-06-10 00:14:25" datetime="2018-06-09T16:14:25.000Z"  itemprop="datePublished">2018-06-10</time>
+        <time class="post-time" title="2017-09-10 18:32:04" datetime="2017-09-10T10:32:04.000Z"  itemprop="datePublished">2017-09-10</time>
 
         
 
@@ -364,7 +376,7 @@ if (ray hits bounding...
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/06/10/c%E5%87%BD%E6%95%B0%E4%B8%AD%E5%BD%A2%E5%8F%82%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%88%AB/">C函数中形参传递方式的差别</a>
+      <a class="post-title-link" href="/2017/09/10/lua%E7%AC%94%E8%AE%B0%E4%B9%8Btable%E8%A1%A8/">Lua笔记之table表</a>
     </h3>
   
 
@@ -374,18 +386,19 @@ if (ray hits bounding...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        C函数中的形式参数可以是基本类型变量名，构造类型变量名和指针类型变量名。对于不同的形式参数，其传递参数的方式不同，总体来说分成两种：按值传递和按地址传递。 当形参是基本类型变量名时，采用按值传递方式；当形参是指针类型变量名或者构造类型变量名时，采用按地址传递方式。 下面通过两个相似的程序说明二者的区别：
-//程序一：按地址传递参数#include &lt;stdio.h&gt;swap(in...
+        Lua 语言中的数组其实就是table 类型。 table 是Lua 语言中的一种“代码格式结构”，而Lua 当中的数组就是使用table 这种结构实现的。 下面的这些文字知识点是别人总结的，我感觉这个总结的非常好，没有一句废话，完全就是标准呀。所以这次就没有自己写文字总结，但是代码不敢偷懒，是自己写的。
+一.给table 赋值
+有两种操作： 1.数组方式，就是以角标方式进行赋值，1,2,3...
     
 
-        <a href="/2018/06/10/c%E5%87%BD%E6%95%B0%E4%B8%AD%E5%BD%A2%E5%8F%82%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%88%AB/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/10/lua%E7%AC%94%E8%AE%B0%E4%B9%8Btable%E8%A1%A8/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
 
     </div>
     
@@ -394,11 +407,11 @@ if (ray hits bounding...
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-linux-0-11实验一：操作系统的引导"
+            <article id="post-lua作用域研究"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-05-31 17:08:52" datetime="2018-05-31T09:08:52.000Z"  itemprop="datePublished">2018-05-31</time>
+        <time class="post-time" title="2017-09-08 23:57:11" datetime="2017-09-08T15:57:11.000Z"  itemprop="datePublished">2017-09-08</time>
 
         
 
@@ -410,7 +423,7 @@ if (ray hits bounding...
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/31/linux-0-11%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%95%E5%AF%BC/">Linux 0.11实验二：操作系统的引导</a>
+      <a class="post-title-link" href="/2017/09/08/lua%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%A0%94%E7%A9%B6/">Lua作用域研究</a>
     </h3>
   
 
@@ -420,18 +433,18 @@ if (ray hits bounding...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        实验目的熟悉hit-oslab实验环境； 建立对操作系统引导过程的深入认识； 掌握操作系统的基本开发过程； 能对操作系统代码进行简单的控制，揭开操作系统的神秘面纱
-实验内容此次实验的基本内容是： 阅读《Linux内核完全注释》的第6章，对计算机和Linux 0.11的引导过程进行初步的了解； 按照下面的要求改写0.11的引导程序bootsect.s 有兴趣同学可以做做进入保护模式前的设置程序...
+        Lua 语言中的变量，默认全部都是全局变量，就算是声明在函数内的变量，也是 全局变量。 如果想在Lua 中声明局部变量，需要使用“local”关键字明确标示出来。 变量的默认值是nil，类似于C#中的null。   我在下面代码中加入了注释，直接看代码吧：
+--虽然temp001变量加了local成了局部变量–但是在meth函数内部依然可以访问–原因是因为变量仍在脚本中，类似于C#的priv...
     
 
-        <a href="/2018/05/31/linux-0-11%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%95%E5%AF%BC/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/08/lua%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%A0%94%E7%A9%B6/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
 
     </div>
     
@@ -440,11 +453,11 @@ if (ray hits bounding...
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-rttnw-ch01：motion-blur"
+            <article id="post-lua函数以及委托"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-05-30 19:02:43" datetime="2018-05-30T11:02:43.000Z"  itemprop="datePublished">2018-05-30</time>
+        <time class="post-time" title="2017-09-08 22:26:34" datetime="2017-09-08T14:26:34.000Z"  itemprop="datePublished">2017-09-08</time>
 
         
 
@@ -456,7 +469,7 @@ if (ray hits bounding...
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/">RTTNW-ch1：Motion Blur</a>
+      <a class="post-title-link" href="/2017/09/08/lua%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%A7%94%E6%89%98/">Lua函数以及“委托”</a>
     </h3>
   
 
@@ -466,17 +479,19 @@ if (ray hits bounding...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        Peter Shirley有三本光线追踪的书： 《Ray Tracing In The Weekend》：用两天学光线追踪 《Ray Tracing The Next Week》：用一周学光线追踪 《Ray Tracing The Rest Of Your Life》：用余生学光线追踪   接下来的一系列笔记是第二本书，这篇讲动态模糊。   在现实生活中，我们拍照时相机会打开一段时间，在其期...
+        Lua是解析型语言，C#等语言是编译型语言。 C#在执行的时候会编译出一个可执行文件来执行，但是Lua是一句一句的来执行。 所以Lua 语言中在脚本编写顺序上必须先定义函数，然后在下方才可以调用。   1.Lua函数格式： [局部/全局] function 函数名（[参数列表]） –函数体 end
+function Hello()    print(“你好”)end
+function Add...
     
 
-        <a href="/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/08/lua%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%A7%94%E6%89%98/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
 
     </div>
     
@@ -485,11 +500,11 @@ if (ray hits bounding...
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-rtiow-ch12：where-next"
+            <article id="post-lua之数组语法"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-05-21 22:55:38" datetime="2018-05-21T14:55:38.000Z"  itemprop="datePublished">2018-05-21</time>
+        <time class="post-time" title="2017-09-06 16:40:19" datetime="2017-09-06T08:40:19.000Z"  itemprop="datePublished">2017-09-06</time>
 
         
 
@@ -501,7 +516,7 @@ if (ray hits bounding...
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/21/rtiow-ch12%EF%BC%9Awhere-next/">RTIOW-ch12：Where next</a>
+      <a class="post-title-link" href="/2017/09/06/lua%E4%B9%8B%E6%95%B0%E7%BB%84%E8%AF%AD%E6%B3%95/">Lua之数组语法</a>
     </h3>
   
 
@@ -511,20 +526,18 @@ if (ray hits bounding...
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        制作书籍的封面图： cpp:
-#include #include #include #include “sphere.h”#include “hitable_list.h”#include “camera.h”#include “material.h”
-using namespace std;
-//获得反射射线vec3 RandomInUnitsphere(){    vec3 p;    ...
+        Lua的数组相比于C#而言有很多不同，比如一个数组可以存放任何类型的数据，以及可以后续往数组中传值，还有遍历输出的时候数组的下标是从1开始的。 至于为什么下标从1开始，我还专门去查了查，原因是，Lua是巴西天主教大学的一个研究小组开发的，巴西人和中国人一样都认为1是自然数的开始，所以就从1开始。 我把一些需要知道的东西都写进了代码的注释里了：
+--Lua 版本的数组可以存放多种不同类型的数据...
     
 
-        <a href="/2018/05/21/rtiow-ch12%EF%BC%9Awhere-next/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/06/lua%E4%B9%8B%E6%95%B0%E7%BB%84%E8%AF%AD%E6%B3%95/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
 
     </div>
     
@@ -533,11 +546,11 @@ using namespace std;
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-rtiow-ch11：defocus-blur"
+            <article id="post-finalwebbackground"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-05-19 00:51:17" datetime="2018-05-18T16:51:17.000Z"  itemprop="datePublished">2018-05-19</time>
+        <time class="post-time" title="2017-09-06 10:43:07" datetime="2017-09-06T02:43:07.000Z"  itemprop="datePublished">2017-09-06</time>
 
         
 
@@ -549,7 +562,7 @@ using namespace std;
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/19/rtiow-ch11%EF%BC%9Adefocus-blur/">RTIOW-ch11：Defocus Blur</a>
+      <a class="post-title-link" href="/2017/09/06/finalwebbackground/">finalWebBackground</a>
     </h3>
   
 
@@ -559,18 +572,12 @@ using namespace std;
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        散焦模糊”在摄影上又称“景深”。 在现实的相机中，我们需要做“散焦模糊”的原因是：我们需要一个更大的孔来收集光线增加图片的亮度（而不是“针孔”）。我们称“更大的孔”为“光圈”。 光圈的增大，导致图片出现散焦而模糊。 但是我们可以调节成像的位置，改变图片的清晰度，使图片在当前光圈条件下尽可能清晰。 所以，接下来，我们会引入两个参数：aperture（光圈）和focus_dist（成像位置）。 ...
+        
     
 
-        <a href="/2018/05/19/rtiow-ch11%EF%BC%9Adefocus-blur/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/06/finalwebbackground/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
     </div>
     
 </article>
@@ -578,11 +585,11 @@ using namespace std;
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-rtiow-ch10：positionable-camera"
+            <article id="post-webbackground"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-05-17 21:08:49" datetime="2018-05-17T13:08:49.000Z"  itemprop="datePublished">2018-05-17</time>
+        <time class="post-time" title="2017-09-06 10:20:02" datetime="2017-09-06T02:20:02.000Z"  itemprop="datePublished">2017-09-06</time>
 
         
 
@@ -594,7 +601,7 @@ using namespace std;
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/17/rtiow-ch10%EF%BC%9Apositionable-camera/">RTIOW-ch10：Positionable camera</a>
+      <a class="post-title-link" href="/2017/09/06/webbackground/">webBackground</a>
     </h3>
   
 
@@ -604,23 +611,12 @@ using namespace std;
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        我们的相机之前一直都是固定死的，这次让我们来做些改变，让我们使用一个可调整的视野（fov）。 先看一下我们之前是如何设置camera的：[
-                
-                    
-                    
-                
-                ](http://www.wjgbaby.com/wp-content...
+        
     
 
-        <a href="/2018/05/17/rtiow-ch10%EF%BC%9Apositionable-camera/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/06/webbackground/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
     </div>
     
 </article>
@@ -632,7 +628,7 @@ using namespace std;
     
 <nav id="page-nav">
     <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
     </div>
 </nav>
 
@@ -676,7 +672,7 @@ using namespace std;
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/page/16/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -686,22 +682,22 @@ using namespace std;
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/&title=Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/page/16/&title=Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/page/16/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/page/16/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/page/16/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -712,7 +708,7 @@ using namespace std;
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/page/16/" alt="微信分享二维码">
 </div>
 
 

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Ulua基础之框架入门 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Lua热更新">
+    <meta name="description" content="ULua 基础介绍 1.SimpleFramework 框架介绍 ①ULua 集成开发环境叫做：SimpleFramework，最新版是0.4.1。 ②SimpleFramework 分为两个版本： NGUI 版和UGUI 版，区别是NGUI 版本的框架资源中含有NGUI 这个插件。 ③SimpleFramework 本身不是Unitypackage 格式，而是一个Unity3D的项目工程，也就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ulua基础之框架入门">
+<meta property="og:url" content="http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ULua 基础介绍 1.SimpleFramework 框架介绍 ①ULua 集成开发环境叫做：SimpleFramework，最新版是0.4.1。 ②SimpleFramework 分为两个版本： NGUI 版和UGUI 版，区别是NGUI 版本的框架资源中含有NGUI 这个插件。 ③SimpleFramework 本身不是Unitypackage 格式，而是一个Unity3D的项目工程，也就是">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17110101.png">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17110103.png">
+<meta property="article:published_time" content="2017-11-01T09:25:51.000Z">
+<meta property="article:modified_time" content="2020-07-05T11:24:00.961Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="Lua热更新">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2017/11/17110101.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ulua基础之框架入门</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ulua基础之框架入门</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-01T09:25:51.000Z" itemprop="datePublished" class="page-time">
+  2017-11-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-ulua基础之框架入门"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ulua基础之框架入门</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-01 17:25:51" datetime="2017-11-01T09:25:51.000Z"  itemprop="datePublished">2017-11-01</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>ULua 基础介绍</strong></p>
+<p><strong>1.SimpleFramework 框架介绍</strong> ①ULua 集成开发环境叫做：SimpleFramework，最新版是0.4.1。 ②SimpleFramework 分为两个版本： NGUI 版和UGUI 版，区别是NGUI 版本的框架资源中含有NGUI 这个插件。 ③SimpleFramework 本身不是Unitypackage 格式，而是一个Unity3D的项目工程，也就是说，我们可以用Unity 直接打开这个项目工程。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17110101.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110101-300x47.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110101-300x47.png)</div>
+            </figure> <strong>2.SimpleFramework 和ULua的关系：</strong> <strong>SimpleFramework &gt; ULua &gt; Lua</strong> ULua 是对原生Lua 环境进行了一次“包装”，用于满足Unity 环境下的热更新需求。为了更方便的使用，于是又对ULua 进行“二次包装”，包装成了一个框架：SimpleFramework。  </p>
+<p><strong>框架资源结构</strong></p>
+<p><strong>1.六个根文件夹</strong> ①Examples：SimpleFramework 热更新案例； ②Lua：SimpleFramework 框架自带的Lua 源码文件； ③NGUI：NGUI3.8.2，当你需用更高版本的NGUI 时，替换即可，不需要碰； ④Plugins：uLua 运行所依赖的底层库文件，不需要碰； ⑤Scripts：SimpleFramework 自带的C#脚本文件； ⑥uLua：uLua 全部代码。 [<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.wjgbaby.com/wp-content/uploads/2017/11/17110103.png" alt="](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110102-300x207.png)](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110102.png)**2.框架自带菜单命令** Lua 菜单：uLua 环境相关处理命令； Game 菜单：用于打包不同平台的AssetBundle 文件。 [![](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110104-300x215.jpg)](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110104.jpg) **3.框架使用步骤** **<1>Lua-->Gen Lua Wrap File [生成Wrap 文件(必备操作)]** 该命令用于生成“Lua 包装文件”，存放在uLua\Source\LuaWrap 目录下。该文件夹下全部是C#脚本，这些脚本文件的名称特点是：脚本名+ Wrap； **Wrap 文件介绍：** 该文件夹下的脚本对Unity 内常用组件脚本的二次包装，Lua 环境运行后，会把这些Wrap 文件加载到Lua 运行环境(Lua 虚拟机)中，最终的效果就是：Lua 调用Wrap 文件，Wrap 文件调用C#，来实现Lua 调用C#。生成Wrap 文件的目的是为了提高Lua 的执行效率。 **<2>Game-->Build xxxx [生成不同平台的AssetBundle 资源(必备操作)]** Game-->Build Windows Resource 生成Windows 平台下的AB 文件。生成后的AB 会存放到StreamingAssets 文件夹下。在生成的过程中同时还会把Lua 文件夹下的所有脚本拷贝到该目录，存放到lua 文件夹下。 **4.Lua 文件夹结构分析** SimpleFramework 框架自带的Lua 源码文件。 ①3rd：第三方的Lua 脚本插件； ②Common：公共Lua 文件目录； ③Controller：控制器目录； ④Logic：管理器目录； ⑤System：cstolua 的系统目录； ⑥View：视图层目录。 备注： 这些文件夹中的Lua 脚本如果直接使用SciTE 打开，脚本中的中文注释是乱 码状态，可以使用NotePad++打开，中文就不会出现乱码。 我们自己写的Lua 脚本也是存放在Lua 文件夹中。 [![](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110103-300x200.png)" title="">
+                </div>
+                <div class="image-caption">](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110102-300x207.png)](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110102.png)**2.框架自带菜单命令** Lua 菜单：uLua 环境相关处理命令； Game 菜单：用于打包不同平台的AssetBundle 文件。 [![](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110104-300x215.jpg)](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110104.jpg) **3.框架使用步骤** **<1>Lua-->Gen Lua Wrap File [生成Wrap 文件(必备操作)]** 该命令用于生成“Lua 包装文件”，存放在uLua\Source\LuaWrap 目录下。该文件夹下全部是C#脚本，这些脚本文件的名称特点是：脚本名+ Wrap； **Wrap 文件介绍：** 该文件夹下的脚本对Unity 内常用组件脚本的二次包装，Lua 环境运行后，会把这些Wrap 文件加载到Lua 运行环境(Lua 虚拟机)中，最终的效果就是：Lua 调用Wrap 文件，Wrap 文件调用C#，来实现Lua 调用C#。生成Wrap 文件的目的是为了提高Lua 的执行效率。 **<2>Game-->Build xxxx [生成不同平台的AssetBundle 资源(必备操作)]** Game-->Build Windows Resource 生成Windows 平台下的AB 文件。生成后的AB 会存放到StreamingAssets 文件夹下。在生成的过程中同时还会把Lua 文件夹下的所有脚本拷贝到该目录，存放到lua 文件夹下。 **4.Lua 文件夹结构分析** SimpleFramework 框架自带的Lua 源码文件。 ①3rd：第三方的Lua 脚本插件； ②Common：公共Lua 文件目录； ③Controller：控制器目录； ④Logic：管理器目录； ⑤System：cstolua 的系统目录； ⑥View：视图层目录。 备注： 这些文件夹中的Lua 脚本如果直接使用SciTE 打开，脚本中的中文注释是乱 码状态，可以使用NotePad++打开，中文就不会出现乱码。 我们自己写的Lua 脚本也是存放在Lua 文件夹中。 [![](http://www.wjgbaby.com/wp-content/uploads/2017/11/17110103-300x200.png)</div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T11:24:00.961Z" itemprop="dateUpdated">2020-07-05 19:24:00</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/" target="_blank" rel="external">http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/&title=《Ulua基础之框架入门》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/&title=《Ulua基础之框架入门》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ulua基础之框架入门》 — Hexo&url=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/07/oj%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%84%E7%90%86/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">OJ输入数据的处理</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/30/%E5%9B%BE%E5%83%8F%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2%E4%B9%8Bbee%E5%92%8Cwhale%E4%BA%92%E6%8D%A2%E7%9C%BC%E7%9D%9B/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">图像几何变换之Bee和Whale互换眼睛</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/&title=《Ulua基础之框架入门》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/&title=《Ulua基础之框架入门》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ulua基础之框架入门》 — Hexo&url=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2017/11/01/ulua%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

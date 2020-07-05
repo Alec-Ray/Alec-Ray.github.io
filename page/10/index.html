@@ -23,7 +23,7 @@
     <meta name="keywords" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/page/10/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Alec">
@@ -60,7 +60,7 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
                 主页
@@ -160,11 +160,11 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-rttnw-ch4：perlin-noise"
+            <article id="post-ulua官方案例之核心脚本分析"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-07-02 21:54:53" datetime="2018-07-02T13:54:53.000Z"  itemprop="datePublished">2018-07-02</time>
+        <time class="post-time" title="2017-12-24 01:22:59" datetime="2017-12-23T17:22:59.000Z"  itemprop="datePublished">2017-12-24</time>
 
         
 
@@ -176,7 +176,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/07/02/rttnw-ch4%EF%BC%9Aperlin-noise/">RTTNW-ch4：Perlin Noise</a>
+      <a class="post-title-link" href="/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/">ULua官方案例之核心脚本分析</a>
     </h3>
   
 
@@ -186,22 +186,71 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        柏林噪声由Ken Perlin发明，很多人使用柏林噪音来获得一个比较酷的纹理效果。 Perlin纹理不会像这样返回白噪声： [
+        C#核心脚本
+1.框架入口  GlobalGenerator.cs 在场景中有一个空物体，该物体上挂载了一个“GlobalGenerator.cs”脚本。 该脚本字面意思理解是“全局生成器”,它是ULua 热更新框架的入口启动脚本。作用类似于VS 控制台项目中的入口脚本Program.cs。
+using UnityEngine;using System.Collections;
+namesp...
+    
+
+        <a href="/2017/12/24/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8B%E6%A0%B8%E5%BF%83%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-ulua官方案例之lua逻辑脚本分析"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-23 18:50:52" datetime="2017-12-23T10:50:52.000Z"  itemprop="datePublished">2017-12-23</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/23/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8Blua%E9%80%BB%E8%BE%91%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/">ULua官方案例之Lua逻辑脚本分析</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Panel脚本
+Panel的PromptPanel.lua和MessagePanel.lua 这两个脚本都是和UI 界面相关的，本身没有实际的代码逻辑，都是查找当前UI 面板的一些游戏物体或者组件，并且存储它们的引用。 [
                 
                     
                     
                 
-                ](http://www.wjgbaby.com/wp-content/uploa...
+         ...
     
 
-        <a href="/2018/07/02/rttnw-ch4%EF%BC%9Aperlin-noise/" class="post-more waves-effect waves-button">
+        <a href="/2017/12/23/ulua%E5%AE%98%E6%96%B9%E6%A1%88%E4%BE%8B%E4%B9%8Blua%E9%80%BB%E8%BE%91%E8%84%9A%E6%9C%AC%E5%88%86%E6%9E%90/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
 
     </div>
     
@@ -210,11 +259,11 @@
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-rttnw-ch3：solid-textures"
+            <article id="post-opengl笔记四：shader着色器基础"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-07-01 23:44:21" datetime="2018-07-01T15:44:21.000Z"  itemprop="datePublished">2018-07-01</time>
+        <time class="post-time" title="2017-12-19 04:15:15" datetime="2017-12-18T20:15:15.000Z"  itemprop="datePublished">2017-12-19</time>
 
         
 
@@ -226,7 +275,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/07/01/rttnw-ch3%EF%BC%9Asolid-textures/">RTTNW-ch3：Solid Textures</a>
+      <a class="post-title-link" href="/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/">OpenGL笔记四：着色器基础</a>
     </h3>
   
 
@@ -236,390 +285,358 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        图形中的纹理通常表示在表面上生成颜色的函数，我们将首先使所有颜色成为一种纹理。
-class texture  {    public:        virtual vec3 value(float u, float v, const vec3&amp; p) const = 0;};
-class constant_texture : public texture {    public: ...
-    
-
-        <a href="/2018/07/01/rttnw-ch3%EF%BC%9Asolid-textures/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-rttnw-ch2：bounding-volume-hierarchies"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-06-29 02:21:55" datetime="2018-06-28T18:21:55.000Z"  itemprop="datePublished">2018-06-29</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/06/29/rttnw-ch2%EF%BC%9Abounding-volume-hierarchies/">RTTNW-ch2：Bounding Volume Hierarchies</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        这部分是迄今为止我们正在研究的光线追踪器中最困难的部分。 我们的光线与物体相交点是光线追踪器的主要时间瓶颈，时间是与物体的数量呈线性关系。但它是对同一个模型的重复搜索，所以我们可以使用二分搜索进行对数查找。 两个最常见的排序方法是划分空间和划分对象。后者通常是编码起来更容易，而且大多数模型的运行速度都很快。 关键在于在找到一个边界体积包围所有物体。
-if (ray hits bounding...
-    
-
-        <a href="/2018/06/29/rttnw-ch2%EF%BC%9Abounding-volume-hierarchies/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-3d数学常用的矩阵公式总结"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-06-13 14:03:09" datetime="2018-06-13T06:03:09.000Z"  itemprop="datePublished">2018-06-13</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/">3D数学常用的矩阵公式总结</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        这篇文章主要是一些矩阵[latex]\begin{bmatrix} matrix \end{bmatrix}[/latex]公式的总结，为了书写这些麻烦的公式，我去学习了LaTex的一些使用技巧，看上去效果还不错。 由于使用了LaTex语法，LaTex代码在MathJax的JS脚本渲染后，所显示的数学公式在电脑上兼容性很好，但在一些手机浏览器上兼容性不好。在手机上无法自适应页面，一些较长的公...
-    
-
-        <a href="/2018/06/13/3d%E6%95%B0%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E5%85%AC%E5%BC%8F%E6%80%BB%E7%BB%93/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-Math/" rel="tag">3D Math</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-c函数中形参传递方式的差别"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-06-10 00:14:25" datetime="2018-06-09T16:14:25.000Z"  itemprop="datePublished">2018-06-10</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/06/10/c%E5%87%BD%E6%95%B0%E4%B8%AD%E5%BD%A2%E5%8F%82%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%88%AB/">C函数中形参传递方式的差别</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        C函数中的形式参数可以是基本类型变量名，构造类型变量名和指针类型变量名。对于不同的形式参数，其传递参数的方式不同，总体来说分成两种：按值传递和按地址传递。 当形参是基本类型变量名时，采用按值传递方式；当形参是指针类型变量名或者构造类型变量名时，采用按地址传递方式。 下面通过两个相似的程序说明二者的区别：
-//程序一：按地址传递参数#include &lt;stdio.h&gt;swap(in...
-    
-
-        <a href="/2018/06/10/c%E5%87%BD%E6%95%B0%E4%B8%AD%E5%BD%A2%E5%8F%82%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%88%AB/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-linux-0-11实验一：操作系统的引导"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-31 17:08:52" datetime="2018-05-31T09:08:52.000Z"  itemprop="datePublished">2018-05-31</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/31/linux-0-11%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%95%E5%AF%BC/">Linux 0.11实验二：操作系统的引导</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        实验目的熟悉hit-oslab实验环境； 建立对操作系统引导过程的深入认识； 掌握操作系统的基本开发过程； 能对操作系统代码进行简单的控制，揭开操作系统的神秘面纱
-实验内容此次实验的基本内容是： 阅读《Linux内核完全注释》的第6章，对计算机和Linux 0.11的引导过程进行初步的了解； 按照下面的要求改写0.11的引导程序bootsect.s 有兴趣同学可以做做进入保护模式前的设置程序...
-    
-
-        <a href="/2018/05/31/linux-0-11%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%95%E5%AF%BC/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-rttnw-ch01：motion-blur"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-30 19:02:43" datetime="2018-05-30T11:02:43.000Z"  itemprop="datePublished">2018-05-30</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/">RTTNW-ch1：Motion Blur</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Peter Shirley有三本光线追踪的书： 《Ray Tracing In The Weekend》：用两天学光线追踪 《Ray Tracing The Next Week》：用一周学光线追踪 《Ray Tracing The Rest Of Your Life》：用余生学光线追踪   接下来的一系列笔记是第二本书，这篇讲动态模糊。   在现实生活中，我们拍照时相机会打开一段时间，在其期...
-    
-
-        <a href="/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-rtiow-ch12：where-next"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-21 22:55:38" datetime="2018-05-21T14:55:38.000Z"  itemprop="datePublished">2018-05-21</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/21/rtiow-ch12%EF%BC%9Awhere-next/">RTIOW-ch12：Where next</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        制作书籍的封面图： cpp:
-#include #include #include #include “sphere.h”#include “hitable_list.h”#include “camera.h”#include “material.h”
-using namespace std;
-//获得反射射线vec3 RandomInUnitsphere(){    vec3 p;    ...
-    
-
-        <a href="/2018/05/21/rtiow-ch12%EF%BC%9Awhere-next/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-rtiow-ch11：defocus-blur"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-19 00:51:17" datetime="2018-05-18T16:51:17.000Z"  itemprop="datePublished">2018-05-19</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/19/rtiow-ch11%EF%BC%9Adefocus-blur/">RTIOW-ch11：Defocus Blur</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        散焦模糊”在摄影上又称“景深”。 在现实的相机中，我们需要做“散焦模糊”的原因是：我们需要一个更大的孔来收集光线增加图片的亮度（而不是“针孔”）。我们称“更大的孔”为“光圈”。 光圈的增大，导致图片出现散焦而模糊。 但是我们可以调节成像的位置，改变图片的清晰度，使图片在当前光圈条件下尽可能清晰。 所以，接下来，我们会引入两个参数：aperture（光圈）和focus_dist（成像位置）。 ...
-    
-
-        <a href="/2018/05/19/rtiow-ch11%EF%BC%9Adefocus-blur/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-rtiow-ch10：positionable-camera"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-17 21:08:49" datetime="2018-05-17T13:08:49.000Z"  itemprop="datePublished">2018-05-17</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/17/rtiow-ch10%EF%BC%9Apositionable-camera/">RTIOW-ch10：Positionable camera</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        我们的相机之前一直都是固定死的，这次让我们来做些改变，让我们使用一个可调整的视野（fov）。 先看一下我们之前是如何设置camera的：[
+        OpenGL的可编程管线如下图所示： 顶点处理器—&gt;几何处理器—&gt;裁剪器—&gt;光栅器（片段处理器） [
                 
                     
                     
                 
-                ](http://www.wjgbaby.com/wp-content...
+                ](http://www.wjgbaby.com/wp-content/uploads/2...
     
 
-        <a href="/2018/05/17/rtiow-ch10%EF%BC%9Apositionable-camera/" class="post-more waves-effect waves-button">
+        <a href="/2017/12/19/opengl%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9Ashader%E7%9D%80%E8%89%B2%E5%99%A8%E5%9F%BA%E7%A1%80/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-opengl笔记三：创建三角形"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-16 18:45:51" datetime="2017-12-16T10:45:51.000Z"  itemprop="datePublished">2017-12-16</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/16/opengl%E7%AC%94%E8%AE%B0%E4%B8%89%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%89%E8%A7%92%E5%BD%A2/">OpenGL笔记三：创建三角形</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        画出图中红线表示的三角形，三个点的坐标分别为(-1,-1,0),(1,-1,0),(0,1,0) [
+                
+                    
+                    
+                
+                ](http://www.wjgbaby.com/wp-content/uploads/2017/12/17...
+    
+
+        <a href="/2017/12/16/opengl%E7%AC%94%E8%AE%B0%E4%B8%89%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%89%E8%A7%92%E5%BD%A2/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-opengl笔记二：创建顶点"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-15 21:10:05" datetime="2017-12-15T13:10:05.000Z"  itemprop="datePublished">2017-12-15</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/15/opengl%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%88%9B%E5%BB%BA%E9%A1%B6%E7%82%B9/">OpenGL笔记二：创建顶点</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        这次要用到glew库，还将使用顶点缓冲器(VBO). 1.#include &lt;GL/glew.h&gt; ：GLEW扩展库,注意glew.h必须要写在前面，否则会编译出错 2.#include “ogldev_math_3d.h” ： 用于OpenGL的3d数学库,这里主要用到了顶点这个数据结构，里面报错的代码可以先注释掉，可以在网上下载到这个库。 3.
+// 检查GLEW是否就绪，必...
+    
+
+        <a href="/2017/12/15/opengl%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%88%9B%E5%BB%BA%E9%A1%B6%E7%82%B9/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-opengl笔记一：创建一个窗口"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-14 20:58:45" datetime="2017-12-14T12:58:45.000Z"  itemprop="datePublished">2017-12-14</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/14/opengl%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AA%97%E5%8F%A3/">OpenGL笔记一：创建一个窗口</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        1.glutInit(&amp;agrc,argue)：调用这个函数来初始化GLUT 2.glutInitDisplayMode：显示模式 ——GLUT—SINGLE：单缓冲模式 ——GLUT_DOUBLE：双缓冲模式 ——GLUT_RGBA：RGBA模式   3.glutInitWindowPosition：窗口的位置 glutInitWindowSize：窗口的大小 glutCreate...
+    
+
+        <a href="/2017/12/14/opengl%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AA%97%E5%8F%A3/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-openglfreeglutglewglm环境配置"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-14 17:44:57" datetime="2017-12-14T09:44:57.000Z"  itemprop="datePublished">2017-12-14</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/14/openglfreeglutglewglm%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">OpenGL+freeglut+glew+glm环境配置</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        打算认真学习OpenGL，再不学可能期末就挂了。成绩倒是没那么重要，我的原则是不挂科就行。事实上，我是想学习一下渲染管线，各种光照系统和摄像机这些知识，一入坑肯定深似海，不过没关系，我有时间。学校的图形学老师讲了很多数学的东西，基本没怎么听，老师还在用GLUT，有点老了，所以我用的freeGlut。   配置freeGlut环境比较麻烦，可以按照这个教程去做，可以说是非常详细了。 http:...
+    
+
+        <a href="/2017/12/14/openglfreeglutglewglm%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-形态学之车牌分割"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-13 13:41:17" datetime="2017-12-13T05:41:17.000Z"  itemprop="datePublished">2017-12-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/13/%E5%BD%A2%E6%80%81%E5%AD%A6%E4%B9%8B%E8%BD%A6%E7%89%8C%E5%88%86%E5%89%B2/">Matlab形态学处理之车牌分割</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        将图中的车牌号提取出来并且分割 [
+                
+                    
+                    
+                
+                ](http://www.wjgbaby.com/wp-content/uploads/2017/12/17121310-300x225.jpg)
+             ...
+    
+
+        <a href="/2017/12/13/%E5%BD%A2%E6%80%81%E5%AD%A6%E4%B9%8B%E8%BD%A6%E7%89%8C%E5%88%86%E5%89%B2/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">Matlab图像处理</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-matlab图像形态学处理"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-13 02:01:34" datetime="2017-12-12T18:01:34.000Z"  itemprop="datePublished">2017-12-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/13/matlab%E5%9B%BE%E5%83%8F%E5%BD%A2%E6%80%81%E5%AD%A6%E5%A4%84%E7%90%86/">Matlab形态学处理之膨胀腐蚀以及重建</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        此文主要是图像的膨胀，腐蚀，开运算，闭运算，以及图像重建。 注意：所有的腐蚀针对白色对象   实例一：提取身份证号 [
+                
+                    
+                    
+                
+                ](http://www.wjgbaby.com/wp-content/uploads/2...
+    
+
+        <a href="/2017/12/13/matlab%E5%9B%BE%E5%83%8F%E5%BD%A2%E6%80%81%E5%AD%A6%E5%A4%84%E7%90%86/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">Matlab图像处理</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-matlab彩色图像之人脸提取"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-13 01:36:34" datetime="2017-12-12T17:36:34.000Z"  itemprop="datePublished">2017-12-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/13/matlab%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E4%B9%8B%E4%BA%BA%E8%84%B8%E6%8F%90%E5%8F%96/">Matlab彩色图像之人脸提取</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        提取下图中的人脸，大致操作步骤： rgb**--ycbcr--获取cr分量--根据肤色范围提取ROI–二值化--小对象去除--填充坑洞--垂直投影--根据投影分割成薯条--根据垂直投影分割图使用find找到最高行、最低行--根据坐标分割原图** [
+                
+                    
+                    
+             ...
+    
+
+        <a href="/2017/12/13/matlab%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E4%B9%8B%E4%BA%BA%E8%84%B8%E6%8F%90%E5%8F%96/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">Matlab图像处理</a></li></ul>
 
     </div>
     
@@ -632,7 +649,7 @@ using namespace std;
     
 <nav id="page-nav">
     <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/9/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/11/">下一页</a>
     </div>
 </nav>
 
@@ -676,7 +693,7 @@ using namespace std;
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/page/10/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -686,22 +703,22 @@ using namespace std;
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/&title=Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/page/10/&title=Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/page/10/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/page/10/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/page/10/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -712,7 +729,7 @@ using namespace std;
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/page/10/" alt="微信分享二维码">
 </div>
 
 

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>RTTNW-ch1：Motion Blur | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Ray Tracing">
+    <meta name="description" content="Peter Shirley有三本光线追踪的书： 《Ray Tracing In The Weekend》：用两天学光线追踪 《Ray Tracing The Next Week》：用一周学光线追踪 《Ray Tracing The Rest Of Your Life》：用余生学光线追踪   接下来的一系列笔记是第二本书，这篇讲动态模糊。   在现实生活中，我们拍照时相机会打开一段时间，在其期间会因">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RTTNW-ch1：Motion Blur">
+<meta property="og:url" content="http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Peter Shirley有三本光线追踪的书： 《Ray Tracing In The Weekend》：用两天学光线追踪 《Ray Tracing The Next Week》：用一周学光线追踪 《Ray Tracing The Rest Of Your Life》：用余生学光线追踪   接下来的一系列笔记是第二本书，这篇讲动态模糊。   在现实生活中，我们拍照时相机会打开一段时间，在其期间会因">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18053001.jpg">
+<meta property="article:published_time" content="2018-05-30T11:02:43.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:56:51.331Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="Ray Tracing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wjgbaby.com/wp-content/uploads/2018/05/18053001.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">RTTNW-ch1：Motion Blur</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">RTTNW-ch1：Motion Blur</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-30T11:02:43.000Z" itemprop="datePublished" class="page-time">
+  2018-05-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-rttnw-ch01：motion-blur"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">RTTNW-ch1：Motion Blur</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-30 19:02:43" datetime="2018-05-30T11:02:43.000Z"  itemprop="datePublished">2018-05-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>Peter Shirley有三本光线追踪的书： 《Ray Tracing In The Weekend》：用两天学光线追踪 《Ray Tracing The Next Week》：用一周学光线追踪 《Ray Tracing The Rest Of Your Life》：用余生学光线追踪   接下来的一系列笔记是第二本书，这篇讲动态模糊。   在现实生活中，我们拍照时相机会打开一段时间，在其期间会因为摄像机抖动或拍摄物体运动而造成相片模糊，我们来实现一下这种效果。 首先要使我们的射线能存储这段时间：</p>
+<p>#ifndef RAYH<br>#define RAYH<br>#include “RT/vec3.h”</p>
+<p>class ray<br>{<br>    public:<br>    ray() { }<br>    //给_time赋值<br>    ray(const vec3&amp; a, const vec3&amp; b, float ti = 0.0) { A = a; B = b; _time = ti;}<br>    vec3 origin() const       { return A; }<br>    vec3 direction() const    { return B; }</p>
+<pre><code>//存储时间的变量
+float time() const    { return \_time; }
+vec3 point\_at\_parameter(float t) const { return A + t\* B; }
+
+vec3 A;
+vec3 B;
+float \_time;</code></pre><p>};</p>
+<p>#endif</p>
+<p>现在将我们的摄像机在time1到time2的随机时间生成射线，相机不需要移动，只需要在一段时间内发出射线：</p>
+<p>class camera<br>{<br>    vec3 origin;<br>    vec3 lower_left_corner;<br>    vec3 horizontal;<br>    vec3 vertical;<br>    vec3 u, v, w;<br>    float lens_radius;<br>    float time0, time1;  //射线开始时间和结束时间</p>
+<p>public:<br>    //构造函数中加入时间t0和t1<br>    camera(vec3 lookfrom, vec3 lookat, vec3 vup, float vfov, float aspect, float aperture,<br>        float focus_dist,float t0, float t1)<br>    {<br>        time0 = t0;<br>        time1 = t1;<br>        lens_radius = aperture / 2;<br>        float theta = vfov * M_PI / 180;<br>        float half_height = tan(theta / 2);<br>        float half_width = aspect * half_height;<br>        origin = lookfrom;<br>        w = unit_vector(lookfrom - lookat);<br>        u = unit_vector(cross(vup, w));<br>        v = cross(w, u);<br>        lower_left_corner = origin - half_width * focus_dist * u - half_height * focus_dist * v - focus_dist * w;<br>        horizontal = 2 * half_width * focus_dist * u;<br>        vertical = 2 * half_height * focus_dist * v;<br>    }</p>
+<pre><code>//time为一个时间在time0到time1的随机时间
+ray getray(float s, float t)
+{
+    vec3 rd = lens\_radius \* random\_in\_unit\_disk();
+    vec3 offset = u \* rd.x() + v \* rd.y();
+    float time = time0 + (rand() % (100) / (float)(100)) \* (time1 - time0);
+    return ray(origin + offset, lower\_left\_corner + s \* horizontal + t \* vertical - origin - offset, time);
+}</code></pre><p>};</p>
+<p>我们还需要一个移动的物体， 我将创建一个以线性为中心的球体类从time0的center0到time1的center1， 在这段时间之外它不需要配合相机光圈的开合。</p>
+<p>#include “RT/hitable.h”</p>
+<p>//物体在移动，在time0时在地点center0，在time1时在地点center1<br>class moving_sphere : public hitable  {<br>public:<br>    moving_sphere(){ }<br>    moving_sphere(vec3 cen0, vec3 cen1, float t0, float t1, float r, material* m)<br>    : center0(cen0), center1(cen1), time0(t0),time1(t1), radius(r), mat_ptr(m) { };<br>    virtual bool hit(const ray&amp; r, float tmin, float tmax, hit_record&amp; rec) const;<br>    vec3 center(float time) const;<br>    vec3 center0, center1;<br>    float time0, time1;<br>    float radius;<br>    material* mat_ptr;<br>};</p>
+<p>//获取某一时刻的中心点坐标<br>vec3 moving_sphere::center(float time) const{<br>    return center0 + ((time - time0) / (time1 - time0))*(center1 - center0);<br>}</p>
+<p>我们也可以让所有的物体都实现动态模糊，给他们相同的开始点和结束点。在hit函数里将”center” 替换成 “center(r.time())“</p>
+<p>//让所有的普通物体都可以实现动态模糊<br>// replace “center” with “center(r.time())”<br>bool moving_sphere::hit(const ray&amp; r, float t_min, float t_max, hit_record&amp; rec) const {<br>    vec3 oc = r.origin() - center(r.time());<br>    float a = dot(r.direction(), r.direction());<br>    float b = dot(oc, r.direction());<br>    float c = dot(oc, oc) - radius*radius;<br>    float discriminant = b*b - a*c;<br>    if (discriminant &gt; 0) {<br>    float temp = (-b - sqrt(discriminant))/a;<br>    if (temp &lt; t_max &amp;&amp; temp &gt; t_min) {<br>        rec.t = temp;<br>        rec.p = r.point_at_parameter(rec.t);<br>        rec.normal = (rec.p - center(r.time())) / radius;<br>        rec.mat_ptr = mat_ptr;<br>        return true;<br>    }<br>    temp = (-b + sqrt(discriminant))/a;<br>    if (temp &lt; t_max &amp;&amp; temp &gt; t_min) {<br>        rec.t = temp;<br>        rec.p = r.point_at_parameter(rec.t);<br>        rec.normal = (rec.p - center(r.time())) / radius;<br>        rec.mat_ptr = mat_ptr;<br>        return true;<br>    }<br>    }<br>    return false;<br>}</p>
+<p>将漫反射球在time0时刻的center位置移动到time1时刻的center+vec3(0,0.5*drand48(), 0)位置：</p>
+<p>hitable* RandomScene()<br>{<br>    int n = 500;<br>    hitable** list = new hitable*[n + 1];<br>    /*定义一个包含n+1个元素的数组，数组的每个元素是指向hitable对象的指针。然后将数组的指针赋值给list。所以，list是指针的指针。*/<br>    list[0] = new sphere(vec3(0, -1000, 0), 1000, new lambertian(vec3(0.5, 0.5, 0.5)));<br>    /*先创建一个中心在（0，-1000，0）半径为1000的超大漫射球，将其指针保存在list的第一个元素中。*/<br>    int i = 1;<br>    for (int a = -11; a &lt; 11; a++)<br>    {<br>        for (int b = -11; b &lt; 11; b++)<br>        {<br>            /*两个for循环中会产生（11+11）*(11+11)=484个随机小球*/<br>            float choose_mat = (rand() % (100) / (float)(100));<br>            /*产生一个（0，1）的随机数，作为设置小球材料的阀值*/<br>            vec3 center(a + 0.9 * (rand() % (100) / (float)(100)), 0.2, b + 0.9 * (rand() % (100) / (float)(100)));<br>            /*” a+0.9*(rand()%(100)/(float)(100))”配合[-11,11]产生（-11，11）之间的随机数，<br>             * 而不是[-11,11)之间的22个整数。使得球心的x,z坐标是（-11，11）之间的随机数*/<br>            if ((center - vec3(4, 0.2, 0)).length() &gt; 0.9)<br>            {<br>                /*避免小球的位置和最前面的大球的位置太靠近*/<br>                if (choose_mat &lt; 0.8)<br>                {<br>                    //diffuse<br>                    /*材料阀值小于0.8，则设置为漫反射球，漫反射球的衰减系数x,y,z都是（0，1）之间的随机数的平方*/<br>                    list[i++] = new moving_sphere(center, center + 0.4 * vec3(0, (rand() % 100 / (float)(100)), 0), 0.0f, 1.0f, 0.2f,<br>                        new lambertian(vec3(<br>                            (rand() % (100) / (float)(100)) * (rand() % (100) / (float)(100)),<br>                            (rand() % (100) / (float)(100)) * (rand() % (100) / (float)(100)),<br>                            (rand() % (100) / (float)(100)) * (rand() % (100) / (float)(100)))));<br>                }<br>                else if (choose_mat &lt; 0.95)<br>                {<br>                    /*材料阀值大于等于0.8小于0.95，则设置为镜面反射球，<br>                     * 镜面反射球的衰减系数x,y,z及模糊系数都是（0，1）之间的随机数加一再除以2*/<br>                    list[i++] = new sphere(center, 0.2,<br>                        new metal(vec3(0.5 * (1 + (rand() % (100) / (float)(100))),<br>                            0.5 * (1 + (rand() % (100) / (float)(100))),<br>                            0.5 * (1 + (rand() % (100) / (float)(100)))),<br>                            0.5 * (1 + (rand() % (100) / (float)(100)))));<br>                }<br>                else<br>                {<br>                    /*材料阀值大于等于0.95，则设置为介质球*/<br>                    list[i++] = new sphere(center, 0.2, new dielectric(1.5));<br>                }<br>            }<br>        }<br>    }</p>
+<pre><code>list\[i++\] = new sphere(vec3(0, 1, 0), 1.0, new dielectric(1.5));
+list\[i++\] = new sphere(vec3(-4, 1, 0), 1.0, new lambertian(vec3(0.4, 0.2, 0.1)));
+list\[i++\] = new sphere(vec3(4, 1, 0), 1.0, new metal(vec3(0.7, 0.6, 0.5), 0.0));
+/\*定义三个大球\*/
+return new hitable\_list(list, i);</code></pre><p>}</p>
+<p>调整摄像机：</p>
+<p>vec3 lookform(13.0f, 2.0f, 3.0f);<br>vec3 lookat(0, 0, 0);<br>float dist_to_focus = (lookform - lookat).length();<br>float aperture = 0.0f;</p>
+<p>camera cam(lookform, lookat, vec3(0, 1, 0), 20,<br>float(nx) / float(ny), aperture, 0.7*dist_to_focus,0.0,1.0);</p>
+<p>最终效果： <a href="http://www.wjgbaby.com/wp-content/uploads/2018/05/18053001.jpg" target="_blank" rel="noopener"><img src="http://www.wjgbaby.com/wp-content/uploads/2018/05/18053001.jpg" alt=""></a>   参考书籍：《Ray Tracing The Next Week》 RTTNW系列项目地址：<a href="https://github.com/WJGwjg/Ray-Tracing-The-Next-Week" target="_blank" rel="noopener">GitHub</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-07-05T08:56:51.331Z" itemprop="dateUpdated">2020-07-05 16:56:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/" target="_blank" rel="external">http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/&title=《RTTNW-ch1：Motion Blur》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/&title=《RTTNW-ch1：Motion Blur》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RTTNW-ch1：Motion Blur》 — Hexo&url=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/31/linux-0-11%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%95%E5%AF%BC/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux 0.11实验二：操作系统的引导</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/05/21/rtiow-ch12%EF%BC%9Awhere-next/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RTIOW-ch12：Where next</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/&title=《RTTNW-ch1：Motion Blur》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/&title=《RTTNW-ch1：Motion Blur》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RTTNW-ch1：Motion Blur》 — Hexo&url=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/05/30/rttnw-ch01%EF%BC%9Amotion-blur/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
