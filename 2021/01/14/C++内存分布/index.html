@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>C++内存分布 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="-– title: C++内存分布 tags:  - C++ id: ‘432’ comments: false date: 2021-01-14 20:57:28 -– C++内存分布一个应用程序通常会占用以下空间，也就是内存四区： 堆区，栈区，数据区，代码区 栈区主要存储一些临时变量，临时变量包括了局部变量、返回值、参数、返回地址等，当这些变量超出了当前作用域时将会自动弹出。该栈的最大存储是有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++内存分布">
+<meta property="og:url" content="http://yoursite.com/2021/01/14/C++%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="-– title: C++内存分布 tags:  - C++ id: ‘432’ comments: false date: 2021-01-14 20:57:28 -– C++内存分布一个应用程序通常会占用以下空间，也就是内存四区： 堆区，栈区，数据区，代码区 栈区主要存储一些临时变量，临时变量包括了局部变量、返回值、参数、返回地址等，当这些变量超出了当前作用域时将会自动弹出。该栈的最大存储是有">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-14T15:56:22.476Z">
+<meta property="article:modified_time" content="2021-01-14T15:55:10.945Z">
+<meta property="article:author" content="Alec">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/wu-da-ren-6-38" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-link"></i>
+                ZhiHu
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C++内存分布</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C++内存分布</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-01-14T15:56:22.476Z" itemprop="datePublished" class="page-time">
+  2021-01-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#C-内存分布"><span class="post-toc-number">1.</span> <span class="post-toc-text">C++内存分布</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#new-delete和malloc-free的区别"><span class="post-toc-number">2.</span> <span class="post-toc-text">new&#x2F;delete和malloc&#x2F;free的区别:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#delete和delete-的区别"><span class="post-toc-number">3.</span> <span class="post-toc-text">delete和delete[]的区别</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-C++内存分布"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C++内存分布</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-01-14 23:56:22" datetime="2021-01-14T15:56:22.476Z"  itemprop="datePublished">2021-01-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>-–</p>
+<p>title: C++内存分布</p>
+<p>tags:</p>
+<p> - C++</p>
+<p>id: ‘432’</p>
+<p>comments: false</p>
+<p>date: 2021-01-14 20:57:28</p>
+<p>-–</p>
+<h4 id="C-内存分布"><a href="#C-内存分布" class="headerlink" title="C++内存分布"></a><strong>C++内存分布</strong></h4><p>一个应用程序通常会占用以下空间，也就是内存四区：</p>
+<p>堆区，栈区，数据区，代码区</p>
+<p>栈区主要存储一些临时变量，临时变量包括了局部变量、返回值、参数、返回地址等，当这些变量超出了当前作用域时将会自动弹出。该栈的最大存储是有大小的，大致是8192kb，超过该大小将会造成栈溢出。</p>
+<p>堆区指的是一个比较大的内存空间，主要用于对动态内存的分配；在程序开发中一般是开发人员进行分配与释放，若在程序结束时都未释放，系统将会自动进行回收。</p>
+<p>数据区包含静态存储区和常量区：</p>
+<p>静态存储区指的是主要存放全局变量、静态变量的区域，编译器编译时分配内存。将变量定义的类型前加static,则该变量存储在静态存储区<br>static:<br>1）只初始化一次<br>2）只有程序退出才释放</p>
+<p>常量区，存放常量，只读状态，不可修改，程序结束后由系统释放</p>
+<p>代码区，所有代码编译后的cpu指令会存储在这里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int e &#x3D; 0;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line"> int a &#x3D; 0;</span><br><span class="line"> int b &#x3D; 0;</span><br><span class="line"> char c&#x3D;&#39;0&#39;;</span><br><span class="line"> static int d &#x3D; 0;</span><br><span class="line"> </span><br><span class="line"> printf(&quot;变量a的地址是：%d\n变量b的地址是：%d\n变量c的地址是：%d\n&quot;, &amp;a, &amp;b, &amp;c);</span><br><span class="line"> </span><br><span class="line"> printf(&quot;静态变量d的地址是：%d\n&quot;, &amp;d);</span><br><span class="line"> printf(&quot;全局变量e的地址是：%d\n&quot;, &amp;e);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p>变量a的地址是：6487628<br>变量b的地址是：6487624<br>变量c的地址是：6487623<br>静态变量d的地址是：4223028<br>全局变量e的地址是：4223024</p>
+<p>可以看出，a,b,c都在栈区，三个变量同属于一个栈内，所以它们地址的索引是连续性的。栈区的地址向下增长，因为栈是先进后出，栈底又是最大地址</p>
+<p>d和e说明了全局变量与静态变量都应该存储在静态区</p>
+<p>栈区、数据区都是使用栈结构对数据进行存储。</p>
+<h4 id="new-delete和malloc-free的区别"><a href="#new-delete和malloc-free的区别" class="headerlink" title="new/delete和malloc/free的区别:"></a><strong>new/delete和malloc/free的区别:</strong></h4><p>C++ 中使用 new 和 delete 从堆中分配和释放内存，new 和 delete 是C++语言中的两个运算符，malloc/free是C语言标准库中的两个函数</p>
+<p>new/delete 比 malloc/free ，都是用来申请动态内存的</p>
+<p>new/delete 比 malloc/free 多做了一些事情，new 相对于 malloc 会额外的做一些初始化工作，比如调用构造函数。delete 相对于 free 多做一些清理工作，比如调用析构函数。malloc/free无法调用构造和析构的原因是，他是库函数不是运算符，不在编译器控制权限之内</p>
+<p>malloc得到的指针无类型，new出来的指针是带有类型信息的</p>
+<p>new/delete 比 malloc/free 要成对使用，free释放new出来的对象会导致无法析构而出错。delete释放malloc出来的内存，理论上不会出错，但是程序可读性会变差</p>
+<h4 id="delete和delete-的区别"><a href="#delete和delete-的区别" class="headerlink" title="delete和delete[]的区别"></a><strong>delete和delete[]的区别</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int *a &#x3D; new int[10];</span><br><span class="line">delete a;</span><br><span class="line">delete[] a;</span><br></pre></td></tr></table></figure>
+
+<p>上面这种情况中的释放效果相同，原因在于：分配简单类型内存时，内存大小已经确定，系统可以记忆并且进行管理，在析构时，系统并不会调用析构函数。</p>
+<p>如果 ptr 代表一个用new申请的内存返回的内存空间地址，即所谓的指针，那么：delete ptr  代表用来释放内存，且只用来释放 ptr 指向的内存。delete[] rg  用来释放rg指向的内存，！！还逐一调用数组中每个对象的destructor！！</p>
+<p>对于像 int/char/long/int*/struct 等等简单数据类型，由于对象没有 destructor ，所以用 delete 和 delete []是一样的。但是如果是 C++ 对象数组就不同了！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">   &#123;</span><br><span class="line">    private:</span><br><span class="line">      char *m_cBuffer;</span><br><span class="line">      int m_nLen;</span><br><span class="line"></span><br><span class="line">   &#96;&#96; public:</span><br><span class="line">      A()&#123; m_cBuffer &#x3D; new char[m_nLen]; &#125;</span><br><span class="line">      ~A() &#123; delete [] m_cBuffer; &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   A *a &#x3D; new A[10];</span><br><span class="line">   delete a;         &#x2F;&#x2F;仅释放了a指针指向的全部内存空间 但是只调用了a[0]对象的析构函数 剩下的从a[1]到a[9]这9个用户自行分配的m_cBuffer对应内存空间将不能释放 从而造成内存泄漏</span><br><span class="line">   delete[] a;      &#x2F;&#x2F;调用使用类对象的析构函数释放用户自己分配内存空间并且   释放了a指针指向的全部内存空间</span><br></pre></td></tr></table></figure>
+
+<p>关于 new[] 和 delete[]，其中又分为两种情况：</p>
+<ul>
+<li>(1) 为基本数据类型分配和回收空间；</li>
+<li>(2) 为自定义类型分配和回收空间；</li>
+</ul>
+<p>对于 (1)，上面提供的程序已经证明了 delete[] 和 delete 是等同的。但是对于 (2)，情况就发生了变化。</p>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">class Babe</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    Babe()</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; \&quot;Create a Babe to talk with me\&quot; &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~Babe()</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; \&quot;Babe don\&#39;t Go away,listen to me\&quot; &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    Babe* pbabe &#x3D; new Babe[3];</span><br><span class="line">    delete pbabe;</span><br><span class="line">    pbabe &#x3D; new Babe[3];</span><br><span class="line">    delete[] pbabe;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Create a babe to talk with me</span><br><span class="line">Create a babe to talk with me</span><br><span class="line">Create a babe to talk with me</span><br><span class="line">Babe don\&#39;t go away,listen to me</span><br><span class="line">Create a babe to talk with me</span><br><span class="line">Create a babe to talk with me</span><br><span class="line">Create a babe to talk with me</span><br><span class="line">Babe don\&#39;t go away,listen to me</span><br><span class="line">Babe don\&#39;t go away,listen to me</span><br><span class="line">Babe don\&#39;t go away,listen to me</span><br></pre></td></tr></table></figure>
+
+<p>只使用 delete 的时候只出现一个 <code>Babe don’t go away,listen to me</code>，而使用 delete[] 的时候出现 3 个 <code>Babe don’t go away,listen to me</code>。不过不管使用 delete 还是 delete[] 那三个对象的在内存中都被删除，既存储位置都标记为可写，但是使用 delete 的时候只调用了 pbabe[0] 的析构函数，而使用了 delete[] 则调用了 3 个 Babe 对象的析构函数。</p>
+<p>反正不管怎样都是把存储空间释放了，有什么区别呢？</p>
+<p>关键在于调用析构函数上。此程序的类没有使用操作系统的系统资源（比如：Socket、File、Thread等），所以不会造成明显恶果。如果你的类使用了操作系统资源，单纯把类的对象从内存中删除是不妥当的，因为没有调用对象的析构函数会导致系统资源不被释放，这些资源的释放必须依靠这些类的析构函数。所以，在用这些类生成对象数组的时候，用 delete[] 来释放它们才是王道。而用 delete 来释放也许不会出问题，也许后果很严重，具体要看类的代码了。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-01-14T15:55:10.945Z" itemprop="dateUpdated">2021-01-14 23:55:10</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/12/26/CPU%E7%BC%93%E5%AD%98L1L2L3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CPU缓存L1/L2/L3</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
