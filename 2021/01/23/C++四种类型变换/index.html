@@ -29,7 +29,7 @@
 <meta property="og:description" content="C++引入这几种强制类型变换的原因：C风格的强制类型转换很简单，均用 Type b &#x3D; (Type)a 形式转换，但是这样不安全，容易出bug而且也较难排查。比如不经意间将指向const对象的指针转换成非const对象的指针，或者将基类对象指针转成了派生类对象的指针，这种转换很容易出问题。 static_cast类似C风格的强制转换，进行无条件转换，静态类型转换： 1）基类和子类之间的转换：其中子">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-23T10:57:28.000Z">
-<meta property="article:modified_time" content="2021-01-23T15:35:42.125Z">
+<meta property="article:modified_time" content="2021-01-23T15:41:54.398Z">
 <meta property="article:author" content="Alec">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -223,6 +223,7 @@
 <p>基本类型转换用static_cast</p>
 <p>多态类之间的类型转换用dynamic_cast</p>
 <p>不同类型的指针类型转换用reinterpret_cast</p>
+<p>&amp;nbsp<br>&amp;nbsp</p>
 <p>参考链接：</p>
 <p><a href="https://mp.weixin.qq.com/s/6YW7VX787X7kZiRBLbVn-Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/6YW7VX787X7kZiRBLbVn-Q</a></p>
 <p><a href="https://blog.csdn.net/weixin_44212574/article/details/89043854" target="_blank" rel="noopener">https://blog.csdn.net/weixin_44212574/article/details/89043854</a></p>
@@ -235,7 +236,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2021-01-23T15:35:42.125Z" itemprop="dateUpdated">2021-01-23 23:35:42</time>
+    Last updated: <time datetime="2021-01-23T15:41:54.398Z" itemprop="dateUpdated">2021-01-23 23:41:54</time>
 </span><br>
 
 
