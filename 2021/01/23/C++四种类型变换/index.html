@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>C++四种类型变换 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C++">
+    <meta name="description" content="C++引入这几种强制类型变换的原因：C风格的强制类型转换很简单，均用 Type b &#x3D; (Type)a 形式转换，但是这样不安全，容易出bug而且也较难排查。比如不经意间将指向const对象的指针转换成非const对象的指针，或者将基类对象指针转成了派生类对象的指针，这种转换很容易出问题。 static_cast类似C风格的强制转换，进行无条件转换，静态类型转换： 1）基类和子类之间的转换：其中子">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++四种类型变换">
+<meta property="og:url" content="http://yoursite.com/2021/01/23/C++%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B%E5%8F%98%E6%8D%A2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C++引入这几种强制类型变换的原因：C风格的强制类型转换很简单，均用 Type b &#x3D; (Type)a 形式转换，但是这样不安全，容易出bug而且也较难排查。比如不经意间将指向const对象的指针转换成非const对象的指针，或者将基类对象指针转成了派生类对象的指针，这种转换很容易出问题。 static_cast类似C风格的强制转换，进行无条件转换，静态类型转换： 1）基类和子类之间的转换：其中子">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-23T10:57:28.000Z">
+<meta property="article:modified_time" content="2021-01-23T15:26:21.473Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/wu-da-ren-6-38" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-link"></i>
+                ZhiHu
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C++四种类型变换</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C++四种类型变换</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-01-23T10:57:28.000Z" itemprop="datePublished" class="page-time">
+  2021-01-23
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#C-引入这几种强制类型变换的原因："><span class="post-toc-number">1.</span> <span class="post-toc-text">C++引入这几种强制类型变换的原因：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#static-cast"><span class="post-toc-number">2.</span> <span class="post-toc-text">static_cast</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#const-cast"><span class="post-toc-number">3.</span> <span class="post-toc-text">const_cast</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#dynamic-cast"><span class="post-toc-number">4.</span> <span class="post-toc-text">dynamic_cast</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#reinterpret-cast"><span class="post-toc-number">5.</span> <span class="post-toc-text">reinterpret_cast</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-C++四种类型变换"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C++四种类型变换</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-01-23 18:57:28" datetime="2021-01-23T10:57:28.000Z"  itemprop="datePublished">2021-01-23</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h5 id="C-引入这几种强制类型变换的原因："><a href="#C-引入这几种强制类型变换的原因：" class="headerlink" title="C++引入这几种强制类型变换的原因："></a><strong>C++引入这几种强制类型变换的原因：</strong></h5><p>C风格的强制类型转换很简单，均用 Type b = (Type)a 形式转换，但是这样不安全，容易出bug而且也较难排查。比如不经意间将指向const对象的指针转换成非const对象的指针，或者将基类对象指针转成了派生类对象的指针，这种转换很容易出问题。</p>
+<h5 id="static-cast"><a href="#static-cast" class="headerlink" title="static_cast"></a>static_cast</h5><p>类似C风格的强制转换，进行无条件转换，静态类型转换：</p>
+<p>1）基类和子类之间的转换：其中子类指针转换为父类指针是安全的，但父类指针转换为子类指针是不安全的（基类和子类之间的动态类型转换建议用dynamic_cast）。</p>
+<p>2）基本数据类型转换，enum，struct，int，char，float等。static_cast不能进行无关类型（如非基类和子类）指针之间的转换。</p>
+<p>3）把任何类型的表达式转换成void类型。</p>
+<p>4）static_cast不能去掉类型的const、volatile属性（用const_cast）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">struct Base &#123;</span><br><span class="line">    virtual void Func() &#123; cout &lt;&lt; &quot;Base Func \n&quot;; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct Derive : public Base &#123;</span><br><span class="line">    void Func() override &#123; cout &lt;&lt; &quot;Derive Func \n&quot;; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    float f &#x3D; 1.23;</span><br><span class="line">    cout &lt;&lt; &quot;f &quot; &lt;&lt; f &lt;&lt; endl;</span><br><span class="line">    &#x2F;&#x2F;基本类型转换</span><br><span class="line">    int i &#x3D; static_cast&lt;int&gt;(f);</span><br><span class="line">    cout &lt;&lt; &quot;i &quot; &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;无关类型转换，编译错误</span><br><span class="line">    int *pi &#x3D; static_cast&lt;int *&gt;(&amp;f);  </span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F;子类指针转为父类指针</span><br><span class="line">    Derive d;</span><br><span class="line">    d.Func();</span><br><span class="line">    Base *b &#x3D; static_cast&lt;Base *&gt;(&amp;d); </span><br><span class="line">    b-&gt;Func();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a>const_cast</h5><p>去掉类型的const或volatile属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">    struct T &#123;</span><br><span class="line">        int i;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    const T a;</span><br><span class="line">    &#x2F;&#x2F;a.i &#x3D; 10;  &#x2F;&#x2F;直接修改const类型，编译错误</span><br><span class="line">    T &amp;b &#x3D; const_cast&lt;T&amp;&gt;(a);</span><br><span class="line">    b.i &#x3D; 10;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="dynamic-cast"><a href="#dynamic-cast" class="headerlink" title="dynamic_cast"></a>dynamic_cast</h5><p>有条件转换，动态类型转换，运行时检查类型安全（转换失败返回NULL）：</p>
+<p>1）安全的基类和子类之间的转换，不能用于内置的基本数据类型的强制转换。</p>
+<p>2）基类中一定要有虚函数，否则编译不通过。</p>
+<p>3）相同基类不同子类之间的交叉转换，但结果返回NULL。</p>
+<p>4）其他三种都是编译时完成的，dynamic_cast是运行时处理的，运行时要进行类型检查。</p>
+<p>用于将父类的指针或引用转换为子类的指针或引用，此场景下父类必须要有虚函数，因为dynamic_cast是运行时检查，检查需要运行时信息RTTI，而RTTI存储在虚函数表中。</p>
+<p>需要检测有虚函数的原因：类中存在虚函数，就说明它有想要让基类指针或引用指向派生类对象的情况，此时转换才有意义。 这是由于运行时类型检查需要运行时类型信息，而这个信息存储在类的虚函数表（关于虚函数表的概念，详细可见&lt;Inside c++ object model&gt;）中，<br>只有定义了虚函数的类才有虚函数表。</p>
+<p>在类层次间进行上行转换时，dynamic_cast和static_cast的效果是一样的；<br> 在进行下行转换时，dynamic_cast具有类型检查的功能，比static_cast更安全。</p>
+<p>下行转换的成功与否还与将要转换的类型有关，即要转换的指针指向的对象的实际类型与转换以后的对象类型一定要相同，否则转换失败。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 我是父类</span><br><span class="line">class Tfather</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	virtual void f() &#123; cout &lt;&lt; &quot;father&#39;s f()&quot; &lt;&lt; endl; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 我是子类</span><br><span class="line">class Tson : public Tfather</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	void f() &#123; cout &lt;&lt; &quot;son&#39;s f()&quot; &lt;&lt; endl; &#125;</span><br><span class="line"> </span><br><span class="line">	int data; &#x2F;&#x2F; 我是子类独有成员</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123; </span><br><span class="line">	Tfather father;</span><br><span class="line">	Tson son;</span><br><span class="line">	son.data &#x3D; 123;</span><br><span class="line"> </span><br><span class="line">	Tfather *pf;</span><br><span class="line">	Tson *ps;</span><br><span class="line">	</span><br><span class="line">	&#x2F;* 上行转换：没有问题，多态有效 *&#x2F;</span><br><span class="line">	ps &#x3D; &amp;son;</span><br><span class="line">	pf &#x3D; dynamic_cast&lt;Tfather *&gt;(ps);</span><br><span class="line">	pf-&gt;f();</span><br><span class="line"> </span><br><span class="line">	&#x2F;* 下行转换（pf实际指向子类对象）：没有问题 *&#x2F;</span><br><span class="line">	pf &#x3D; &amp;son;</span><br><span class="line">	ps &#x3D; dynamic_cast&lt;Tson *&gt;(pf);</span><br><span class="line">	ps-&gt;f();</span><br><span class="line">	cout &lt;&lt; ps-&gt;data &lt;&lt; endl;		&#x2F;&#x2F; 访问子类独有成员有效</span><br><span class="line"> </span><br><span class="line">	&#x2F;* 下行转换（pf实际指向父类对象）：含有不安全操作，dynamic_cast发挥作用返回NULL *&#x2F;</span><br><span class="line">	pf &#x3D; &amp;father;</span><br><span class="line">	ps &#x3D; dynamic_cast&lt;Tson *&gt;(pf);</span><br><span class="line">	assert(ps !&#x3D; NULL);			 	&#x2F;&#x2F; 违背断言，阻止以下不安全操作</span><br><span class="line">	ps-&gt;f();</span><br><span class="line">	cout &lt;&lt; ps-&gt;data &lt;&lt; endl;		&#x2F;&#x2F; 不安全操作，对象实例根本没有data成员</span><br><span class="line"> </span><br><span class="line">	&#x2F;* 下行转换（pf实际指向父类对象）：含有不安全操作，static_cast无视 *&#x2F;</span><br><span class="line">	pf &#x3D; &amp;father;</span><br><span class="line">	ps &#x3D; static_cast&lt;Tson *&gt;(pf);</span><br><span class="line">	assert(ps !&#x3D; NULL);</span><br><span class="line">	ps-&gt;f();</span><br><span class="line">	cout &lt;&lt; ps-&gt;data &lt;&lt; endl;		&#x2F;&#x2F; 不安全操作，对象实例根本没有data成员</span><br><span class="line"> </span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a>reinterpret_cast</h5><p>仅重新解释类型，但没有进行二进制的转换：</p>
+<p>1）转换的类型必须是一个指针，应用、算术类型、函数指针或者成员指针。</p>
+<p>2）在比特级别上进行转换，可以把一个指针转换成一个整数，也可以把一个整数转换成一个指针（先把一个指针转换成一个整数，在把该整数转换成原类型的指针，还可以得到原先的指针值）。但不能将非32bit的实例转成指针。<br>3） 最普通的用途就是在函数指针类型之间进行转换。<br>4） 很难保证移植性。</p>
+<p>什么都可以转，万不得已不要使用，一般前三种转换方式不能解决问题了使用这种强制类型转换方式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int main() &#123;</span><br><span class="line">    int data &#x3D; 10;</span><br><span class="line">    int *pi &#x3D; &amp;data;</span><br><span class="line"></span><br><span class="line">    float *fpi &#x3D; reinterpret_cast&lt;float *&gt;(pi);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>去const属性用const_cast</p>
+<p>基本类型转换用static_cast</p>
+<p>多态类之间的类型转换用dynamic_cast</p>
+<p>不同类型的指针类型转换用reinterpret_cast</p>
+<p>参考链接：</p>
+<p><a href="https://mp.weixin.qq.com/s/6YW7VX787X7kZiRBLbVn-Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/6YW7VX787X7kZiRBLbVn-Q</a></p>
+<p><a href="https://blog.csdn.net/weixin_44212574/article/details/89043854" target="_blank" rel="noopener">https://blog.csdn.net/weixin_44212574/article/details/89043854</a></p>
+<p><a href="https://www.cnblogs.com/evenleee/p/10382335.html" target="_blank" rel="noopener">https://www.cnblogs.com/evenleee/p/10382335.html</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-01-23T15:26:21.473Z" itemprop="dateUpdated">2021-01-23 23:26:21</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2021/01/23/Perforce%E7%9A%84Trigger/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Perforce的Trigger</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/01/14/C++%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">C++内存分布</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

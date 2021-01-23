@@ -149,6 +149,148 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-1225"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-05-14 02:24:49" datetime="2018-05-13T18:24:49.000Z"  itemprop="datePublished">2018-05-14</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/05/14/1225/">RTIOW-ch4：Adding a sphere</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        球体是非常简单的形体，因为只需要一个球心和一个半径，就能确认球体的位置。 若我们在场景中放置一个球体，那么对球体进行采样的时候就会涉及到如何判断射线与球体相交的问题。  对于中心在C(cx,cy,cz)的球体：有方程(x−cx)∗(x−cx)+(y−cy)∗(y−cy)+(z−cz)∗(z−cz)=R∗R p点（x,y,z）满足x∗x+y∗y+z∗z=R∗R，就表明p点在球上。   上面两个...
+    
+
+        <a href="/2018/05/14/1225/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-rtiow-rays-a-simple-camera-and-background"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-05-14 00:24:31" datetime="2018-05-13T16:24:31.000Z"  itemprop="datePublished">2018-05-14</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/05/14/rtiow-rays-a-simple-camera-and-background/">RTIOW-ch3：Rays, a simple camera, and background</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        所有光线追踪器所具有的一件事就是ray类射线进行像素颜色的采集。 让我们将射线看作函数p（t）= A + t * B。这里p是一个3D位置，沿着3D线。 A是射线源，B是射线方向，射线参数是t。 [
+                
+                    
+                    
+                
+                ](htt...
+    
+
+        <a href="/2018/05/14/rtiow-rays-a-simple-camera-and-background/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-rtiow-ch2：the-vec3-class"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-05-13 18:15:02" datetime="2018-05-13T10:15:02.000Z"  itemprop="datePublished">2018-05-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/05/13/rtiow-ch2%EF%BC%9Athe-vec3-class/">RTIOW-ch2：The vec3 class</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        几乎所有的图形程序都有一些用于存储几何向量的类颜色。 在许多系统中，这些向量是4D（3D加上一个齐次坐标）几何图形和RGB加上颜色的Alpha透明度通道）。 为了我们的目的，三个坐标就足够了。 我们将使用相同的类vec3颜色，位置，方向，偏移量等等。 类vec3.h：
+#ifndef VEC3H#define VEC3H
+#include &lt;math.h&gt;#include &lt...
+    
+
+        <a href="/2018/05/13/rtiow-ch2%EF%BC%9Athe-vec3-class/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ray-Tracing/" rel="tag">Ray Tracing</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-《ray-tracing-in-one-weekend》ch1：output-an-image"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -455,153 +597,6 @@ Vector3.h：#ifndef __VECTOR3_H...
     
 
         <a href="/2018/05/05/cs%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6%E5%92%8C%E5%AD%98%E5%82%A8%E5%AE%B9%E9%87%8F%E7%9A%84%E5%8D%95%E4%BD%8D/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-cs：非数值数据的编码表示"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-05 14:37:23" datetime="2018-05-05T06:37:23.000Z"  itemprop="datePublished">2018-05-05</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/05/cs%EF%BC%9A%E9%9D%9E%E6%95%B0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/">CS：非数值数据的编码表示</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        逻辑数据的编码表示• 计算机中何时会用到逻辑数据？ – 表示逻辑（关系）表达式中的逻辑值：真/假 例如，对于关系表达式：(x&gt;0) 并且（y&lt;=0) “x&gt;0”、“y&lt;=0”、“(x&gt;0) 并且(y&lt;=0)”都是逻辑值 • 表示 • 用一位表示。N位二进制数（位串）可表示N个逻辑数据 • 运算 – 按位进行。如，按位与/ 按位或/ 逻辑左移/ 逻辑右移等 ...
-    
-
-        <a href="/2018/05/05/cs%EF%BC%9A%E9%9D%9E%E6%95%B0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-cs：浮点数的编码表示"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-05 14:23:56" datetime="2018-05-05T06:23:56.000Z"  itemprop="datePublished">2018-05-05</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/05/cs%EF%BC%9A%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/">CS：浮点数的编码表示</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        C语言支持的基本数据类型float：单精度浮点数，存储长度：32 double ：双精度浮点数，存储长度：64 long double ：扩展精度浮点数，存储长度：80 / 96  
-科学计数法(Scientific Notation)与浮点数[
-                
-                    
-                    
-              ...
-    
-
-        <a href="/2018/05/05/cs%EF%BC%9A%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-cs：c语言中的整数"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-05 14:04:17" datetime="2018-05-05T06:04:17.000Z"  itemprop="datePublished">2018-05-05</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/05/cs%EF%BC%9Ac%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B4%E6%95%B0/">CS：C语言中的整数</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        C语言支持的基本数据类型[
-                
-                    
-                    
-                
-                ](http://www.wjgbaby.com/wp-content/uploads/2018/05/18050507-300x192.png)
-              
-无符...
-    
-
-        <a href="/2018/05/05/cs%EF%BC%9Ac%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B4%E6%95%B0/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>

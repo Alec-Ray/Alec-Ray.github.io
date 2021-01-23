@@ -14,19 +14,24 @@
     
     
     
-    <title>Archives | Hexo</title>
+    <title>Shell脚本常用命令 | Hexo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/page/20/index.html">
+    <meta name="keywords" content="CICD">
+    <meta name="description" content="cd 切回主目录 cd ..&#x2F;切回上一级 cd folderName切进某个文件夹 新建目录： mkdir AAA 新建一个文件，写入内容： echo “This is a test” &gt; test.txt 改名字： mv test.txt tt.txt 用户user的主目录就是&#x2F;home&#x2F;user 绝对路径类似   &#x2F;home&#x2F;gaia&#x2F;develop_210120&#x2F;blueshield.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell脚本常用命令">
+<meta property="og:url" content="http://yoursite.com/2021/01/23/Shell%E8%84%9A%E6%9C%AC%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="cd 切回主目录 cd ..&#x2F;切回上一级 cd folderName切进某个文件夹 新建目录： mkdir AAA 新建一个文件，写入内容： echo “This is a test” &gt; test.txt 改名字： mv test.txt tt.txt 用户user的主目录就是&#x2F;home&#x2F;user 绝对路径类似   &#x2F;home&#x2F;gaia&#x2F;develop_210120&#x2F;blueshield.">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-23T12:57:28.000Z">
+<meta property="article:modified_time" content="2021-01-23T13:43:51.901Z">
 <meta property="article:author" content="Alec">
+<meta property="article:tag" content="CICD">
 <meta name="twitter:card" content="summary">
     
     <link rel="shortcut icon" href="/favicon.ico">
@@ -41,7 +46,7 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -67,7 +72,7 @@
               </a>
             </li>
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
@@ -113,7 +118,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Archives</div>
+        <div class="flex-col header-title ellipsis">Shell脚本常用命令</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -128,11 +133,17 @@
         
     </div>
 </header>
-<header class="content-header archives-header">
+<header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Archives</h1>
+        <h1 class="title">Shell脚本常用命令</h1>
         <h5 class="subtitle">
+            
+                <time datetime="2021-01-23T12:57:28.000Z" itemprop="datePublished" class="page-time">
+  2021-01-23
+</time>
+
+
             
         </h5>
     </div>
@@ -142,246 +153,153 @@
 
 </header>
 
-<div class="container body-wrap fade">
+
+<div class="container body-wrap">
     
 
-    
+<article id="post-Shell脚本常用命令"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Shell脚本常用命令</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-01-23 20:57:28" datetime="2021-01-23T12:57:28.000Z"  itemprop="datePublished">2021-01-23</time>
+
             
-            <h3 class="archive-separator">August, 2017</h3>
-            <div class="waterfall">
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>cd 切回主目录</p>
+<p>cd ../切回上一级</p>
+<p>cd folderName切进某个文件夹</p>
+<p>新建目录：</p>
+<p>mkdir AAA</p>
+<p>新建一个文件，写入内容：</p>
+<p>echo “This is a test” &gt; test.txt</p>
+<p>改名字：</p>
+<p>mv test.txt tt.txt</p>
+<p>用户user的主目录就是/home/user</p>
+<p>绝对路径类似   /home/gaia/develop_210120/blueshield.sh</p>
+<p>新建一个sh文件：</p>
+<p>touch test.sh</p>
+<p>vi test.sh  进入vim编辑</p>
+<p>按下键盘i</p>
+<p>第一行放入#!/bin/sh</p>
+<p>第二行可以echo “11111”</p>
+<p>按键esc，输入:wq保存，:wq!强制保存</p>
+<p>给test.sh赋予可执行权限，chmod +x test.sh </p>
+<p>执行脚本./test.sh</p>
+<p>也可以通过sh test.sh 执行脚本</p>
+<p>指定目录下调用make指令</p>
+<p>#!/bin/sh</p>
+<p>cd /home/gaia/develop_210120/ &amp;&amp; make</p>
+<p>readonly option is set (add ! to override) 报错，使用:wq!保存</p>
+<p>shell root账户登录 sudo passwd root 输入root的密码即可</p>
+<p>查看目录下文件的大小，用ll或者ll -alh</p>
+<p>清理文件夹 rm -rf folderName</p>
+<p>win命令行root账户登录linux机器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@192.168.172.249</span><br></pre></td></tr></table></figure>
+
+<p>查看大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+
+<p>只保留最近20天内的文件，其他都删除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find .&#x2F; -mtime +20 -type d | xargs rm -rf</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>安装zip       yum install zip</p>
+<p>安装unzip       yum install unzip</p>
+<p>You need to be root to perform this command.输入su 输入toot的密码</p>
+<p>压缩 text 文件夹下所有文件：</p>
+<blockquote>
+<p>zip -r text.zip text</p>
+</blockquote>
+<p>压缩 text 文件夹下除 txt1.txt 以外所有文件：</p>
+<blockquote>
+<p>zip -r text.zip text -x=’text/txt1.txt’</p>
+</blockquote>
+<p>压缩 text 文件夹下除 music文件夹 与 txt1.txt 以外所有文件：</p>
+<blockquote>
+<p>zip -r text.zip text -x=’text/music/*’ -x=’text/txt1.txt’</p>
+</blockquote>
+<p>注意：-r后第一个参数为压缩后的文件夹，第二个参数为想要压缩的文件夹。</p>
+<p>​      -x排除文件夹下所有文件时后面要加 *</p>
+<p>​      -x的路径是根据当前所在地址的相对路径</p>
+<p>汇总查看文件夹的大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh *</span><br></pre></td></tr></table></figure>
+
+
+
+<p>切到指定目录压缩文件，压缩之前先删除上一次的压缩包，注意用&amp;&amp;   命令之间使用 &amp;&amp; 连接，实现逻辑与的功能。  </p>
+<p>#!/bin/sh<br>cd /home/gaia/develop_210120/ &amp;&amp; rm -rf GoServer.zip &amp;&amp; zip -r GoServer.zip release -x ‘release/DedicateServer/*’</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
     
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-08-04 14:25:53" datetime="2017-08-04T06:25:53.000Z"  itemprop="datePublished">2017-08-04</time>
-
-      
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/08/04/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%BC%96%E5%86%99/">客户端的编写</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
+    <div class="content">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Photon/" rel="tag">Photon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-08-04 14:07:53" datetime="2017-08-04T06:07:53.000Z"  itemprop="datePublished">2017-08-04</time>
-
-      
+<span class="post-time">
+    Last updated: <time datetime="2021-01-23T13:43:51.901Z" itemprop="dateUpdated">2021-01-23 21:43:51</time>
+</span><br>
 
 
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/08/04/%E5%88%A9%E7%94%A8photon%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/">利用Photon搭建服务器</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Photon/" rel="tag">Photon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
-
     </div>
     
-  </article>
-</div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
 
-    
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-08-04 14:00:58" datetime="2017-08-04T06:00:58.000Z"  itemprop="datePublished">2017-08-04</time>
-
-      
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/08/04/%E5%88%A9%E7%94%A8%E4%B8%83%E7%89%9B%E4%BA%91%E8%8E%B7%E5%BE%9710g%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E5%92%8Ccdn%E5%8A%A0%E9%80%9F/">利用七牛云获得10G存储空间和CDN加速</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
         
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/" rel="tag">WordPress</a></li></ul>
 
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CICD/" rel="tag">CICD</a></li></ul>
+
+
+            
+
+
+        </div>
     </div>
-    
-  </article>
-</div>
 
     
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-08-04 13:50:34" datetime="2017-08-04T05:50:34.000Z"  itemprop="datePublished">2017-08-04</time>
-
-      
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/08/04/%E6%9C%80%E5%A5%BD%E7%9A%84%E7%A4%BE%E4%BA%A4%E5%88%86%E4%BA%AB%E6%8F%92%E4%BB%B6%E4%BC%98%E4%BA%ABushare/">最好的社交分享插件优享ushare</a>
-    </h3>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/" rel="tag">WordPress</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-08-04 13:33:49" datetime="2017-08-04T05:33:49.000Z"  itemprop="datePublished">2017-08-04</time>
-
-      
-
-
-    </div>
-    
-
-
   
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/08/04/wp-baidu-submit%E4%B8%BB%E5%8A%A8%E5%90%91%E7%99%BE%E5%BA%A6%E6%8E%A8%E9%80%81%E6%96%87%E7%AB%A0/">WP BaiDu Submit主动向百度推送文章</a>
-    </h3>
+    <div class="waves-block waves-effect next">
+      <a href="/2021/01/23/Perforce%E7%9A%84Trigger/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Perforce的Trigger</h4>
+      </a>
+    </div>
   
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/" rel="tag">WordPress</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-08-04 12:22:10" datetime="2017-08-04T04:22:10.000Z"  itemprop="datePublished">2017-08-04</time>
-
-      
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/08/04/wordpress%E4%BC%98%E7%A7%80%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/">WordPress优秀插件推荐</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/" rel="tag">WordPress</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-08-04 11:38:52" datetime="2017-08-04T03:38:52.000Z"  itemprop="datePublished">2017-08-04</time>
-
-      
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/08/04/wordpress%E5%BF%85%E8%A3%85%E6%8F%92%E4%BB%B6/">WordPress必装插件</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/" rel="tag">WordPress</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-    </div>
-
-    
-<nav id="page-nav">
-    <div class="inner">
-    <a class="extend prev" rel="prev" href="/archives/page/19/">上一页</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/18/">18</a><a class="page-number" href="/archives/page/19/">19</a><span class="page-number current">20</span>
-    </div>
 </nav>
+
+
+
+    
+
+</article>
+
+
 
 </div>
 
