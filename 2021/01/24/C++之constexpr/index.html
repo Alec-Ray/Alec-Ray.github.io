@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>C++之constexpr | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C++">
+    <meta name="description" content="简介constexpr在 C++11 引入、在 C++14 得到大幅改进。 （1）C++11中的constexpr指定的函数返回值和参数必须要保证是字面值，而且必须只有一行return代码，这给函数的设计者带来了更多的限制，比如通常只能通过return 三目运算符+递归来计算返回的字面值。 （2）C++14中只要保证返回值和参数是字面值就行了，函数体中可以加入更多的语句，方便了更灵活的计算。 它的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++之constexpr">
+<meta property="og:url" content="http://yoursite.com/2021/01/24/C++%E4%B9%8Bconstexpr/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简介constexpr在 C++11 引入、在 C++14 得到大幅改进。 （1）C++11中的constexpr指定的函数返回值和参数必须要保证是字面值，而且必须只有一行return代码，这给函数的设计者带来了更多的限制，比如通常只能通过return 三目运算符+递归来计算返回的字面值。 （2）C++14中只要保证返回值和参数是字面值就行了，函数体中可以加入更多的语句，方便了更灵活的计算。 它的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-24T10:57:50.000Z">
+<meta property="article:modified_time" content="2021-01-24T07:04:09.566Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/wu-da-ren-6-38" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-link"></i>
+                ZhiHu
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C++之constexpr</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C++之constexpr</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-01-24T10:57:50.000Z" itemprop="datePublished" class="page-time">
+  2021-01-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#const变量通过指针修改的例子："><span class="post-toc-number">2.</span> <span class="post-toc-text">const变量通过指针修改的例子：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#constexpr"><span class="post-toc-number">3.</span> <span class="post-toc-text">constexpr</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-C++之constexpr"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C++之constexpr</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-01-24 18:57:50" datetime="2021-01-24T10:57:50.000Z"  itemprop="datePublished">2021-01-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><p>constexpr在 C++11 引入、在 C++14 得到大幅改进。</p>
+<p>（1）C++11中的constexpr指定的函数返回值和参数必须要保证是字面值，而且必须只有一行return代码，这给函数的设计者带来了更多的限制，比如通常只能通过return 三目运算符+递归来计算返回的字面值。</p>
+<p>（2）C++14中只要保证返回值和参数是字面值就行了，函数体中可以加入更多的语句，方便了更灵活的计算。</p>
+<p>它的字面意思是 constant expression，常量表达式。</p>
+<p>其实，const并不能代表“常量”，它仅仅是对变量的一个修饰，告诉编译器这个变量只能被初始化，且不能被直接修改（实际上可以修改）。而这个变量的值，可以在运行时也可以在编译时指定。</p>
+<h5 id="const变量通过指针修改的例子："><a href="#const变量通过指针修改的例子：" class="headerlink" title="const变量通过指针修改的例子："></a>const变量通过指针修改的例子：</h5><p>常变量的值在赋值后不能被改变并不是真的不能改变，而是对于高级语言语法上的限制，实际上常变量在运行时并不是存放在只读内存区，因此只要在程序运行时获取到变量的地址，即可对其进行修改</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实验1：</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showValue</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; val &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> val = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> *ptr;</span><br><span class="line">    <span class="keyword">void</span> *p = (<span class="keyword">void</span> *)&amp;val;</span><br><span class="line"></span><br><span class="line">    ptr = (<span class="keyword">int</span> *)p;</span><br><span class="line">    (*ptr)++;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; &amp;val &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; val &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    showValue(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">结果:</span><br><span class="line"><span class="number">0x7ffe90e42cdc</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">11</span>  </span><br><span class="line"><span class="comment">//可以看到11是正确的，但是前面这个10应该是编译器优化了的原因，此时我如果在main里面继续使用val，结果可能会有问题，因此不建议修改const变量</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//实验2：    </span></span><br><span class="line"><span class="comment">//加上volatile关键字的结果呢    </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showValue</span><span class="params">(<span class="keyword">const</span> <span class="keyword">volatile</span> <span class="keyword">int</span> &amp;val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; val &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">volatile</span> <span class="keyword">int</span> val = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> *ptr;</span><br><span class="line">    <span class="keyword">void</span> *p = (<span class="keyword">void</span> *)&amp;val;</span><br><span class="line"></span><br><span class="line">    ptr = (<span class="keyword">int</span> *)p;</span><br><span class="line">    (*ptr)++;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; &amp;val &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; val &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    showValue(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">结果：</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="number">11</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a>constexpr</h5><p>constexpr可以用来修饰变量、函数、构造函数。一旦以上任何元素被constexpr修饰，那么等于说是告诉编译器 “请大胆地将我看成编译时就能得出常量值的表达式去优化我”。<br> 如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">main()&#123;</span><br><span class="line">  <span class="keyword">int</span> arr[func()];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//error : 函数调用在常量表达式中必须具有常量值</span></span><br></pre></td></tr></table></figure>
+
+<p>对于func() ，胆小的编译器并没有足够的胆量去做编译期优化，哪怕函数体就一句return 字面值;<br> 而</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">main()&#123;</span><br><span class="line">  <span class="keyword">int</span> arr[func()];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//编译通过</span></span><br></pre></td></tr></table></figure>
+
+<p>则编译通过<br> 编译期大胆地将func()做了优化，在编译期就确定了func计算出的值10而无需等到运行时再去计算。</p>
+<p>这就是constexpr的第一个作用：给编译器足够的信心在编译期去做被constexpr修饰的表达式的优化。</p>
+<p>constexpr还有另外一个特性，虽然它本身的作用之一就是希望程序员能给编译器做优化的信心，但它却猜到了自己可能会被程序员欺骗，而编译器并不会对此“恼羞成怒”中止编译，如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">10</span>+n;</span><br><span class="line">&#125;</span><br><span class="line">main()&#123;</span><br><span class="line"> <span class="keyword">const</span>  <span class="keyword">int</span> i = <span class="built_in">cin</span>.<span class="built_in">get</span>();</span><br><span class="line"> <span class="built_in">cout</span>&lt;&lt;func(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//编译通过</span></span><br></pre></td></tr></table></figure>
+
+<p>程序员告诉编译器尽管信心十足地把func当做是编译期就能计算出值的程式，但却欺骗了它，程序员最终并没有传递一个常量字面值到该函数。没有被编译器中止编译并报错的原因在于编译器并没有100%相信程序员，当其检测到func的参数是一个常量字面值的时候，编译器才会去对其做优化，否则，依然会将计算任务留给运行时。</p>
+<p>​    </p>
+<p>参考链接：</p>
+<p><a href="https://www.jianshu.com/p/34a2a79ea947" target="_blank" rel="noopener">https://www.jianshu.com/p/34a2a79ea947</a></p>
+<p><a href="https://mp.weixin.qq.com/s/206vQMt5wryvB_blesMcRA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/206vQMt5wryvB_blesMcRA</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-01-24T07:04:09.566Z" itemprop="dateUpdated">2021-01-24 15:04:09</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2021/01/24/C++%E4%B9%8Bvolatile/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">C++之volatile</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/01/23/Shell%E8%84%9A%E6%9C%AC%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Shell脚本常用命令</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

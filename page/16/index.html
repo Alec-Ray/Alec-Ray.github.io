@@ -149,6 +149,98 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-lua与c交互之环境配置"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-04 16:11:31" datetime="2017-10-04T08:11:31.000Z"  itemprop="datePublished">2017-10-04</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/04/lua%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Lua与C#交互之环境配置</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Lua与C#交互要用到LuaInterface，起到桥梁的作用。 LuaInterface 是一个开源的项目工程，内部有两个核心的DLL 文件： ①LuaInterface.dll：在C#代码中操作Lua 代码需要依赖该文件； ②luanet.dll：在Lua 代码中访问C#的类库脚本需要依赖该文件。   环境配置要点： 一：将两个dll文件拷贝到项目当中去，并且设置属性为“如果较新则复制”...
+    
+
+        <a href="/2017/10/04/lua%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-c字符串的内存分配和驻留池"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-30 14:34:39" datetime="2017-09-30T06:34:39.000Z"  itemprop="datePublished">2017-09-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/30/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%92%8C%E9%A9%BB%E7%95%99%E6%B1%A0/">C#字符串的内存分配和驻留池机制</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        1.当有多个字符串变量包含了同样的字符串实际值时，CLR可能不会为它们重复地分配内存，而是让它们统统指向同一个字符串对象实例。 str01与str02的值相同，在对str02初始化的时候。并没有重新开辟内存，而是直接将地址指向str01的“wjg”。
+string str01 = “wjg”;string str02 = “wjg”;
+//因为String类重载了==操作符来比较String...
+    
+
+        <a href="/2017/09/30/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%92%8C%E9%A9%BB%E7%95%99%E6%B1%A0/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-多事之周-gyb培训"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -533,99 +625,6 @@ function temp.jianfa(a,b)    print(a..”-...
     
 
         <a href="/2017/09/11/lua%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E5%AE%9E%E7%8E%B0/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-lua笔记之table表"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-09-10 18:32:04" datetime="2017-09-10T10:32:04.000Z"  itemprop="datePublished">2017-09-10</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/lua%E7%AC%94%E8%AE%B0%E4%B9%8Btable%E8%A1%A8/">Lua笔记之table表</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Lua 语言中的数组其实就是table 类型。 table 是Lua 语言中的一种“代码格式结构”，而Lua 当中的数组就是使用table 这种结构实现的。 下面的这些文字知识点是别人总结的，我感觉这个总结的非常好，没有一句废话，完全就是标准呀。所以这次就没有自己写文字总结，但是代码不敢偷懒，是自己写的。
-一.给table 赋值
-有两种操作： 1.数组方式，就是以角标方式进行赋值，1,2,3...
-    
-
-        <a href="/2017/09/10/lua%E7%AC%94%E8%AE%B0%E4%B9%8Btable%E8%A1%A8/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-lua作用域研究"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-09-08 23:57:11" datetime="2017-09-08T15:57:11.000Z"  itemprop="datePublished">2017-09-08</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/08/lua%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%A0%94%E7%A9%B6/">Lua作用域研究</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Lua 语言中的变量，默认全部都是全局变量，就算是声明在函数内的变量，也是 全局变量。 如果想在Lua 中声明局部变量，需要使用“local”关键字明确标示出来。 变量的默认值是nil，类似于C#中的null。   我在下面代码中加入了注释，直接看代码吧：
---虽然temp001变量加了local成了局部变量–但是在meth函数内部依然可以访问–原因是因为变量仍在脚本中，类似于C#的priv...
-    
-
-        <a href="/2017/09/08/lua%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%A0%94%E7%A9%B6/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>

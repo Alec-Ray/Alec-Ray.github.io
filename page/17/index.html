@@ -149,6 +149,99 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-lua笔记之table表"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-10 18:32:04" datetime="2017-09-10T10:32:04.000Z"  itemprop="datePublished">2017-09-10</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/10/lua%E7%AC%94%E8%AE%B0%E4%B9%8Btable%E8%A1%A8/">Lua笔记之table表</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Lua 语言中的数组其实就是table 类型。 table 是Lua 语言中的一种“代码格式结构”，而Lua 当中的数组就是使用table 这种结构实现的。 下面的这些文字知识点是别人总结的，我感觉这个总结的非常好，没有一句废话，完全就是标准呀。所以这次就没有自己写文字总结，但是代码不敢偷懒，是自己写的。
+一.给table 赋值
+有两种操作： 1.数组方式，就是以角标方式进行赋值，1,2,3...
+    
+
+        <a href="/2017/09/10/lua%E7%AC%94%E8%AE%B0%E4%B9%8Btable%E8%A1%A8/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-lua作用域研究"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-08 23:57:11" datetime="2017-09-08T15:57:11.000Z"  itemprop="datePublished">2017-09-08</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/08/lua%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%A0%94%E7%A9%B6/">Lua作用域研究</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Lua 语言中的变量，默认全部都是全局变量，就算是声明在函数内的变量，也是 全局变量。 如果想在Lua 中声明局部变量，需要使用“local”关键字明确标示出来。 变量的默认值是nil，类似于C#中的null。   我在下面代码中加入了注释，直接看代码吧：
+--虽然temp001变量加了local成了局部变量–但是在meth函数内部依然可以访问–原因是因为变量仍在脚本中，类似于C#的priv...
+    
+
+        <a href="/2017/09/08/lua%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%A0%94%E7%A9%B6/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-lua函数以及委托"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -508,97 +601,6 @@ using ...
     
 
         <a href="/2017/08/19/c%E5%86%85%E7%BD%AE%E5%A7%94%E6%89%98%E4%B9%8Baction%E4%B8%8Efunc/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-c之lambda表达式"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-08-17 20:20:24" datetime="2017-08-17T12:20:24.000Z"  itemprop="datePublished">2017-08-17</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/08/17/c%E4%B9%8Blambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">C#之Lambda表达式</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Lambda表达式其实就是匿名方法的进一步简写,也就是匿名方法的升级版。 本篇文章我会在我写的匿名方法的基础上来做更改，匿名方法文章链接：http://www.wjgbaby.com/2017/08/17/c%e4%b9%8b%e5%8c%bf%e5%90%8d%e6%96%b9%e6%b3%95/   Lambda表达式语法： 委托类型   变量 = （[参数列表]）=&gt; { 方法体...
-    
-
-        <a href="/2017/08/17/c%E4%B9%8Blambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-c之匿名方法"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-08-17 12:26:41" datetime="2017-08-17T04:26:41.000Z"  itemprop="datePublished">2017-08-17</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/08/17/c%E4%B9%8B%E5%8C%BF%E5%90%8D%E6%96%B9%E6%B3%95/">C#之匿名方法</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        匿名方法从字面意思理解就是没有名字的方法。 在我们实际开发工作中，可能会有一些不常用且代码量小的方法存在，那么我们就可以把他写成匿名方法的形式，这样可以减少方法的繁琐和一些不必要的调用麻烦。 匿名语法格式： 委托类型变量 =  delegate（[类型列表]） { 方法体； }； 1，新建一个C#控制台项目，未使用匿名方法的代码如下：
-using System;using System.Co...
-    
-
-        <a href="/2017/08/17/c%E4%B9%8B%E5%8C%BF%E5%90%8D%E6%96%B9%E6%B3%95/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>

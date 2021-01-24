@@ -149,6 +149,101 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-灰度图之垂直投影和水平投影"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-23 20:30:53" datetime="2017-10-23T12:30:53.000Z"  itemprop="datePublished">2017-10-23</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/%E7%81%B0%E5%BA%A6%E5%9B%BE%E4%B9%8B%E5%9E%82%E7%9B%B4%E6%8A%95%E5%BD%B1%E5%92%8C%E6%B0%B4%E5%B9%B3%E6%8A%95%E5%BD%B1/">灰度图之垂直投影和水平投影</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Matlab代码：
+clc,clear,close all
+I=imread(‘pic.png’);g=rgb2gray(I);     %灰度化处理
+figuresubplot(221),imshow(I);title(‘原图’);subplot(222),imshow(g);title(‘灰度图’);
+[m, n]=size(I);
+%水平投影for x=1:m    S(x)=sum(...
+    
+
+        <a href="/2017/10/23/%E7%81%B0%E5%BA%A6%E5%9B%BE%E4%B9%8B%E5%9E%82%E7%9B%B4%E6%8A%95%E5%BD%B1%E5%92%8C%E6%B0%B4%E5%B9%B3%E6%8A%95%E5%BD%B1/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matlab%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">Matlab图像处理</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-assetbundle之服务端资源下载到本地"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-22 16:37:51" datetime="2017-10-22T08:37:51.000Z"  itemprop="datePublished">2017-10-22</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/22/assetbundle%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0/">AssetBundle之服务端资源下载到本地</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        在实际项目中，我们不可能每次启动程序都从服务端获取AssetBundle文件。一般都是将获取到的AssetBundle文件存放在本地，方便以后调用。 这两篇博客，都是属于AssetBundle比较核心一部分东西，用到的API也比较多，但是我基本都加了注释，要想熟练掌握还需要多练习的。之所以写下来，大致是为了当作自己的学习笔记，方便日后回头看，可以说是是查漏补缺吧。   这篇主要是写了如何用W...
+    
+
+        <a href="/2017/10/22/assetbundle%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AssetBundle/" rel="tag">AssetBundle</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-assetbundle之服务端资源下载"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -535,98 +630,6 @@ public class StayOrLeave : MonoBehavio...
     <div class="post-footer">
         
 	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-lua与c交互之环境配置"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-10-04 16:11:31" datetime="2017-10-04T08:11:31.000Z"  itemprop="datePublished">2017-10-04</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/10/04/lua%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Lua与C#交互之环境配置</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Lua与C#交互要用到LuaInterface，起到桥梁的作用。 LuaInterface 是一个开源的项目工程，内部有两个核心的DLL 文件： ①LuaInterface.dll：在C#代码中操作Lua 代码需要依赖该文件； ②luanet.dll：在Lua 代码中访问C#的类库脚本需要依赖该文件。   环境配置要点： 一：将两个dll文件拷贝到项目当中去，并且设置属性为“如果较新则复制”...
-    
-
-        <a href="/2017/10/04/lua%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-c字符串的内存分配和驻留池"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-09-30 14:34:39" datetime="2017-09-30T06:34:39.000Z"  itemprop="datePublished">2017-09-30</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/30/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%92%8C%E9%A9%BB%E7%95%99%E6%B1%A0/">C#字符串的内存分配和驻留池机制</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        1.当有多个字符串变量包含了同样的字符串实际值时，CLR可能不会为它们重复地分配内存，而是让它们统统指向同一个字符串对象实例。 str01与str02的值相同，在对str02初始化的时候。并没有重新开辟内存，而是直接将地址指向str01的“wjg”。
-string str01 = “wjg”;string str02 = “wjg”;
-//因为String类重载了==操作符来比较String...
-    
-
-        <a href="/2017/09/30/c%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%92%8C%E9%A9%BB%E7%95%99%E6%B1%A0/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
 
     </div>
     
