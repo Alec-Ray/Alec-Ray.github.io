@@ -149,6 +149,104 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-lua-与c交互之c调用lua"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-13 23:45:00" datetime="2017-10-13T15:45:00.000Z"  itemprop="datePublished">2017-10-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/13/lua-%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8Bc%E8%B0%83%E7%94%A8lua/">Lua 与C#交互之C#调用Lua</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一.Lua与C#的代码空间分配
+我们用VS写在C#项目里面调用Lua代码，实际上最后都是在Lua代码空间来运行，这个空间由系统分配。 [
+                
+                    
+                    
+                
+                ](http://www.wjgbaby.com/wp-content/...
+    
+
+        <a href="/2017/10/13/lua-%E4%B8%8Ec%E4%BA%A4%E4%BA%92%E4%B9%8Bc%E8%B0%83%E7%94%A8lua/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-unity检测物体在屏幕内外"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-10 17:54:39" datetime="2017-10-10T09:54:39.000Z"  itemprop="datePublished">2017-10-10</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/10/unity%E6%A3%80%E6%B5%8B%E7%89%A9%E4%BD%93%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%86%85%E5%A4%96/">Unity检测物体在屏幕内外</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        好记性不如烂笔头。虽然是很细的东西，但是为了防止以后忘记，还是记一下比较好。   直接将代码挂到gameobject上，然后去检测Console面板。 代码如下:
+using System.Collections;using System.Collections.Generic;using UnityEngine;
+public class StayOrLeave : MonoBehavio...
+    
+
+        <a href="/2017/10/10/unity%E6%A3%80%E6%B5%8B%E7%89%A9%E4%BD%93%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%86%85%E5%A4%96/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/" rel="tag">Unity3D</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-lua与c交互之环境配置"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -546,105 +644,12 @@ print(str01==str02)print(table01==table02)
 
         </li>
     
-        <li class="post-list-item fade">
-            <article id="post-lua的metatable元表"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-09-12 16:33:18" datetime="2017-09-12T08:33:18.000Z"  itemprop="datePublished">2017-09-12</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/12/lua%E7%9A%84metatable%E5%85%83%E8%A1%A8/">Lua的Metatable元表</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        在Lua中使用一个表操作另外的一个表的时候就需要用到metatable   1.关联两个表[将表B 设置成表A 的元表]，需要用一个新的函数： setmetatable(表A, 表B) 2.getmetatable(表名) 如果表名有元表，就返回元表的类型和地址；如果没有元表，则返回一个nil。   3.__index索引(注意前面是两个_) 设置元表的“__index 索引”，让这个索引指...
-    
-
-        <a href="/2017/09/12/lua%E7%9A%84metatable%E5%85%83%E8%A1%A8/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-lua的模块化实现"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-09-11 19:45:04" datetime="2017-09-11T11:45:04.000Z"  itemprop="datePublished">2017-09-11</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/11/lua%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E5%AE%9E%E7%8E%B0/">Lua的模块化实现</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        1.新建一个名为temp的lua文件，代码如下：
---初始化模块，命名与文件名相同temp={}–定义变量：模块名.变量名temp.name=”WuJianGang”
-–定义方法：模块名.方法名function temp.jiafa(a,b)    print(a..”+”..b..”=”..(a+b))end
-function temp.jianfa(a,b)    print(a..”-...
-    
-
-        <a href="/2017/09/11/lua%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E5%AE%9E%E7%8E%B0/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua%E7%83%AD%E6%9B%B4%E6%96%B0/" rel="tag">Lua热更新</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
     </ul>
 
     
 <nav id="page-nav">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
     </div>
 </nav>
 
