@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>C++智能指针 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C/C++">
+    <meta name="description" content="RAII:RAII（Resource Acquisition Is Initialization）是一种利用对象生命周期来控制程序资源（如内存、文件句柄、网络连接、互斥量等等）的简单技术 RAII 的一般做法是这样的：在对象构造时获取资源，接着控制对资源的访问使之在对象的生命周期内始终保持有效，最后在对象析构的时候释放资源。借此，我们实际上把管理一份资源的责任托管给了一个对象。主要应用智能指针！！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++智能指针">
+<meta property="og:url" content="http://yoursite.com/2021/01/26/C++%20%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="RAII:RAII（Resource Acquisition Is Initialization）是一种利用对象生命周期来控制程序资源（如内存、文件句柄、网络连接、互斥量等等）的简单技术 RAII 的一般做法是这样的：在对象构造时获取资源，接着控制对资源的访问使之在对象的生命周期内始终保持有效，最后在对象析构的时候释放资源。借此，我们实际上把管理一份资源的责任托管给了一个对象。主要应用智能指针！！">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-26T10:57:54.000Z">
+<meta property="article:modified_time" content="2021-01-26T16:13:32.628Z">
+<meta property="article:author" content="Alec">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Alec</h5>
+          <a href="mailto:zzunewbie@163.com" title="zzunewbie@163.com" class="mail">zzunewbie@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Alec-Ray" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/wu-da-ren-6-38" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-link"></i>
+                ZhiHu
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C++智能指针</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C++智能指针</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-01-26T10:57:54.000Z" itemprop="datePublished" class="page-time">
+  2021-01-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#RAII"><span class="post-toc-number">1.</span> <span class="post-toc-text">RAII:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#裸指针："><span class="post-toc-number">2.</span> <span class="post-toc-text">裸指针：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#std-unique-ptr"><span class="post-toc-number">3.</span> <span class="post-toc-text">std::unique_ptr</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#std-shared-ptr"><span class="post-toc-number">4.</span> <span class="post-toc-text">std::shared_ptr</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#std-weak-ptr"><span class="post-toc-number">5.</span> <span class="post-toc-text">std::weak_ptr</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#常见问题："><span class="post-toc-number">6.</span> <span class="post-toc-text">常见问题：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-C++ 智能指针"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C++智能指针</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-01-26 18:57:54" datetime="2021-01-26T10:57:54.000Z"  itemprop="datePublished">2021-01-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h5 id="RAII"><a href="#RAII" class="headerlink" title="RAII:"></a>RAII:</h5><p>RAII（Resource Acquisition Is Initialization）是一种利用对象生命周期来控制程序资源（如内存、文件句柄、网络连接、互斥量等等）的简单技术</p>
+<p>RAII 的一般做法是这样的：在对象构造时获取资源，接着控制对资源的访问使之在对象的生命周期内始终保持有效，最后在对象析构的时候释放资源。借此，我们实际上把管理一份资源的责任托管给了一个对象。主要应用智能指针！！！</p>
+<p>这种做法有两大好处：<br> 不需要显式地释放资源。<br> 采用这种方式，对象所需的资源在其生命期内始终保持有效。</p>
+<p> RAII的本质内容是用对象代表资源，把管理资源的任务转化为管理对象的任务，将资源的获取和释放与对象的构造和析构对应起来，从而确保在对象的生存期内资源始终有效，对象销毁时资源一定会被释放。<br> 说白了，就是拥有了对象，就拥有了资源，对象在，资源则在。所以，RAII机制是进行资源管理的有力武器，C++程序员依靠RAII写出的代码不仅简洁优雅，而且做到了异常安全。在以后的编程实际中，可以使用RAII机制，让自己的代码更漂亮。</p>
+<h5 id="裸指针："><a href="#裸指针：" class="headerlink" title="裸指针："></a>裸指针：</h5><p>np是指向X类型对象的指针-如果您已动态分配(新的/ malloc)该对象,则必须删除/释放该对象…像np这样的简单指针称为“裸指针”。实际工作中可能会因为各种原因导致指针指向的资源未释放，导致内存泄漏。</p>
+<p>所以，我们需要智能指针来帮助我们管理动态分配的内存。其来源于一个事实：栈比堆要安全的多，因为栈上的变量离开作用域后，会自动销毁并清理。智能指针结合了栈上变量的安全性和堆上变量的灵活性。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">X</span> &#123;</span> <span class="keyword">int</span> a,b,c; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    X* np = <span class="keyword">new</span> X;</span><br><span class="line">    <span class="keyword">delete</span> np;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="std-unique-ptr"><a href="#std-unique-ptr" class="headerlink" title="std::unique_ptr"></a>std::unique_ptr</h5><p>std::unique_ptr是std::auto_ptr的替代品，其用于不能被多个实例共享的内存管理。这就是说，仅有一个实例拥有内存所有权。它的使用很简单：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fraction</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> m_numerator = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> m_denominator = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Fraction(<span class="keyword">int</span> numerator = <span class="number">0</span>, <span class="keyword">int</span> denominator = <span class="number">1</span>) :</span><br><span class="line">        m_numerator(numerator), m_denominator(denominator)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">friend</span> <span class="built_in">std</span>::ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream&amp; out, <span class="keyword">const</span> Fraction &amp;f1)</span><br><span class="line">    &#123;</span><br><span class="line">        out &lt;&lt; f1.m_numerator &lt;&lt; <span class="string">"/"</span> &lt;&lt; f1.m_denominator;</span><br><span class="line">        <span class="keyword">return</span> out;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;Fraction&gt; f1&#123; <span class="keyword">new</span> Fraction&#123; <span class="number">3</span>, <span class="number">5</span> &#125; &#125;;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; *f1 &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// output: 3/5</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;Fraction&gt; f2; <span class="comment">// 初始化为nullptr</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// f2 = f1 // 非法，不允许左值赋值</span></span><br><span class="line">    f2 = <span class="built_in">std</span>::<span class="built_in">move</span>(f1);  <span class="comment">// 此时f1转移到f2，f1变为nullptr</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// C++14 可以使用 make_unique函数</span></span><br><span class="line">    <span class="keyword">auto</span> f3 = <span class="built_in">std</span>::make_unique&lt;Fraction&gt;(<span class="number">2</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; *f3 &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">// output: 2/7</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理数组，但是尽量不用这样做，因为你可以用std::array或者std::vector</span></span><br><span class="line">    <span class="keyword">auto</span> f4 = <span class="built_in">std</span>::make_unique&lt;Fraction[]&gt;(<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f4[<span class="number">0</span>] &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// output: 0/1</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span>.ignore(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="std-shared-ptr"><a href="#std-shared-ptr" class="headerlink" title="std::shared_ptr"></a>std::shared_ptr</h5><p>std::shared_ptr与std::unique_ptr类似。std::shared_ptr与std::unique_ptr的主要区别在于前者是使用引用计数的智能指针。引用计数的智能指针可以跟踪引用同一个真实指针对象的智能指针实例的数目。这意味着，可以有多个std::shared_ptr实例可以指向同一块动态分配的内存，当最后一个引用对象离开其作用域时，才会释放这块内存。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> ptr1 = <span class="built_in">std</span>::make_shared&lt;Resource&gt;();</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ptr1.use_count() &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">// output: 1</span></span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="comment">//通过复制构造函数或者赋值来共享内存</span></span><br><span class="line">        <span class="keyword">auto</span> ptr2 = ptr1;  <span class="comment">// 通过复制构造函数使两个对象管理同一块内存</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;Resource&gt; ptr3;   <span class="comment">// 初始化为空</span></span><br><span class="line">        ptr3 = ptr1;   <span class="comment">// 通过赋值，共享内存</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ptr1.use_count() &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">// output: 3</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ptr2.use_count() &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">// output: 3</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ptr3.use_count() &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">// output: 3</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 此时ptr2与ptr3对象析构了</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ptr1.use_count() &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">// output: 1</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span>.ignore(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="std-weak-ptr"><a href="#std-weak-ptr" class="headerlink" title="std::weak_ptr"></a>std::weak_ptr</h5><p>std::shared_ptr可以实现多个对象共享同一块内存，当最后一个对象离开其作用域时，这块内存被释放。但是仍然有可能出现内存无法被释放的情况，联想一下“死锁”现象，对于std::shared_ptr会出现类似的“循环引用”现象：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Person(<span class="keyword">const</span> <span class="built_in">string</span>&amp; name):</span><br><span class="line">        m_name&#123;name&#125;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; m_name &lt;&lt; <span class="string">" created"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">virtual</span> ~Person()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; m_name &lt;&lt; <span class="string">" destoryed"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="keyword">bool</span> <span class="title">partnerUp</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;Person&gt;&amp; p1, <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;Person&gt;&amp; p2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!p1 || !p2)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        p1-&gt;m_partner = p2;</span><br><span class="line">        p2-&gt;m_partner = p1;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; p1-&gt;m_name &lt;&lt; <span class="string">" is now partenered with "</span> &lt;&lt; p2-&gt;m_name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">string</span> m_name;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;Person&gt; m_partner;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> p1 = <span class="built_in">std</span>::make_shared&lt;Person&gt;(<span class="string">"Lucy"</span>);</span><br><span class="line">        <span class="keyword">auto</span> p2 = <span class="built_in">std</span>::make_shared&lt;Person&gt;(<span class="string">"Ricky"</span>);</span><br><span class="line">        partnerUp(p1, p2);  <span class="comment">// 互相设为伙伴</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span>.ignore(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>整个程序很简单，创建两个Person动态对象，交由智能指针管理，并且通过partnerUp()函数互相引用为自己的伙伴。但是执行的结果却却有问题：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Lucy created</span><br><span class="line">Ricky created</span><br><span class="line">Lucy is now partnered with Ricky</span><br></pre></td></tr></table></figure>
+
+<p>对象没有被析构！出现内存泄露！仔细想想<code>std::shared_ptr</code>对象是什么时候才能被析构，就是引用计数变为0时，但是当你想析构p1时，p2内部却引用了p1，无法析构；反过来也无法析构。互相引用造成了“死锁”，最终内存泄露！这样的情形也会出现在“自锁”中：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> p1 = <span class="built_in">std</span>::make_shared&lt;Person&gt;(<span class="string">"Lucy"</span>);</span><br><span class="line">        partnerUp(p1, p1);  <span class="comment">// 自己作为自己的伙伴</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span>.ignore(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候std::weak_ptr应运而生。std::weak_ptr可以包含由std::shared_ptr所管理的内存的引用。但是它仅仅是旁观者，并不是所有者。那就是std::weak_ptr不拥有这块内存，当然不会计数，也不会阻止std::shared_ptr释放其内存。但是它可以通过lock()方法返回一个std::shared_ptr对象，从而访问这块内存。这样我们可以用<code>std::weak_ptr</code>来解决上面的“循环引用”问题：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Person(<span class="keyword">const</span> <span class="built_in">string</span>&amp; name):</span><br><span class="line">        m_name&#123;name&#125;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; m_name &lt;&lt; <span class="string">" created"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">virtual</span> ~Person()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; m_name &lt;&lt; <span class="string">" destoryed"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="keyword">bool</span> <span class="title">partnerUp</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;Person&gt;&amp; p1, <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;Person&gt;&amp; p2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!p1 || !p2)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        p1-&gt;m_partner = p2;  <span class="comment">// weak_ptr重载的赋值运算符中可以接收shared_ptr对象</span></span><br><span class="line">        p2-&gt;m_partner = p1;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; p1-&gt;m_name &lt;&lt; <span class="string">" is now partenered with "</span> &lt;&lt; p2-&gt;m_name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">string</span> m_name;</span><br><span class="line">    <span class="built_in">std</span>::weak_ptr&lt;Person&gt; m_partner;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> p1 = <span class="built_in">std</span>::make_shared&lt;Person&gt;(<span class="string">"Lucy"</span>);</span><br><span class="line">        <span class="keyword">auto</span> p2 = <span class="built_in">std</span>::make_shared&lt;Person&gt;(<span class="string">"Ricky"</span>);</span><br><span class="line">        partnerUp(p1, p2);  <span class="comment">// 互相设为伙伴</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span>.ignore(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序正常输出（注意创建与析构的顺序是反的？在栈上！）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Lucy created</span><br><span class="line">Ricky created</span><br><span class="line">Lucy is now partnered with Ricky</span><br><span class="line">Ricky destroyed</span><br><span class="line">Lucy destroyed</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="常见问题："><a href="#常见问题：" class="headerlink" title="常见问题："></a>常见问题：</h5><p>Q：shared_ptr的原理<br> A：shared_ptr维护了一个指向control block的指针对象，来记录引用个数。</p>
+<p>Q：weak_ptr的原理<br> A：weak_ptr用于避免shared_ptr相互指向产生的环形结构，造成的内存泄漏。weak_ptr count是弱引用个数；弱引用个数不影响shared count和对象本身，shared count为0时则直接销毁。</p>
+<p>Q：如何判断weak_ptr的对象是否失效？<br> A：1、expired()：检查被引用的对象是否已删除。<br> 2、lock()会返回shared指针，判断该指针是否为空。<br> 3、use_count()也可以得到shared引用的个数，但速度较慢。</p>
+<p>Q：shared 和 unique区别<br>  A：unique具有唯一性，对指向的对象值存在唯一的unique_ptr。unique_ptr不可复制，赋值，但是move()可以转换对象的所有权，局部变量的返回值除外。与shared_ptr相比，若自定义删除器，需要在声明处指定删除器类型，而shared不需要，shared自定义删除器只需要指定删除器对象即可，在赋值时，可以随意赋值，删除器对象也会被赋值给新的对象。</p>
+<p>Q：原因是什么？<br> A：unique的实现中，删除器对象是作为unique_ptr的一部分，而shared_ptr，删除器对象保存在control_block中。</p>
+<p>​    </p>
+<p>参考链接：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/54078587?from_voters_page=true" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/54078587?from_voters_page=true</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-01-26T16:13:32.628Z" itemprop="dateUpdated">2021-01-27 00:13:32</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Alec">
+            Alec
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/01/25/C++%20extern%E5%92%8Cextern%20%E2%80%9CC%E2%80%9D/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">C++ extern和extern &#34;C&#34;</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Alec &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/Alec-Ray/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
